@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "email": "info@idris-apotheke-weinheim.de",
+            "name": "Idris Apotheke",
+            "website": "idris-apotheke-weinheim.de",
+            "totalPrice": 248
+        },
+        {
+            "email": "info@higreen-apotheke.de",
+            "name": "higreen!",
+            "website": "higreen-apotheke.de",
+            "totalPrice": 250.79
+        },
+        {
+            "email": "kundenservice@mycannabis.de",
+            "name": "MYCANNABIS",
+            "website": "mycannabis.de",
+            "totalPrice": 332.01
+        }
+    ],
+    "total": 4,
+    "page": 1,
+    "limit": 3,
+    "moreAvailable": true
+}

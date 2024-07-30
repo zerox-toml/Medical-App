@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap");
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@font-face {
+  font-family: "Fustat";
+  src: url("/fonts/Fustat-VariableFont_wght.ttf") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+
+  font-family: "Fustat", sans-serif !important;
+  box-sizing: border-box;
+  background-color: rgba(243, 243, 243) !important;
+  color: #161616 !important;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.fustat_normal {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4rem;
+  text-align: left;
+  color: #161616;
+}
+
+.custom-radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #41057e;
+  outline: none;
+  cursor: pointer;
+}
+
+.custom-radio:checked {
+  background-color: #41057e;
+}
+
+.Myshadow {
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.05);
+}
+.disable-attr {
+  pointer-events: none;
+  opacity: 50%;
+}
+
+.custom_checkbox:checked {
+  background-color: #41057e;
+}
+
+.pinfo_textarea::placeholder {
+  font-size: 14px;
+}
+
+.title2 {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 28.4px;
+  text-align: left;
+}
+
+.css-7o8aqz-MuiSlider-rail {
+  color:#41057e !important;
+  height: 7px !important;
+}
+.css-ttgsjq-MuiSlider-track{
+  color: #41057E !important;
+  height: 7px !important;
+}
+.css-cp2j25-MuiSlider-thumb {
+  background-color: #41057E !important;
+}
+.css-hzp7sc-MuiSlider-mark, .css-z5sdnj-MuiSlider-mark {
+  background-color: #F2EDF6 !important;
+  width: 13px !important;
+  height: 13px !important;
+  border-radius: 50% !important;
+
+}
+.css-ttgsjq-MuiSlider-track {
+  background-color: #F2EDF6 !important;
+  border: 0 !important;
+}
+.css-7o8aqz-MuiSlider-rail {
+  background-color: #F2EDF6 !important;
+}
+.css-15befwp-MuiRating-root {
+  font-size: 1.2rem !important;
+}
+
+.shadow-custom-card {
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.05);
+}
+
+.zoom-effect-card {
+  transform: scale(1.2); /* Adjust the scale value to your preference */
+  transition: transform 0.3s ease-in-out;
+}
