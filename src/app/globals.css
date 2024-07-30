@@ -79,9 +79,14 @@ input {
 }
 .css-10opxo5 {
   background-color:#41057E !important;
+  border: 0 !important;
 }
 .css-1osy2b3 {
   color: #F2EDF6 !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+
 }
 .custom-radio {
   -webkit-appearance: none;
