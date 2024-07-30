@@ -37,6 +37,7 @@ body {
   box-sizing: border-box;
   background-color: rgba(243, 243, 243) !important;
   color: #161616 !important;
+  -webkit-overflow-scrolling: touch;
 }
 
 @layer utilities {

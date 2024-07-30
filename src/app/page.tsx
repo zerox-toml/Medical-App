@@ -17,7 +17,7 @@ export default function Home() {
   const [showFilter, setShowFilter] = useState(true);
 
   return (
-    <main className="">
+    <main  className="lg:w-[860px] w-full flex flex-col justify-center items-center mx-auto">
       <HeadQuestionWithAccount
         isStep={isStep}
         setIsStep={setIsStep}
