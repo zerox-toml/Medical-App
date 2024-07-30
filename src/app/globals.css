@@ -75,6 +75,7 @@ input {
   background-color: #41057E !important;
   width: 16px !important;
   height: 16px !important;
+  border-radius: 50% !important;
 }
 .custom-radio {
   -webkit-appearance: none;
