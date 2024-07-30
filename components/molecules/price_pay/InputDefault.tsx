@@ -26,7 +26,7 @@ const InputDefault: React.FC<InputDefaultProps> = ({
   return (
     <div className={`${className} relative h-auto`}>
       <input
-        className={` appearance-none block w-full bg-[#F5F5F5] text-gray-700 pl-4 !border-none text-[14px] 
+        className={` appearance-none block w-full bg-[#F5F5F5] text-gray-700 pl-4 !border-none text-[16px]
             rounded-[3.75rem] py-[10px] px-[20px] h-[47px] focus:outline-none focus:ring-0 focus:border-transparent}`}
         type="text"
         placeholder={content}

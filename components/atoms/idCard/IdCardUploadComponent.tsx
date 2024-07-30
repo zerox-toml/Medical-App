@@ -57,7 +57,7 @@ const FileUpload: React.FC = () => {
           <input
             type="file"
             multiple
-            className="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
+            className="absolute inset-0 z-50 text-[16px] w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
             onChange={handleFileChange}
           />
           <div className="flex -webkit-flex 360px:flex-row flex-col items-center justify-center py-10 text-center gap-6">

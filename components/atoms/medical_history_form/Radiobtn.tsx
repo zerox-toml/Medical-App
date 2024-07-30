@@ -21,7 +21,7 @@ const Radiobtn: React.FC<RadiobtnProps> = ({
         name={name}
         value=""
         onChange={onChange}
-        className="custom-radio text-custom-purple !w-[15px] !min-w-[15px] !h-[15px] mt-1"
+        className="custom-radio text-custom-purple !w-[15px] !min-w-[15px] text-[16px] !h-[15px] mt-1"
       />
       <label className=" text-gray-700">{content}</label>
     </div>

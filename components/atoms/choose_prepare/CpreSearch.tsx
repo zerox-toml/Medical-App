@@ -34,7 +34,7 @@ const CPreSearch: React.FC<ISearchContent> = ({
         type="text"
         placeholder="Suchen"
         value={searchContent}
-        className="border-0 w-full bg-[#FFFFFF] md:bg-[#F5F5F5] font-xs max-md:text-[0.75rem] focus:outline-none"
+        className="border-0 w-full bg-[#FFFFFF] md:bg-[#F5F5F5] text-[16px] max-md:text-[0.75rem] focus:outline-none"
         onChange={handleInputChange}
       />
       <div className="w-auto">

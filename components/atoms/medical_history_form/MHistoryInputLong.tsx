@@ -26,7 +26,7 @@ const MHistoryDetailSymptom: React.FC<IUserName> = ({
   return (
     <div className="w-full mt-[24px]">
       <input
-        className={`appearance-none !flex -webkit-flex !justify-start !items-center w-full bg-[#F5F5F5] text-gray-700 pl-4 border-none text-[14px] 
+        className={`appearance-none !flex -webkit-flex !justify-start !items-center w-full bg-[#F5F5F5] text-gray-700 pl-4 border-none text-[16px] 
           rounded-[16px] py-[10px] px-[20px] pb-[100px] focus:outline-none ${(!value && isInvalid) && "!border-[1px] !border-red-500 !border-solid"}`}
         type="text"
         placeholder="Ihre Nachricht"

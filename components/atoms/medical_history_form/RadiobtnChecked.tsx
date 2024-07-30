@@ -16,7 +16,7 @@ const RadiobtnChecked: React.FC<RadiobtnCheckedProps> = ({content, className, na
                 type="radio"
                 name={name}
                 value=""
-                className="custom-radio text-custom-purple !w-[15px] !h-[15px] bg-custom-purple"
+                className="custom-radio text-custom-purple text-[16px] !w-[15px] !h-[15px] bg-custom-purple"
                 defaultChecked
                 onChange={onChange}
             />

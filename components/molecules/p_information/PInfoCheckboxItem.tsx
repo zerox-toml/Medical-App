@@ -43,7 +43,7 @@ const PInfoCheckboxItem: React.FC<ICheckBox> = ({
       >
         <input
           type="checkbox"
-          className="before:content[''] border-custom-purple peer relative h-4 w-4 cursor-pointer appearance-none border-2 rounded mt-[2px] border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block   before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-white before:opacity-0 before:transition-opacity checked:bg-custom-purple checked:before:bg-white hover:before:opacity-10"
+          className="before:content[''] border-custom-purple text-[16px] peer relative h-4 w-4 cursor-pointer appearance-none border-2 rounded mt-[2px] border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block   before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-white before:opacity-0 before:transition-opacity checked:bg-custom-purple checked:before:bg-white hover:before:opacity-10"
           id={content}
           onChange={onChange}
           disabled={disabled}

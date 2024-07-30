@@ -27,7 +27,8 @@ const MHistoryInput: React.FC<MHistoryInputProps> = ({ content }) => {
   return (
     <div className="relative w-full mt-[12px]">
       <input
-        className={`appearance-none block w-full bg-[#F5F5F5] text-gray-700 pl-4 border-none text-[14px] rounded-[3.75rem] py-[10px] px-[20px] h-[47px] focus:outline-none ${
+        className={`appearance-none block w-full bg-[#F5F5F5] text-[16px] text-gray-700 pl-4 border-none text-[14px] rounded-[3.75rem] py-[10px] 
+          px-[20px] h-[47px] focus:outline-none ${
           isInvalid ? "" : "border-red-500" // Conditional border color based on validation
         }`}
         id="grid-last-name"

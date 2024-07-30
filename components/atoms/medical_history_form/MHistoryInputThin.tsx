@@ -33,8 +33,8 @@ const MHistoryInputThin: React.FC<MHistoryInputThinProps> = ({
       <input
         className={`multi-select ${
           disabled
-            ? "disable-attr appearance-none block w-full bg-[#F5F5F5] text-gray-700 pl-4 border-none text-[14px] rounded-[3.75rem] py-[8px] px-[20px] h-[36px] focus:outline-none"
-            : "appearance-none block w-full bg-[#41057E12] text-gray-700 pl-4 border-none text-[14px] rounded-[3.75rem] py-[8px] px-[20px] h-[36px] focus:outline-none"
+            ? "disable-attr appearance-none block w-full bg-[#F5F5F5] text-gray-700 pl-4 border-none text-[16px] rounded-[3.75rem] py-[8px] px-[20px] h-[36px] focus:outline-none"
+            : "appearance-none block w-full bg-[#41057E12] text-gray-700 pl-4 border-none text-[16px] rounded-[3.75rem] py-[8px] px-[20px] h-[36px] focus:outline-none"
         }`}
         id="grid-last-name"
         type="text"

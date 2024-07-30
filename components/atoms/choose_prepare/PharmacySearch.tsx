@@ -32,7 +32,7 @@ export const PharmacySearch: React.FC<PharmacySearchProps> = ({ onChange, search
             type="text"
             onChange={(e) => onChange && onChange(e.target.value)}
             placeholder={clicked ? clicked.name : "Suchen"}
-            className="border-0 w-full bg-[#F5F5F5] font-xs max-md:text-[0.75rem] focus:outline-none"
+            className="border-0 w-full bg-[#F5F5F5] text-[16px] max-md:text-[0.75rem] focus:outline-none"
             onClick={toggleDropdown}
           />
           <div className="w-auto">
