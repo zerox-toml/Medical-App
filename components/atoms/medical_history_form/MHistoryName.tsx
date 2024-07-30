@@ -19,7 +19,7 @@ const MHistoryName: React.FC<IUserName> = ({
   };
     
   return (
-    <div className="relative w-[16.8rem] max-[650px]:w-full">
+    <div className="relative sm:w-[16.8rem] 360px:w-[310px] w-full">
       <input
         className={`appearance-none w-full bg-[#F5F5F5] text-gray-700 border-none text-[14px] h-[47px] rounded-[3.75rem] py-[10px] px-[20px] pl-4 focus:outline-none flex justify-center items-center ${(!value && isInvalid) && "!border-[1px] !border-red-500 !border-solid"}`}
         id="grid-last-name"
