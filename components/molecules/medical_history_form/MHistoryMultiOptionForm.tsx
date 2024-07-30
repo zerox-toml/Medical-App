@@ -74,22 +74,22 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
     <div
       className={`multi-select ${
         disabled
-          ? "disable-attr w-full flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
-          : "w-full flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
+          ? "disable-attr w-full flex -webkit-flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
+          : "w-full flex -webkit-flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
       }`}
     >
       <span className="text-[16px] font-normal w-full">
         Nehmen Sie regelmäßig Medikamente ein?
         <span className=" text-alert-red font-bold">*</span>
       </span>
-      <div className="mt-[16px] flex w-full items-center gap-5 justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-[650px]:flex-col">
+      <div className="mt-[16px] flex -webkit-flex w-full items-center gap-5 justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-[650px]:flex-col">
         <RadiobtnChecked
           name="medication"
           className=" w-[100%]"
           content="Nein"
           onChange={() => setCurrentDisplay(0)}
         />
-        <div className="sm:flex-row flex-col sm:gap-[24px] gap-4 flex sm:items-center items-start w-full">
+        <div className="sm:flex-row flex-col sm:gap-[24px] gap-4 flex -webkit-flex sm:items-center items-start w-full">
           <Radiobtn
             name="medication"
             className=""
@@ -107,14 +107,14 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
         machen
         <span className=" text-alert-red font-bold">*</span>
       </span>
-      <div className="mt-[16px] max-[650px]:flex-col flex w-full gap-5 items-center justify-between ">
+      <div className="mt-[16px] max-[650px]:flex-col flex -webkit-flex w-full gap-5 items-center justify-between ">
         <RadiobtnChecked
           name="allergies"
           className=" w-[100%]"
           content="Nein"
           onChange={() => setIsAllergy(0)}
         />
-        <div className="sm:flex-row flex-col sm:gap-[24px] gap-4 w-full flex sm:items-center items-start">
+        <div className="sm:flex-row flex-col sm:gap-[24px] gap-4 w-full flex -webkit-flex sm:items-center items-start">
           <Radiobtn
             name="allergies"
             className=""
@@ -127,7 +127,7 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
       <div
         className={`multi-select ${
           isAllergy === 1
-            ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[360px] w-full rounded-[20px] mr-0 ml-auto flex justify-end items-center mt-4"
+            ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[360px] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
             : "hidden"
         }`}
       >
@@ -138,8 +138,8 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
         medizinischem Cannabis beginnen möchten, und sehen Ihre Ärzte keine
         Kontraindikationen?
       </span>
-      <div className=" mt-[16px] flex w-full items-start justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-sm:flex-col max-sm:items-start gap-5">
-        <div className="w-1/3 flex items-center">
+      <div className=" mt-[16px] flex -webkit-flex w-full items-start justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-sm:flex-col max-sm:items-start gap-5">
+        <div className="w-1/3 flex -webkit-flex items-center">
           <RadiobtnChecked
             name="allergists"
             className=""
@@ -147,7 +147,7 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
             onChange={() => setIsDoctorCheck(0)}
           />
         </div>
-        <div className="flex flex-col sm:w-1/3 w-full items-start justify-center">
+        <div className="flex -webkit-flex flex-col sm:w-1/3 w-full items-start justify-center">
           <Radiobtn
             name="allergists"
             className=""
@@ -157,14 +157,14 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
           <div
             className={`multi-select ${
               isDoctorCheck === 1
-                ? "py-[10px] px-6 bg-[#D7000D08]  w-full rounded-[20px] mr-0 ml-auto flex justify-end items-center mt-4"
+                ? "py-[10px] px-6 bg-[#D7000D08]  w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
                 : "hidden"
             }`}
           >
             <MHistoryNoRemoteAlert />
           </div>
         </div>
-        <div className="sm:w-1/3 w-full flex flex-col items-start justify-center">
+        <div className="sm:w-1/3 w-full flex -webkit-flex flex-col items-start justify-center">
           <Radiobtn
             name="allergists"
             className="w-auto max-[650px]:w-full max-[650px]:items-start"
@@ -174,7 +174,7 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
           <div
             className={`multi-select ${
               isDoctorCheck === 2
-                ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[240px] w-full rounded-[20px] mr-0 ml-auto flex justify-end items-center mt-4"
+                ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[240px] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
                 : "hidden"
             }`}
           >
@@ -187,14 +187,14 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
         Erkrankungen?
         <span className=" text-alert-red font-bold">*</span>
       </span>
-      <div className=" mt-[16px] flex w-full items-center gap-5  justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-[650px]:flex-col">
+      <div className=" mt-[16px] flex -webkit-flex w-full items-center gap-5  justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-[650px]:flex-col">
         <RadiobtnChecked
           name="chronic "
           className=" w-[100%]"
           content="Nein"
           onChange={() => setIsillnesses(0)}
         />
-        <div className="sm:flex-row flex-col sm:gap-[24px] gap-4 flex sm:items-center items-start justify-start w-full">
+        <div className="sm:flex-row flex-col sm:gap-[24px] gap-4 flex -webkit-flex sm:items-center items-start justify-start w-full">
           <Radiobtn
             name="chronic "
             className=""
@@ -210,7 +210,7 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
       <span className="text-[16px] font-normal w-full mt-[36px]">
         Zahlen Sie selbst oder sind Sie privat versichert?
       </span>
-      <div className=" mt-[16px] flex w-full items-center justify-start max-[650px]:flex-col max-[650px]:items-start gap-5 ">
+      <div className=" mt-[16px] flex -webkit-flex w-full items-center justify-start max-[650px]:flex-col max-[650px]:items-start gap-5 ">
         <RadiobtnChecked
           name="pay "
           className=" w-[50%]"

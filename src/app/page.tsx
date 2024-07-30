@@ -23,7 +23,7 @@ export default function Home() {
         setIsStep={setIsStep}
         setIsProductStep={setIsProductStep}
       />
-      <div className={`${showFilter? "pt-[60px]":"pt-7"} flex flex-col sm:pt-20  bg-[rgba(243,243,243)]`}>
+      <div className={`${showFilter? "pt-[60px]":"pt-7"} flex -webkit-flex flex-col sm:pt-20  bg-[rgba(243,243,243)]`}>
         {isStep === 0 ? (
           <MHistoryHaveAccountPage isStep={isStep} setIsStep={setIsStep} />
         ) : isStep === 1 ? (

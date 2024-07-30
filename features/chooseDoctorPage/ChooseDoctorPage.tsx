@@ -28,7 +28,7 @@ const ChooseDoctorPage = ({ isStep, setIsStep }: Props) => {
         setIsClicked1(false);
     }
     return (
-        <div className="w-full bg-[rgba(243,243,243)] flex flex-col justify-start items-center h-auto min-h-[100vh]">
+        <div className="w-full bg-[rgba(243,243,243)] flex -webkit-flex flex-col justify-start items-center h-auto min-h-[100vh]">
             <div className=" lg:max-w-[820px] lg:px-[0px] md:max-w-screen-md md:px-[16px] sm:px-[16px] sm:max-w-screen-sm w-full px-[15px] mb-12">
                 <h2 className="md:text-[36px] text-[24px] text-[#161616] font-extrabold leading-[3.2rem]">
                     Ihr Arzt

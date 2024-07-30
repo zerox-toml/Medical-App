@@ -48,9 +48,9 @@ const FileUpload: React.FC = () => {
 
   return (
     <div className="bg-[#F5F5F5] p-7 rounded-[20px] w-full mx-auto">
-      <div className="relative flex flex-col text-gray-400  rounded">
+      <div className="relative flex -webkit-flex flex-col text-gray-400  rounded">
         <div
-          className="relative flex flex-col text-gray-400  rounded cursor-pointer"
+          className="relative flex -webkit-flex flex-col text-gray-400  rounded cursor-pointer"
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
         >
@@ -60,7 +60,7 @@ const FileUpload: React.FC = () => {
             className="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
             onChange={handleFileChange}
           />
-          <div className="flex 360px:flex-row flex-col items-center justify-center py-10 text-center gap-6">
+          <div className="flex -webkit-flex 360px:flex-row flex-col items-center justify-center py-10 text-center gap-6">
             <div className="sm:block hidden">
               <Image
                 src={"/Icon/upload.png"}
@@ -89,7 +89,7 @@ const FileUpload: React.FC = () => {
             {files.map((file, index) => (
               <div
                 key={index}
-                className={`relative flex flex-col items-center h-36 w-36 overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none ${draggingIndex === index ? "border-blue-600" : ""
+                className={`relative flex -webkit-flex flex-col items-center h-36 w-36 overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none ${draggingIndex === index ? "border-blue-600" : ""
                   }`}
                 draggable
                 onDragStart={() => handleDragStart(index)}
@@ -137,7 +137,7 @@ const FileUpload: React.FC = () => {
                     <source src={URL.createObjectURL(file)} type={file.type} />
                   </video>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
+                <div className="absolute bottom-0 left-0 right-0 flex -webkit-flex flex-col p-2 text-xs bg-white bg-opacity-50">
                   <span className="w-full font-bold text-gray-900 truncate">
                     {file.name}
                   </span>

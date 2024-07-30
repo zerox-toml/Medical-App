@@ -26,10 +26,10 @@ const CardComponent: React.FC<ICardProps> = ({
   };
   return (
     <div
-      className={`flex flex-col  justify-between items-center rounded cursor-pointer  sm:w-[134px] w-full`}
+      className={`flex -webkit-flex flex-col  justify-between items-center rounded cursor-pointer  sm:w-[134px] w-full`}
       onClick={() => onClick(cardNum)}
     >
-      <div className={`${selected ? 'bg-[#41057E12] border-[3px] border-custom-purple' : "bg-[#ffffff]"} shadow mb-1 hover:border-custom-purple rounded-[10px] w-full h-[77px] flex justify-center items-center hover:bg-[#0000000D] `}>
+      <div className={`${selected ? 'bg-[#41057E12] border-[3px] border-custom-purple' : "bg-[#ffffff]"} shadow mb-1 hover:border-custom-purple rounded-[10px] w-full h-[77px] flex -webkit-flex justify-center items-center hover:bg-[#0000000D] `}>
         <Image
           src={imgUrl}
           alt="Payment"

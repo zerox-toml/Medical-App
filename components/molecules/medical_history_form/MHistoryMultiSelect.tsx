@@ -53,8 +53,8 @@ const MHistoryMultiSelect: React.FC<MHistoryMultiSelectProps> = ({
     <div
       className={`multi-select ${
         disabled
-          ? "disable-attr flex w-full flex-col justify-start items-start mt-[20px] bg-white md:p-[50px] md-[24px] md:rounded-[36px] rounded-[24px]  Myshadow"
-          : "w-full flex flex-col justify-start items-start mt-[20px] bg-white md:p-[50px] p-[24px]  md:rounded-[36px] rounded-[24px] Myshadow"
+          ? "disable-attr flex -webkit-flex w-full flex-col justify-start items-start mt-[20px] bg-white md:p-[50px] md-[24px] md:rounded-[36px] rounded-[24px]  Myshadow"
+          : "w-full flex -webkit-flex flex-col justify-start items-start mt-[20px] bg-white md:p-[50px] p-[24px]  md:rounded-[36px] rounded-[24px] Myshadow"
       }`}
     >
       <h3
@@ -66,7 +66,7 @@ const MHistoryMultiSelect: React.FC<MHistoryMultiSelectProps> = ({
       >
         Welche Symptome haben Sie?<span className=" text-alert-red">*</span>
       </h3>
-      <div className="w-auto flex flex-wrap gap-[16px] mt-[24px]">
+      <div className="w-auto flex -webkit-flex flex-wrap gap-[16px] mt-[24px]">
         {MHistoryMultiData.map((symp, index) => (
           <MHistoryMultiSelectionBtn
             key={index}

@@ -20,11 +20,11 @@ const Delivery = () => {
   const [narName, setNarName] = useState("");
 
   return (
-    <div className="flex flex-col bg-white sm:rounded-[30px] rounded-[24px] sm:p-[50px] p-6 mt-5">
+    <div className="flex -webkit-flex flex-col bg-white sm:rounded-[30px] rounded-[24px] sm:p-[50px] p-6 mt-5">
       <h1 className="text-custom-black text-xl font-extrabold">
         Lieferadresse
       </h1>
-      <div className="flex flex-wrap gap-4 justify-between mt-[30px] ">
+      <div className="flex -webkit-flex flex-wrap gap-4 justify-between mt-[30px] ">
         <InputDefault
           content="Straße und Hausnummer"
           inputContent={street}

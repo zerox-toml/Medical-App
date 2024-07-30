@@ -29,7 +29,7 @@ const IdCardUpload = () => {
   
 
   return (
-    <div className="p-[3.125rem] flex flex-col gap-3 bg-white rounded-[3.125rem] mt-10 max-md:p-[24px] max-md:rounded-[24px]">
+    <div className="p-[3.125rem] flex -webkit-flex flex-col gap-3 bg-white rounded-[3.125rem] mt-10 max-md:p-[24px] max-md:rounded-[24px]">
       <strong>Personalausweis</strong>
       <p>
         Bitte laden Sie ein Foto Ihres gültigen Personalausweises oder

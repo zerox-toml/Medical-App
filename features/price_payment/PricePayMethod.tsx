@@ -46,7 +46,7 @@ const PricePayMethod: React.FC<IStepProps> = ({ isStep, setIsStep }) => {
   };
 
   return (
-    <div className="w-full bg-[rgba(243,243,243)]  flex flex-col items-center h-auto min-h-[100vh]">
+    <div className="w-full bg-[rgba(243,243,243)]  flex -webkit-flex flex-col items-center h-auto min-h-[100vh]">
       <div className=" lg:max-w-[870px] lg:px-[0px] md:max-w-screen-md md:px-[16px] sm:px-[16px] sm:max-w-screen-sm w-full px-[15px] mb-12">
         <h2 className="text-4xl mb-10 mr-auto text-[#161616] font-extrabold ml-4">
           Preise & Bezahlmethoden
@@ -60,7 +60,7 @@ const PricePayMethod: React.FC<IStepProps> = ({ isStep, setIsStep }) => {
             Zusammenfassung
           </h1>
           <ConfirmProducts />
-          <div className="flex gap-1 bg-[#FFD6001A] justify-center items-center border-b-[#00000012]">
+          <div className="flex -webkit-flex gap-1 bg-[#FFD6001A] justify-center items-center border-b-[#00000012]">
             <Image src={warningIcon} alt="warning" width={14} height={14} />
             <p className="text-[#886419] py-[10px] rounded-[20px]">
               Die hier angezeigten Kosten werden dir separat von deiner
@@ -78,7 +78,7 @@ const PricePayMethod: React.FC<IStepProps> = ({ isStep, setIsStep }) => {
               isVideo={false}
             />
           </div>
-          <div className="flex md:flex-row flex-col justify-center items-center gap-4">
+          <div className="flex -webkit-flex md:flex-row flex-col justify-center items-center gap-4">
             <InputDefault
               content="Gutscheincode"
               inputContent={couponCode}
@@ -92,7 +92,7 @@ const PricePayMethod: React.FC<IStepProps> = ({ isStep, setIsStep }) => {
            rounded-[60px] px-4 py-[10px] text-base font-bold text-[#41057E]"
             />
           </div>
-          <div className="flex justify-between items-center font-extrabold text-xl text-custom-black  pt-[30px]">
+          <div className="flex -webkit-flex justify-between items-center font-extrabold text-xl text-custom-black  pt-[30px]">
             <span>Gesamtbetrag</span>
             <span>25,00 €</span>
           </div>
@@ -101,7 +101,7 @@ const PricePayMethod: React.FC<IStepProps> = ({ isStep, setIsStep }) => {
           <Delivery />
         </div>
       </div>
-      <div className="lg:max-w-[870px] lg:px-[0px] md:max-w-screen-md md:px-[16px] sm:px-[16px] sm:max-w-screen-sm w-full px-[15px] flex justify-center">
+      <div className="lg:max-w-[870px] lg:px-[0px] md:max-w-screen-md md:px-[16px] sm:px-[16px] sm:max-w-screen-sm w-full px-[15px] flex -webkit-flex justify-center">
         <PaymentMethod
           chageAGB={chageAGB}
           setChageAGB={setChageAGB}

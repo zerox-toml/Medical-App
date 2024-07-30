@@ -15,7 +15,7 @@ const Radiobtn: React.FC<RadiobtnProps> = ({
 }) => {
  
   return (
-    <div className={`flex items-start justify-start gap-[8px] ${className}`}>
+    <div className={`flex -webkit-flex items-start justify-start gap-[8px] ${className}`}>
       <input
         type="radio"
         name={name}

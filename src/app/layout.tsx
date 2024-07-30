@@ -34,7 +34,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
         />
       </Head>
       <body
-        className={`${inter.className} flex flex-col justify-center bg-[rgba(243,243,243)]`}
+        className={`${inter.className} flex -webkit-flex flex-col justify-center bg-[rgba(243,243,243)]`}
       >
         <ReduxProvider>{children}</ReduxProvider>
         <Footer />

@@ -17,13 +17,13 @@ const CPreDoctorQuestion = ({ setIsDoctor, isDoctor }: Props) => {
     else setChecked(true);
   };
   return (
-    <div className="w-full  h-auto md:rounded-[2.25rem] rounded-[24px] md:p-[3.125rem] p-[24px] bg-white flex flex-col justify-between mx-auto mt-10 Myshadow">
+    <div className="w-full  h-auto md:rounded-[2.25rem] rounded-[24px] md:p-[3.125rem] p-[24px] bg-white flex -webkit-flex flex-col justify-between mx-auto mt-10 Myshadow">
       <p className=" text-[16px] font-normal">
         Möchten Sie eine eigene Sorte wählen oder soll der Arzt eine passende
         Sorte verschreiben?
         <span className="text-alert-red font-bold">*</span>
       </p>
-      <div className="flex mt-[16px]">
+      <div className="flex -webkit-flex mt-[16px]">
         <RadiobtnChecked
           name="doctor"
           content="Eigene Sorte"
@@ -37,8 +37,8 @@ const CPreDoctorQuestion = ({ setIsDoctor, isDoctor }: Props) => {
           onChange={() => setIsDoctor(true)}
         />
       </div>
-      <div className={`multi-select ${!isDoctor ? "hidden" : "flex flex-col "}`}>
-        <div className="flex items-start bg-[#FFD6001A] py-[10px] px-6 gap-[10px] mt-9">
+      <div className={`multi-select ${!isDoctor ? "hidden" : "flex -webkit-flex flex-col "}`}>
+        <div className="flex -webkit-flex items-start bg-[#FFD6001A] py-[10px] px-6 gap-[10px] mt-9">
           <Image
             src={"/Icon/warning.png"}
             alt="warning"

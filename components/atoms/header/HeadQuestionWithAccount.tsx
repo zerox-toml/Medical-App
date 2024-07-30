@@ -11,7 +11,7 @@ interface Props {
 const HeadQuestionWithAccount = ({ isStep, setIsStep, setIsProductStep }: Props) => {
   return (
     <div className=" bg-[rgba(243,243,243)] ">
-      <div className="flex md:gap-[4.375rem] 360px:gap-[40px] gap-[20px] w-full justify-center max-w-[920px]  items-center pt-[70px] m-auto xl:max-w-screen-xl 
+      <div className="flex -webkit-flex md:gap-[4.375rem] 360px:gap-[40px] gap-[20px] w-full justify-center max-w-[920px]  items-center pt-[70px] m-auto xl:max-w-screen-xl 
       lg:max-w-screen-lg lg:px-[0px] md:max-w-screen-md md:px-[16px] sm:px-[16px] sm:max-w-screen-sm px-[16px]">
         <div
           className=""

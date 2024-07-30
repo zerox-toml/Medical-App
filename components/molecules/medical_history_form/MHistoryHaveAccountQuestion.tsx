@@ -16,12 +16,12 @@ const MHistoryHaveAccountQuestion = ({ setIsOne, isOne }: Props) => {
   }, [isOne])
   const [isSend, setIsSend] = useState();
   return (
-    <div className="w-full h-auto md:rounded-[2.25rem] rounded-[24px] md:p-[3.125rem] p-[24px] bg-white flex flex-col justify-between mx-auto mt-[40px] Myshadow">
+    <div className="w-full h-auto md:rounded-[2.25rem] rounded-[24px] md:p-[3.125rem] p-[24px] bg-white flex -webkit-flex flex-col justify-between mx-auto mt-[40px] Myshadow">
       <p className=" text-[16px] font-normal">
         Haben Sie bereits ein Konto?
         <span className="text-alert-red font-bold">*</span>
       </p>
-      <div className="flex mt-[16px]">
+      <div className="flex -webkit-flex mt-[16px]">
         <Radiobtn
           name="acc1"
           content="Ja"
@@ -38,14 +38,14 @@ const MHistoryHaveAccountQuestion = ({ setIsOne, isOne }: Props) => {
       </div>
       <div
         className={`multi-select ${
-          isOne ? "flex flex-col mt-[24px]" : "hidden flex-col"
+          isOne ? "flex -webkit-flex flex-col mt-[24px]" : "hidden flex-col"
         }`}
       >
         <p>
           Geben Sie Ihre E-Mail-Adresse ein und erhalten Sie den Link zu einem
           vorausgefüllten Fragebogen.
         </p>
-        <div className="flex justify-between items-center gap-3 md:flex-row flex-col">
+        <div className="flex -webkit-flex justify-between items-center gap-3 md:flex-row flex-col">
           <MHistoryInput content="E-mail" />
           <Button
             content="senden"

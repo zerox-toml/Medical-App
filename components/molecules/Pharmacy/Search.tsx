@@ -73,14 +73,14 @@ const Search: React.FC<SearchProps> = ({
 
   return (
     <div
-      className={`flex justify-between h-fit overflow-x-hidden items-center md:px-[30px] px-[24px] md:py-[64px] py-[78px] box-border bg-[#ffffff]  rounded-[30px] w-full mb-[12px] transition-all`}
+      className={`flex -webkit-flex justify-between h-fit overflow-x-hidden items-center md:px-[30px] px-[24px] md:py-[64px] py-[78px] box-border bg-[#ffffff]  rounded-[30px] w-full mb-[12px] transition-all`}
     >
-      <div className=" flex flex-col items-start justify-start w-full h-full">
+      <div className=" flex -webkit-flex flex-col items-start justify-start w-full h-full">
         <p className=" text-5 font-extrabold text-[#0D0D0D]">
           Wählen Sie Ihre Apotheke
         </p>
         <div
-          className={`px-[24px] w-full py-[10px] flex gap-[10px] justify-start items-start mt-6 bg-[rgb(253,247,247)] rounded-[30px]`}
+          className={`px-[24px] w-full py-[10px] flex -webkit-flex gap-[10px] justify-start items-start mt-6 bg-[rgb(253,247,247)] rounded-[30px]`}
         >
           <div className="">
             <Image
@@ -98,10 +98,10 @@ const Search: React.FC<SearchProps> = ({
           </p>
         </div>
         <div className=" mt-[54px] w-full h-full">
-          <div className=" flex items-center w-full">
+          <div className=" flex -webkit-flex items-center w-full">
             <div
               onClick={handleClick}
-              className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[14px] font-bold  flex justify-center items-start ${
+              className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[14px] font-bold  flex -webkit-flex justify-center items-start ${
                 isName
                   ? "bg-[#41057E] text-white"
                   : "bg-[rgb(234,229,237)] text-[#363636]"
@@ -109,10 +109,10 @@ const Search: React.FC<SearchProps> = ({
             >
               Name
             </div>
-            {/* <div onClick={handleClick} className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[14px] font-bold  flex justify-center items-start ${!isName ? "bg-[#41057E] text-white" : "bg-[rgb(234,229,237)] text-[#363636]"} `}>Adresse</div> */}
+            {/* <div onClick={handleClick} className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[14px] font-bold  flex -webkit-flex justify-center items-start ${!isName ? "bg-[#41057E] text-white" : "bg-[rgb(234,229,237)] text-[#363636]"} `}>Adresse</div> */}
           </div>
-          <div className=" absolute flex md:flex-row flex-col md:gap-[20px] gap-6">
-            <div className="relative md:w-[475px] flex h-full">
+          <div className=" absolute flex -webkit-flex md:flex-row flex-col md:gap-[20px] gap-6">
+            <div className="relative md:w-[475px] flex -webkit-flex h-full">
               {/* {isName ? */}
               <PharmacySearch
                 onChange={onChange}
@@ -126,7 +126,7 @@ const Search: React.FC<SearchProps> = ({
               {/* <PharmacySearch onChange={onChange} onClick={onClick} clicked={clicked} dropdownVisible={dropdownVisible} setDropdownVisible={setDropdownVisible} /> */}
               {/* } */}
             </div>
-            <div className=" flex flex-col gap-[2px] mt-[-20px] h-fit">
+            <div className=" flex -webkit-flex flex-col gap-[2px] mt-[-20px] h-fit">
               <span className=" text-[#363636] text-[16px]">
                 ausgewälte Apotheke:
               </span>

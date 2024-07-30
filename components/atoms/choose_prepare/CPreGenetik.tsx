@@ -25,7 +25,7 @@ const CpreGenetik:React.FC<IGenetik> = ({filterObject, setFilterObject}) => {
   return (
     <div>
       <p className="title2">Genetik</p>
-      <div className="w-auto flex flex-wrap gap-2 mt-[24px] sm:justify-start justify-center">
+      <div className="w-auto flex -webkit-flex flex-wrap gap-2 mt-[24px] sm:justify-start justify-center">
         {CPreGenetikData.map((symp, index) => (
           <MHistoryMultiSelectionBtn
             key={index}

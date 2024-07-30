@@ -50,8 +50,8 @@ const MHistroyHerr: React.FC<IUserInfoOption> = ({
           role="button"
           className={`multi-select ${
             optionInfo === "Deutschland"
-              ? "text-custom-grey text-[14px] font-normal bg-[#F5F5F5] border-none rounded-[60px] h-auto w-full px-[20px] py-[13.5px] inline-flex justify-between items-center hover:bg-white"
-              : "btn text-custom-grey text-[14px] font-normal bg-[#F5F5F5] border-none rounded-[60px] h-auto w-full sm:w-[150px] px-[20px] py-[13.5px] inline-flex justify-between items-center hover:bg-white"
+              ? "text-custom-grey text-[14px] font-normal bg-[#F5F5F5] border-none rounded-[60px] h-auto w-full px-[20px] py-[13.5px] inline-flex -webkit-flex justify-between items-center hover:bg-white"
+              : "btn text-custom-grey text-[14px] font-normal bg-[#F5F5F5] border-none rounded-[60px] h-auto w-full sm:w-[150px] px-[20px] py-[13.5px] inline-flex -webkit-flex justify-between items-center hover:bg-white"
           }`}
           onClick={toggleDropdown}
         >

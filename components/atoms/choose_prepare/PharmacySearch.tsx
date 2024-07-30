@@ -27,7 +27,7 @@ export const PharmacySearch: React.FC<PharmacySearchProps> = ({ onChange, search
   return (
     <>
       <div className="inline-block w-full gap-1 md:gap-1 -mt-4 dropdown">
-        <div className=" w-full flex h-9 py-2 px-5 rounded-[60px] bg-[#F5F5F5]">
+        <div className=" w-full flex -webkit-flex h-9 py-2 px-5 rounded-[60px] bg-[#F5F5F5]">
           <input
             type="text"
             onChange={(e) => onChange && onChange(e.target.value)}
@@ -50,7 +50,7 @@ export const PharmacySearch: React.FC<PharmacySearchProps> = ({ onChange, search
                 key={index}
                 onClick={() => onClick(o)}
               >
-                <span className="flex justify-between w-full">
+                <span className="flex -webkit-flex justify-between w-full">
                   <a className="">{o.name}</a>
                   <a className="">50667 Köln</a>
                 </span>

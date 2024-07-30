@@ -13,9 +13,9 @@ interface Props {
 const CpreDominaz = ({ setIsDominaz, isDominaz }: Props) => {
  
   return (
-    <div className="w-full h-auto  px-[24px] bg-white flex flex-col justify-between mx-auto">
+    <div className="w-full h-auto  px-[24px] bg-white flex -webkit-flex flex-col justify-between mx-auto">
       <p className=" text-[16px] font-normal">Dominanz</p>
-      <div className="flex mt-3">
+      <div className="flex -webkit-flex mt-3">
         <RadiobtnChecked
           name="doctor"
           content="Indica"

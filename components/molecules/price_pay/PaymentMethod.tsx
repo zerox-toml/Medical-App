@@ -84,9 +84,9 @@ const PaymentMethod: React.FC<ILastAgree> = ({
       <h2 className="text-xl font-extrabold">
         Bitte wählen Sie die Zahlungsmethode
       </h2>
-      <div className="bg-[#F3F3F3] rounded-[20px] p-5 flex items-start mt-6 gap-4 shadow-top-grey">
+      <div className="bg-[#F3F3F3] rounded-[20px] p-5 flex -webkit-flex items-start mt-6 gap-4 shadow-top-grey">
         <Image src={vanguardUrl} alt="vanguard" width={32} height={36} />
-        <div className="flex flex-col justify-start">
+        <div className="flex -webkit-flex flex-col justify-start">
           <h3 className="text-base font-extrabold">
             Zahlung 100% sicher und geschützt
           </h3>
@@ -96,7 +96,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
           </p>
         </div>
       </div>
-      <div className="flex gap-3 mt-[30px] flex-wrap justify-center">
+      <div className="flex -webkit-flex gap-3 mt-[30px] flex-wrap justify-center">
         {CardPaymentData.map((c) => (
           <CardComponent
             onClick={onClick}
@@ -111,15 +111,15 @@ const PaymentMethod: React.FC<ILastAgree> = ({
         ))}
       </div>
 
-      <div className="mt-[30px] border-b  border-b-custom-border-grey  flex flex-col flex-wrap pb-[30px] md:pb-8">
-        <div className="flex gap-4 flex-wrap justify-between">
+      <div className="mt-[30px] border-b  border-b-custom-border-grey  flex -webkit-flex flex-col flex-wrap pb-[30px] md:pb-8">
+        <div className="flex -webkit-flex gap-4 flex-wrap justify-between">
           <InputDefault
             inputContent={kartennummer}
             setInputContent={setKartennummer}
             content={"setKartennummer"}
             className="md:w-[60%] w-full"
           />
-          <div className="md:w-[37%] w-full flex gap-4 flex-wrap justify-between">
+          <div className="md:w-[37%] w-full flex -webkit-flex gap-4 flex-wrap justify-between">
             <InputDefault
               inputContent={ablaufdatum}
               setInputContent={setAblaufdatum}
@@ -134,7 +134,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             />
           </div>
         </div>
-        <div className="flex justify-center gap-4 mt-4 flex-wrap">
+        <div className="flex -webkit-flex justify-center gap-4 mt-4 flex-wrap">
           <InputDefault
             inputContent={vorname}
             setInputContent={setVorname}
@@ -160,8 +160,8 @@ const PaymentMethod: React.FC<ILastAgree> = ({
         <div
           className={`multi-select ${
             changeCheck
-              ? "flex flex-wrap gap-4 disable-attr justify-between"
-              : "flex flex-wrap gap-4 justify-between"
+              ? "flex -webkit-flex flex-wrap gap-4 disable-attr justify-between"
+              : "flex -webkit-flex flex-wrap gap-4 justify-between"
           }`}
         >
           <InputDefault
@@ -198,7 +198,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
           (AGBs) und der Datenschutzerklärung einverstanden.{" "}
           <span className="text-alert-red">*</span>
         </p>
-        <div className="flex md:flex-row flex-col gap-4 mt-[16px] ">
+        <div className="flex -webkit-flex md:flex-row flex-col gap-4 mt-[16px] ">
           <RadiobtnChecked
             name="acc1"
             content="Ja"
@@ -212,8 +212,8 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             onChange={() => setAgreeGTC(false)}
           />
         </div>
-        <div className="flex md:flex-row flex-col flex-wrap border-b border-custom-border-grey pb-[30px]">
-          <div className="flex flex-col md:w-[45%] w-full">
+        <div className="flex -webkit-flex md:flex-row flex-col flex-wrap border-b border-custom-border-grey pb-[30px]">
+          <div className="flex -webkit-flex flex-col md:w-[45%] w-full">
             <h4 className="text-normal-text md:mb-4 mb-2 md:mt-5 mt-6 font-normal">
               AGBs<span className="text-alert-red">*</span>{" "}
             </h4>
@@ -228,7 +228,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
 
             />
           </div>
-          <div className={`"flex flex-col md:w-[45%] w-full"`}>
+          <div className={`"flex -webkit-flex flex-col md:w-[45%] w-full"`}>
             <h4 className={`text-normal-text md:mb-4 mb-2 md:mt-5 mt-4 font-normal`}>
               Datenschutzerklärung<span className="text-alert-red">*</span>{" "}
             </h4>
@@ -242,7 +242,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             />
           </div>
         </div>
-        <div className=" flex flex-col">
+        <div className=" flex -webkit-flex flex-col">
           <div className={` bg-custom-pink ${(!lastValidErrors && !lastCheck1) && 'border-red-700 border'}  p-5 rounded-[20px] mt-[30px]` }>
             <PInfoCheckboxItem
               content="Ich erkläre mich damit einverstanden, dass die Gesundheitsdaten, die ich im Rahmen der Beantragung eines Rezepts über diese Webseite mit einem Arzt und/oder einer Apotheke teile, von nicht-medizinischem Personal eingesehen werden können, um eventuelle Rückfragen zu klären. Diese Zustimmung kann ich jederzeit für die Zukunft über den Kundensupport unter support@privatrezept.net widerrufen."

@@ -25,7 +25,7 @@ const CPreIrrad: React.FC<CPreIrradProps> = ({ filterObject, setFilterObject }) 
   return (
     <div>
       <p className="title2">Irradtik</p>
-      <div className="w-auto flex flex-wrap gap-2 mt-[24px]">
+      <div className="w-auto flex -webkit-flex flex-wrap gap-2 mt-[24px]">
         {CPreIrradtikData.map((symp, index) => (
           <MHistoryMultiSelectionBtn
             key={index}

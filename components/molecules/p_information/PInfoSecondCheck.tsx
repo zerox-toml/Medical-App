@@ -9,7 +9,7 @@ interface IPInfoFirst {
 
 const PInfoSecondCheck: React.FC<IPInfoFirst> = ({ setPISecond, pISecond }) => {
   return (
-    <div className="w-full h-auto bg-white flex mt-9 flex-col justify-between mx-auto border-b border-solid border-[#00000012]">
+    <div className="w-full h-auto bg-white flex -webkit-flex mt-9 flex-col justify-between mx-auto border-b border-solid border-[#00000012]">
       <p className=" text-[16px] font-normal">
         Verstehen Sie, dass Sie immer medizinisches Personal darüber informieren
         müssen, dass Sie medizinisches Cannabis verwenden, einschließlich vor
@@ -18,7 +18,7 @@ const PInfoSecondCheck: React.FC<IPInfoFirst> = ({ setPISecond, pISecond }) => {
         Medikamenten nachfragen müssen, ob es zu Wechselwirkungen mit Cannabis
         kommen kann?
       </p>
-      <div className="flex mt-[16px]  mb-5">
+      <div className="flex -webkit-flex mt-[16px]  mb-5">
         <Radiobtn
           name="acc2"
           content="Ja"

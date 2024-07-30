@@ -32,7 +32,7 @@ const PInfoAnythingElse = () => {
         value={text}
         onChange={handleTextChange}
       ></textarea>
-      <div className='text-custom-grey text-[10px] mt-[-4px] flex justify-end mb-5'><span>{wordCount}</span>/1000</div>
+      <div className='text-custom-grey text-[10px] mt-[-4px] flex -webkit-flex justify-end mb-5'><span>{wordCount}</span>/1000</div>
     </div>
   );
 };

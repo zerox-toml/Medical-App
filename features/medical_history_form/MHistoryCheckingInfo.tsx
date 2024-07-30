@@ -66,9 +66,9 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
       <h2 className=" font-extrabold text-[20px] md:mb-[24px] mb-4">
         Deine Kontaktdaten
       </h2>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex -webkit-flex flex-col gap-4 w-full">
         <MHistoryInput content="E-mail" />
-        <div className="flex flex-wrap items-start justify-start gap-4 w-full max-[650px]:flex-nowrap max-[650px]:flex-col  ">
+        <div className="flex -webkit-flex flex-wrap items-start justify-start gap-4 w-full max-[650px]:flex-nowrap max-[650px]:flex-col  ">
           <MHistroyHerr
             optionInfo="Herr"
             option={["Herrin", "Frau", "Keine Angabe"]}

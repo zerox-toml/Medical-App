@@ -285,18 +285,18 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
         className={`multi-select ${
           showOverView
             ? "hidden"
-            : "w-full bg-[rgba(243,243,243)] flex flex-col  items-center h-auto min-h-[100vh]"
+            : "w-full bg-[rgba(243,243,243)] flex -webkit-flex flex-col  items-center h-auto min-h-[100vh]"
         }`}
       >
         <div
           className={`sm:max-w-[820px] lg:px-[0px]  md:px-[16px]  sm:max-w-screen-[] w-full ${
             showFilter ? "p-[15px]" : "px-0"
-          }  mb-12 flex flex-col`}
+          }  mb-12 flex -webkit-flex flex-col`}
         >
           <div
             className={`${
               isLargeScreen ? "flex" : showFilter ? "flex" : "hidden"
-            } flex md:flex-row flex-col justify-between sm:mb-10 mb-0 md:gap-0 gap-[10px]`}
+            } flex -webkit-flex md:flex-row flex-col justify-between sm:mb-10 mb-0 md:gap-0 gap-[10px]`}
           >
             <p className="md:text-4xl text-3xl font-extrabold">
               Wählen Sie Ihr Präparat
@@ -319,7 +319,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             className={`multi-select ${
               isDoctor
                 ? "hidden"
-                : `flex md:flex-row ${
+                : `flex -webkit-flex md:flex-row ${
                     showFilter
                       ? "flex-col-reverse justify-between mt-10"
                       : "max-auto justify-center md:w-[295px] w-full items-center flex-col"
@@ -328,7 +328,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
           >
             <div
               className={`bottom-0 w-full z-20 ${
-                showFilter ? "fixed left-0 " : "flex mb-[-3rem]"
+                showFilter ? "fixed left-0 " : "flex -webkit-flex mb-[-3rem]"
               }`}
             >
               <CPreFilter
@@ -343,7 +343,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                   isLargeScreen
                     ? "flex"
                     : !showFilter
-                    ? "flex mb-[-20rem] z-10"
+                    ? "flex -webkit-flex mb-[-20rem] z-10"
                     : "hidden"
                 }
                 flex-col gap-[30px]
@@ -392,7 +392,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
               />
 
               <div>
-                <div className="flex justify-between items-center">
+                <div className="flex -webkit-flex justify-between items-center">
                   <p className="text-custom-black title2">Effect*</p>
                   <div
                     className="text-base text-[#41057E99]"
@@ -400,7 +400,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                   >
                     <div
                       className={`multi-select ${
-                        isShowEffect ? "flex cursor-pointer" : "hidden"
+                        isShowEffect ? "flex -webkit-flex cursor-pointer" : "hidden"
                       }`}
                     >
                       <FaChevronUp />
@@ -416,7 +416,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                 </div>
                 <div
                   className={`multi-select ${
-                    isShowEffect ? "flex flex-col mt-5 gap-4" : "hidden"
+                    isShowEffect ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
                   }`}
                 >
                   <CPreEffectCheckList
@@ -430,7 +430,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
 
               {/* terpene */}
               <div className="border-b border-b-[#F5F5F5] pb-[30px]">
-                <div className="flex justify-between items-center">
+                <div className="flex -webkit-flex justify-between items-center">
                   <p className="text-custom-black title2">Terpene</p>
                   <div
                     className="text-base text-[#41057E99]"
@@ -438,7 +438,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                   >
                     <div
                       className={`multi-select ${
-                        isShowTerpene ? "flex cursor-pointer" : "hidden"
+                        isShowTerpene ? "flex -webkit-flex cursor-pointer" : "hidden"
                       }`}
                     >
                       <FaChevronUp />
@@ -454,7 +454,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                 </div>
                 <div
                   className={`multi-select ${
-                    isShowTerpene ? "flex flex-col mt-5 gap-4" : "hidden"
+                    isShowTerpene ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
                   }`}
                 >
                   <CPreTerpene
@@ -468,7 +468,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
 
               {/* Symptome */}
               <div className="border-b border-b-[#F5F5F5] pb-[30px]">
-                <div className="flex justify-between items-center">
+                <div className="flex -webkit-flex justify-between items-center">
                   <p className="text-custom-black title2">MedicalUsage</p>
                   <div
                     className="text-base text-[#41057E99]"
@@ -476,7 +476,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                   >
                     <div
                       className={`multi-select ${
-                        isShowTerpene ? "flex cursor-pointer" : "hidden"
+                        isShowTerpene ? "flex -webkit-flex cursor-pointer" : "hidden"
                       }`}
                     >
                       <FaChevronUp />
@@ -492,7 +492,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                 </div>
                 <div
                   className={`multi-select ${
-                    isShowSymptome ? "flex flex-col mt-5 gap-4" : "hidden"
+                    isShowSymptome ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
                   }`}
                 >
                   <CPreSymptom
@@ -505,7 +505,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
               </div>
 
               <div
-                className=" flex justify-center gap-1 items-center cursor-pointer"
+                className=" flex -webkit-flex justify-center gap-1 items-center cursor-pointer"
                 onClick={resetFilter}
               >
                 <div className=" cursor-pointer">
@@ -521,9 +521,9 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                w-full
               ${
                 isLargeScreen
-                  ? "flex flex-col"
+                  ? "flex -webkit-flex flex-col"
                   : showFilter
-                  ? "flex flex-col"
+                  ? "flex -webkit-flex flex-col"
                   : "hidden"
               }
             `}
@@ -538,7 +538,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
               </div>
               {
                 // isLoading ? (
-                //   <div className=" w-full flex justify-center items-center mb-[200px] mt-[200px]">
+                //   <div className=" w-full flex -webkit-flex justify-center items-center mb-[200px] mt-[200px]">
                 //     Loading
                 //   </div>
                 // ) : (
@@ -586,7 +586,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
           />
         </div>
         {selectedHerb && (
-          <div className="fixed inset-0 flex items-center 550px:w-full  px-3 justify-center bg-purple-500 bg-opacity-75 z-50">
+          <div className="fixed inset-0 flex -webkit-flex items-center 550px:w-full  px-3 justify-center bg-purple-500 bg-opacity-75 z-50">
             <div className="relative">
               <button
                 onClick={handleCloseModal}
@@ -608,12 +608,12 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                   herbTalent={selectedHerb.ratingsScore}
                 />
                 <div className="p-5   mx-auto 550px:w-[505px] 360px:w-[350px] 493px:w-[480px] w-[310px] bg-[#FFFFFF] rounded-[30px] h-auto">
-                  <div className="flex flex-col items-center">
-                    <div className="flex justify-between w-full">
+                  <div className="flex -webkit-flex flex-col items-center">
+                    <div className="flex -webkit-flex justify-between w-full">
                       <p className="text-custom-black font-extrabold">
                         Wählen Sie Ihre gewünschte Menge
                       </p>
-                      <span className="w-[80px] h-[22px] rounded-[60px] bg-[#41057E12] flex justify-center items-center text-[10px]">
+                      <span className="w-[80px] h-[22px] rounded-[60px] bg-[#41057E12] flex -webkit-flex justify-center items-center text-[10px]">
                         {number} Gramm
                       </span>
                     </div>
@@ -644,7 +644,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
       <div
         className={`multi-select ${
           showOverView
-            ? "flex flex-col md:max-w-[820px] lg:px-[0px]  md:px-[16px]  sm:max-w-screen-sm w-full px-[15px] mb-12 mx-auto  h-auto min-h-[100vh]"
+            ? "flex -webkit-flex flex-col md:max-w-[820px] lg:px-[0px]  md:px-[16px]  sm:max-w-screen-sm w-full px-[15px] mb-12 mx-auto  h-auto min-h-[100vh]"
             : "hidden"
         }`}
       >
@@ -671,7 +671,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             />
           </div>
         ))}
-        <div className="flex flex-col w-full">
+        <div className="flex -webkit-flex flex-col w-full">
           <Button
             content="Auswahl bestätigen"
             onClick={() => setIsStep(1)}

@@ -34,10 +34,10 @@ const PInfoCheckboxItem: React.FC<ICheckBox> = ({
   
   return (
     <div
-      className={` inline-flex max-md:items-start items-start w-full max-md:mt-4`}
+      className={` inline-flex -webkit-flex max-md:items-start items-start w-full max-md:mt-4`}
     >
       <label
-        className={`relative   flex items-start rounded-full cursor-pointer mt-px`}
+        className={`relative   flex -webkit-flex items-start rounded-full cursor-pointer mt-px`}
         htmlFor={content}
         style={style}
       >
