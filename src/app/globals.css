@@ -40,6 +40,13 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+input {
+  max-width: 100%;
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+  -webkit-appearance: none;
+  -webkit-border-radius: 0; /* Prevents default styling */
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
