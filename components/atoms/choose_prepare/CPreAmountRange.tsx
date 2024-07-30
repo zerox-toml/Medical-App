@@ -83,7 +83,7 @@ const CPreAmountRange: React.FC<ICPreAmount> = ({
           aria-label="Custom marks"
           defaultValue={0}
           getAriaValueText={valuetext}
-          step={10}
+          step={11}
           marks={marks}
           onChange={onChangeAm}
         />
