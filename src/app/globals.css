@@ -79,11 +79,11 @@ input {
   cursor: pointer;
 }
 .css-3ndvyc {
-  background-color: #41057E;
+  background-color: #F2EDF6 !important;
 }
 
 .css-1lyw2jy {
-  background-color: #41057E !important;
+  background-color: #F2EDF6 !important;
   width: 16px !important;
   height: 16px !important;
   border-radius: 50% !important;
@@ -91,10 +91,18 @@ input {
 
 .css-10opxo5 {
   background-color: #41057E !important;
+  border: none !important;
 }
 
 .custom-radio:checked {
   background-color: #41057e;
+}
+
+.css-1osy2b3 {
+  background-color: #F2EDF6 !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
 }
 
 .Myshadow {
