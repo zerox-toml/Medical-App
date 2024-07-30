@@ -103,6 +103,7 @@ input {
   width: 16px !important;
   height: 16px !important;
   border-radius: 50% !important;
+  opacity: 1 !important;
 }
 
 .Myshadow {
