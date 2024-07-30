@@ -46,17 +46,17 @@ interface Product {
   // herbAmount?: number;
 }
 const marks = [
-  { value: 0, label: "0" },
-  { value: 10, label: "5" },
-  { value: 20, label: "10" },
-  { value: 30, label: "15" },
-  { value: 40, label: "20" },
-  { value: 50, label: "25" },
-  { value: 60, label: "30" },
-  { value: 70, label: "35" },
-  { value: 80, label: "40" },
-  { value: 90, label: "45" },
-  { value: 100, label: "50" },
+  { value: -1, label: "0" },
+  { value: 9, label: "5" },
+  { value: 19, label: "10" },
+  { value: 29, label: "15" },
+  { value: 39, label: "20" },
+  { value: 49, label: "25" },
+  { value: 59, label: "30" },
+  { value: 69, label: "35" },
+  { value: 79, label: "40" },
+  { value: 89, label: "45" },
+  { value: 99, label: "50" },
 ];
 
 function valuetext(value: number) {
