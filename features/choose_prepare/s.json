@@ -1,26 +1,32 @@
-{
-    "data": [
-        {
-            "email": "info@idris-apotheke-weinheim.de",
-            "name": "Idris Apotheke",
-            "website": "idris-apotheke-weinheim.de",
-            "totalPrice": 248
-        },
-        {
-            "email": "info@higreen-apotheke.de",
-            "name": "higreen!",
-            "website": "higreen-apotheke.de",
-            "totalPrice": 250.79
-        },
-        {
-            "email": "kundenservice@mycannabis.de",
-            "name": "MYCANNABIS",
-            "website": "mycannabis.de",
-            "totalPrice": 332.01
-        }
-    ],
-    "total": 4,
-    "page": 1,
-    "limit": 3,
-    "moreAvailable": true
-}
+[
+    {
+        "name": "Rezeptanfrage Erstrezept",
+        "description": "Rezeptausstellung nach Prüfung\nArzt/Ärzting aus Europäischer Union (EU)\nDauer: ca. 24 Stunden",
+        "popular": true,
+        "id": 1,
+        "regularPrice": 25,
+        "discountedPrice": 21.99,
+        "active": true,
+        "order": 1
+    },
+    {
+        "name": "Reiseformular",
+        "description": "Formular zum Reisen innerhalb des Schengenraums\nInklusive Patientenausweis",
+        "id": 2,
+        "regularPrice": 25,
+        "active": true,
+        "order": 2
+    },
+    {
+        "name": "Online-Sprechstunde",
+        "description": "Rezeptausstellung nach Gespräch\nDeutschsprachige/r Arzt/Ärztin\nDauer: ca. 20 Minuten",
+        "tags": [
+            "Reiseformular möglich",
+            "PKV erstattungsfähig"
+        ],
+        "id": 3,
+        "regularPrice": 50,
+        "active": true,
+        "order": 3
+    }
+]

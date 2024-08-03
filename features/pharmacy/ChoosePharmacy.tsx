@@ -63,6 +63,7 @@ const ChoosePharmacy = ({ isStep, setIsStep }: Props) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [pharmacyLimit, setPharmacyLimit] = useState(3);
     const [pharmacySearch, setPharmacySearch] = useState('');
+    const [isMoreAvailable, setIsMoreAvailable] = useState(true);
 
     const selectedHerbList: Product[] = useSelector(
         (state: any) => state.counter.selectedHerbList
@@ -123,20 +124,23 @@ const ChoosePharmacy = ({ isStep, setIsStep }: Props) => {
     useEffect(() => {
         getFilterData(pharmacyFilter).then(pharmacy => {
             setFilteredPharmacy(pharmacy.data)
+            setIsMoreAvailable(pharmacy.moreAvailable)
         }).catch(error => {
             console.error('Error fetching pharmacy:', error);
         });
     }, [selectedHerbList, pharmacyLimit]);
 
     useEffect(() => {
-        getSearchedData().then(pharmacy => {
-            setSearchedPharmacy(pharmacy.data)
-        }).catch(error => {
-            console.error('Error fetching pharmacy:', error);
-        });
+        if (pharmacySearch) {
+            getSearchedData().then(pharmacy => {
+                setSearchedPharmacy(pharmacy.data)
+            }).catch(error => {
+                console.error('Error fetching pharmacy:', error);
+            });
+        }
     }, [pharmacySearch]);
 
-    const handleDoctorClick = (pharmacy: object) => {
+    const handlePharmacyClick = (pharmacy: object) => {
         setClicked(false);
         dispatch(setSelectedPharmacy(pharmacy))
     }
@@ -158,23 +162,31 @@ const ChoosePharmacy = ({ isStep, setIsStep }: Props) => {
         setPharmacySearch(content)
     }
 
+    const handleSetStep = () => {
+        setIsStep(4);
+        window.scrollTo(0, 0);
+      };
+
     return (
         <div className="w-full bg-[rgba(243,243,243)] flex -webkit-flex flex-col justify-start items-center h-auto min-h-[100vh] overflow-x-hidden">
             <div className=" lg:max-w-[820px] lg:px-[0px] md:max-w-screen-md md:px-[16px] sm:px-[16px] sm:max-w-screen-sm w-full px-[15px] mb-12">
                 <h2 className="md:text-[36px] text-[24px] text-[#161616] font-extrabold leading-[3.2rem]">
                     Auswahl der Apotheke
                 </h2>
-                <div className=" text-[14px] md:text-[16px] mt-[40px] mb-[40px]">Um eine schnelle Abwicklung zu gewährleisten,  empfelen wir die<br></br> <span className=" text-[#41057E] font-extrabold"> Pelikan Apotheke</span>, die einen kostenlosen Expressversand anbietet.</div>
+                <div className=" text-[16px] md:text-[16px] mt-[40px] mb-[40px]">Wir empfehlen eine der folgenden Apotheken auszuwählen, um eine schnelle Abwicklung zu gewährleisten.</div>
                 {filteredPharmacy?.map((pharmacy: any, index: number) => (
-                    <Pharmacy key={index} isClicked={pharmacy === selectedPharmacy} onClick={() => handleDoctorClick(pharmacy)} extraServ="Vorreservierung per Privatrezept.net möglich" pharmacyImg="/Img/pharmacy1" name={pharmacy.name} isServ={true} location="Rosenheim, Deutschland (20,4 km)" price={pharmacy.totalPrice} />
+                    <Pharmacy key={index} isClicked={pharmacy === selectedPharmacy} onClick={() => handlePharmacyClick(pharmacy)} tags={pharmacy.tags} pharmacyImg="/Img/pharmacy1" name={pharmacy.name} location="Rosenheim, Deutschland (20,4 km)" price={pharmacy.totalPrice} />
                 ))}
                 {/* <Pharmacy isClicked={isClicked1} onClick={handleDoctor1} extraServ="Vorreservierung per Privatrezept.net möglich" pharmacyImg="/Img/pharmacy1" name="Pelican Apotheke" isServ={true} location="Rosenheim, Deutschland (20,4 km)" price="182,50"  />
                 <Pharmacy isClicked={isClicked2} onClick={handleDoctor2} extraServ="Schnelle Bearbeitung" pharmacyImg="/Img/pharmacy2" name="Dom Apotheke Köln" isServ={true} location="Köln, Deutschland (1,4 km)" price="193,50" />
                 <Pharmacy isClicked={isClicked3} onClick={handleDoctor3} pharmacyImg="/Img/pharmacy3" name="Birken-Apotheke" isServ={false} location="Köln, Deutschland (1,4 km)" price="203,50" /> */}
-                <div onClick={showMore} className={`text-[16px] cursor-pointer text-[#41057E] underline mt-5 w-full text-center mb-[30px] sm:mb-[30px]`}>mehr anzeigen</div>
+                {isMoreAvailable &&
+                    <div onClick={showMore} className={`text-[16px] cursor-pointer text-[#41057E] underline mt-5 w-full text-center mb-[30px] sm:mb-[30px]`}>mehr anzeigen</div>
+                }
                 <Button
+                    disabled={selectedPharmacy === null}
                     content="Auswahl bestätigen"
-                    onClick={() => setIsStep(4)}
+                    onClick={() => handleSetStep()}
                     className=" w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)]
            rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white"
                 />
@@ -189,7 +201,7 @@ const ChoosePharmacy = ({ isStep, setIsStep }: Props) => {
                 }
                 {clicked ?
                     <div className=" mb-[180px]">
-                        <Pharmacy isClicked={true} isSearch={true} pharmacyImg="/Img/pharmacy3" name={selectedPharmacy.name} isServ={false} location="Köln, Deutschland (1,4 km)" price={selectedPharmacy.totalPrice} />
+                        <Pharmacy isClicked={true} isSearch={true} pharmacyImg="/Img/pharmacy3" tags={selectedPharmacy.tags} name={selectedPharmacy.name} location="Köln, Deutschland (1,4 km)" price={selectedPharmacy.totalPrice} />
                     </div> :
                     <></>
                 }

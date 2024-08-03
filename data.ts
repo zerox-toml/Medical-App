@@ -62,38 +62,47 @@ const MHistoryMultiData = [
 const PInfoCheckBoxData = [
     {
         index:0,
+        pinfo:0,
         content: "Nein, es liegen keine Ausschlusskriterien vor"
     },
     {
         index:1,
+        pinfo:1,
         content: "Bestehende oder mögliche Schwangerschaft"
     },
     {
         index:2,
+        pinfo:1,
         content: "Intensive Schmerzen (z.B. neuropatische Schmerzen)"
     },
     {
         index:3,
+        pinfo:1,
         content: "Suchterkrankung (ehemalige Abhängigkeit von Cannabis oder anderen Drogen)"
     },
     {
         index:4,
+        pinfo:1,
         content: "Chronische Herzerkrankung (Erhöhtes Risiko für Herz-Kreislauf-Erkrankungen)"
     },
     {
         index:5,
+        pinfo:1,
         content: "Angeborene oder erworbene Immunschwäche"
     },
     {
         index:6,
+        pinfo:1,
         content: "Atemnot (z.B. als Symptom einer anderen Erkrankung)"
     },
     {
         index:7,
+        pinfo:1,
         content: "In Vergangenheit Medikamente überdosiert (ohne Absprache mit Ihrem Arzt)"
     },
     {
         index:8,
+        pinfo:1,
         content: "Unangenehme bzw. starke Nebenwirkungen nach Cannabis Konsum erfahren"
     },
 ]
@@ -310,40 +319,44 @@ const PrepareHerbData = [
 
 const CardPaymentData = [
     {
-
         cardIndex:1,
-        cardName:"PayPal",
-        imgUrl:"/Icon/paypal.png",
-        cardWidth:82,
-        cardHeight:48,
-    },
-    {
-        cardIndex:2,
         cardName:"Visa/MasterCard",
         imgUrl:"/Icon/card.png",
         cardWidth:50,
         cardHeight:50,
+        cardType: "stripe",
     },
     {
-        cardIndex:3,
+        cardIndex:2,
         cardName:"Apple Pay",
         imgUrl:"/Icon/apple.png",
         cardWidth:82,
         cardHeight:48,
+        cardType: "stripe",
+    },
+    {
+        cardIndex:3,
+        cardName:"Goole Pay",
+        imgUrl:"/Icon/googlepay.png",
+        cardWidth:82,
+        cardHeight:48,
+        cardType: "stripe",
     },
     {
         cardIndex:4,
+        cardName:"PayPal",
+        imgUrl:"/Icon/paypal.png",
+        cardWidth:82,
+        cardHeight:48,
+        cardType: "paypal",
+    },
+    {
+        cardIndex:5,
         cardName:"Überweisung",
         imgUrl:"/Icon/transfer.png",
         cardWidth:50,
         cardHeight:50,
-    },
-    {
-        cardIndex:5,
-        cardName:"Kauf auf Rechnung",
-        imgUrl:"/Icon/invoice.png",
-        cardWidth:50,
-        cardHeight:50,
+        cardType: "transfer",
     },
 ]
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import vanguardUrl from "../../../public/Icon/secure.png";
 import CardComponent from "./CardComponent";
@@ -8,7 +8,15 @@ import PInfoCheckboxItem from "../p_information/PInfoCheckboxItem";
 import MHistroyHerr from "../../atoms/medical_history_form/MHistroyHerr";
 import Radiobtn from "../../atoms/medical_history_form/Radiobtn";
 import RadiobtnChecked from "../../atoms/medical_history_form/RadiobtnChecked";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "redux";
+import {
+  setGBStrabe,
+  setgBillOrt,
+  setgBillPost,
+  setIdenticalWithShipping,
+  setPaymentType,
+} from "../../../redux/counterSlice";
 
 interface ILastAgree {
   chageAGB: boolean;
@@ -19,7 +27,7 @@ interface ILastAgree {
   setLastCheck1: (value: boolean) => void;
   lastCheck2: boolean;
   setLastCheck2: (value: boolean) => void;
-  lastValidErrors : boolean
+  lastValidErrors: boolean;
 }
 
 const PaymentMethod: React.FC<ILastAgree> = ({
@@ -31,8 +39,9 @@ const PaymentMethod: React.FC<ILastAgree> = ({
   setLastCheck1,
   lastCheck2,
   setLastCheck2,
-  lastValidErrors
+  lastValidErrors,
 }) => {
+  const dispatch = useDispatch();
   const alertAGB = useSelector((state: any) => state.counter.alertAGB);
   const alertDaten = useSelector((state: any) => state.counter.alertDaten);
   const alertLCheck1 = useSelector((state: any) => state.counter.alertLCheck1);
@@ -55,19 +64,18 @@ const PaymentMethod: React.FC<ILastAgree> = ({
   const [selectedCardNumber, setSelectedCardNumber] = useState<number>();
 
   const handleCheck = () => {
-    if (changeCheck) setChangeCheck(false);
-    else setChangeCheck(true);
+    setChangeCheck(!changeCheck);
   };
   const handleAGB = () => {
     if (chageAGB) setChageAGB(false);
     else setChageAGB(true);
   };
-    
+
   const handleDaten = () => {
     if (chageDaten) setChageDaten(false);
     else setChageDaten(true);
   };
-  
+
   const handleLastCheck1 = () => {
     if (lastCheck1) setLastCheck1(false);
     else setLastCheck1(true);
@@ -76,9 +84,27 @@ const PaymentMethod: React.FC<ILastAgree> = ({
     if (lastCheck2) setLastCheck2(false);
     else setLastCheck2(true);
   };
-  const onClick = (key: number) => {
+  const onClick = (key: number, paymentType: string) => {
     setSelectedCardNumber(key);
+    dispatch(setPaymentType(paymentType));
   };
+
+  useEffect(() => {
+    dispatch(setGBStrabe(bStrabe));
+  }, [bStrabe]);
+
+  useEffect(() => {
+    dispatch(setgBillPost(billPost));
+  }, [billPost]);
+
+  useEffect(() => {
+    dispatch(setgBillOrt(bOrt));
+  }, [bOrt]);
+
+  useEffect(() => {
+    dispatch(setIdenticalWithShipping(changeCheck));
+  }, [changeCheck]);
+
   return (
     <div className="max-w-[820px] sm:w-full sm:p-[50px] p-6 text-custom-black bg-white rounded-[30px]">
       <h2 className="text-xl font-extrabold">
@@ -103,6 +129,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             key={c.cardIndex}
             cardNum={c.cardIndex}
             imgUrl={c.imgUrl}
+            cardType={c.cardType}
             cardName={c.cardName}
             selected={c.cardIndex === selectedCardNumber}
             cardWidth={c.cardWidth}
@@ -111,7 +138,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
         ))}
       </div>
 
-      <div className="mt-[30px] border-b  border-b-custom-border-grey  flex -webkit-flex flex-col flex-wrap pb-[30px] md:pb-8">
+      {/* <div className="mt-[30px] border-b  border-b-custom-border-grey  flex -webkit-flex flex-col flex-wrap pb-[30px] md:pb-8">
         <div className="flex -webkit-flex gap-4 flex-wrap justify-between">
           <InputDefault
             inputContent={kartennummer}
@@ -148,9 +175,9 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             className="sm:w-[48%] w-full"
           />
         </div>
-      </div>
-      <div className="mt-[30px] border-b border-custom-border-grey pb-[30px] ">
-        <h2 className="font-extrabold text-xl mb-2">Rechnungsadresse</h2>
+      </div> */}
+      <div className="mt-[50px] border-b border-custom-border-grey pb-[30px] ">
+        <h2 className="font-extrabold text-xl mb-3">Rechnungsadresse</h2>
         <PInfoCheckboxItem
           content="Die Lieferadresse ist identisch mit der Rechnungsadresse."
           onChange={() => handleCheck()}
@@ -158,7 +185,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
           style={{ color: "#6D6D6D" }}
         />
         <div
-          className={`multi-select ${
+          className={`multi-select mt-4 ${
             changeCheck
               ? "flex -webkit-flex flex-wrap gap-4 disable-attr justify-between"
               : "flex -webkit-flex flex-wrap gap-4 justify-between"
@@ -187,15 +214,15 @@ const PaymentMethod: React.FC<ILastAgree> = ({
               optionInfo="Deutschland"
               option={["England", "France", "Netherlands"]}
               className="w-full"
-              cId={2}
+              cId={3}
             />
           </div>
         </div>
       </div>
       <div className="mt-[30px]">
         <p className="text-custom-black text-base">
-          Ich erkläre mich hiermit mit den Allgemeinen Geschäftsbedingungen
-          (AGBs) und der Datenschutzerklärung einverstanden.{" "}
+          Ich bin damit einverstanden, dass Sie mich über Neuigkeiten,
+          Rabattaktionen und weitere Informationen informieren.
           <span className="text-alert-red">*</span>
         </p>
         <div className="flex -webkit-flex md:flex-row flex-col gap-4 mt-[16px] ">
@@ -223,13 +250,16 @@ const PaymentMethod: React.FC<ILastAgree> = ({
               content2=" zu"
               onChange={() => handleAGB()}
               checked={chageAGB}
-              lastValidErrors = {lastValidErrors}
-              custom_content_style={(!lastValidErrors && !chageAGB) ? 'text-alert-red' : '#6D6D6D'}
-
+              lastValidErrors={lastValidErrors}
+              custom_content_style={
+                !lastValidErrors && !chageAGB ? "text-alert-red" : "#6D6D6D"
+              }
             />
           </div>
           <div className={`"flex -webkit-flex flex-col md:w-[45%] w-full"`}>
-            <h4 className={`text-normal-text md:mb-4 mb-2 md:mt-5 mt-4 font-normal`}>
+            <h4
+              className={`text-normal-text md:mb-4 mb-2 md:mt-5 mt-4 font-normal`}
+            >
               Datenschutzerklärung<span className="text-alert-red">*</span>{" "}
             </h4>
             <PInfoCheckboxItem
@@ -238,29 +268,44 @@ const PaymentMethod: React.FC<ILastAgree> = ({
               content2=" einverstanden."
               onChange={() => handleDaten()}
               checked={chageDaten}
-              custom_content_style={(!lastValidErrors && !chageDaten) ? 'text-alert-red' : '#6D6D6D'}
+              custom_content_style={
+                !lastValidErrors && !chageDaten ? "text-alert-red" : "#6D6D6D"
+              }
             />
           </div>
         </div>
         <div className=" flex -webkit-flex flex-col">
-          <div className={` bg-custom-pink ${(!lastValidErrors && !lastCheck1) && 'border-red-700 border'}  p-5 rounded-[20px] mt-[30px]` }>
+          <div
+            className={` bg-custom-pink ${
+              !lastValidErrors && !lastCheck1 && "border-red-700 border"
+            }  p-5 rounded-[20px] mt-[30px]`}
+          >
             <PInfoCheckboxItem
+              id="service"
               content="Ich erkläre mich damit einverstanden, dass die Gesundheitsdaten, die ich im Rahmen der Beantragung eines Rezepts über diese Webseite mit einem Arzt und/oder einer Apotheke teile, von nicht-medizinischem Personal eingesehen werden können, um eventuelle Rückfragen zu klären. Diese Zustimmung kann ich jederzeit für die Zukunft über den Kundensupport unter support@privatrezept.net widerrufen."
               content3="*"
               onChange={() => handleLastCheck1()}
               checked={lastCheck1}
               style={{ color: "#6D6D6D !important" }}
-              classAlertBorder={alertLCheck1 ? "border-alert-red border-[2px]" : ""}
+              classAlertBorder={
+                alertLCheck1 ? "border-alert-red border-[2px]" : ""
+              }
             />
           </div>
-          <div className={`bg-custom-pink p-5 rounded-[20px] mt-[30px] ${(!lastValidErrors && !lastCheck2) && 'border-red-700 border'} `}>
+          <div
+            className={`bg-custom-pink p-5 rounded-[20px] mt-[30px] ${
+              !lastValidErrors && !lastCheck2 && "border-red-700 border"
+            } `}
+          >
             <PInfoCheckboxItem
               content="Ich bestätige hiermit, dass alle Angaben nach bestem Wissen und Gewissen und wahrheitsgetreu gemacht wurden. Mir ist bewusst, dass falsche Angaben meiner Gesundheit schaden können und nach deutschem Recht strafbar sind. Jegliche Diagnosen und Behandlungsempfehlungen sind ausschließlich für meinen persönlichen Gebrauch vorgesehen."
               content3="*"
               onChange={() => handleLastCheck2()}
               checked={lastCheck2}
               style={{ color: "#6D6D6D !important" }}
-              classAlertBorder={alertLCheck2 ? "border-alert-red border-[2px]" : "border-0"}
+              classAlertBorder={
+                alertLCheck2 ? "border-alert-red border-[2px]" : "border-0"
+              }
             />
           </div>
         </div>

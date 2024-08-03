@@ -26,24 +26,14 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
   const [isillnessesDisabled, setIsillnessesDisabled] = useState(true);
 
   useEffect(() => {
-    if (isDoctorCheck === 0) {
-      dispatch(setIsTherapy("Nein"));
-    } else if (isDoctorCheck === 1) {
-      dispatch(setIsTherapy("Ja"));
-    } else if (isDoctorCheck === 2) {
-      dispatch(
-        setIsTherapy(
-          "Ich habe noch nicht mit meinen Ärzten darüber gesprochen."
-        )
-      );
-    }
+    dispatch(setIsTherapy(isDoctorCheck))
   }, [isDoctorCheck, dispatch]);
 
   useEffect(() => {
     if (isInsurance === 0) {
-      dispatch(setGInsurance("Ich bin Selbstzahler"));
+      dispatch(setGInsurance(false));
     } else {
-      dispatch(setGInsurance("Ich bin privat versichert"));
+      dispatch(setGInsurance(true));
     }
   }, [isInsurance, dispatch]);
 
@@ -72,11 +62,10 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
   }, [isillnesses]);
   return (
     <div
-      className={`multi-select ${
-        disabled
+      className={`multi-select ${disabled
           ? "disable-attr w-full flex -webkit-flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
           : "w-full flex -webkit-flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
-      }`}
+        }`}
     >
       <span className="text-[16px] font-normal w-full">
         Nehmen Sie regelmäßig Medikamente ein?
@@ -121,17 +110,8 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
             content="Ja"
             onChange={() => setIsAllergy(1)}
           />
-          <MHistoryInputThin content="Papaja" disabled={isAllergyDisabled} />
+          <MHistoryInputThin content="Bekannte Allergien" disabled={isAllergyDisabled} />
         </div>
-      </div>
-      <div
-        className={`multi-select ${
-          isAllergy === 1
-            ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[360px] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
-            : "hidden"
-        }`}
-      >
-        <MHistoryNoRemoteAlert />
       </div>
       <span className="text-[16px] font-normal w-full mt-[36px]">
         Sind Ihre Allergologen darüber informiert, dass Sie eine Therapie mit
@@ -155,11 +135,10 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
             onChange={() => setIsDoctorCheck(1)}
           />
           <div
-            className={`multi-select ${
-              isDoctorCheck === 1
+            className={`multi-select ${isDoctorCheck === 1
                 ? "py-[10px] px-6 bg-[#D7000D08]  w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
                 : "hidden"
-            }`}
+              }`}
           >
             <MHistoryNoRemoteAlert />
           </div>
@@ -172,11 +151,10 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
             onChange={() => setIsDoctorCheck(2)}
           />
           <div
-            className={`multi-select ${
-              isDoctorCheck === 2
+            className={`multi-select ${isDoctorCheck === 2
                 ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[240px] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
                 : "hidden"
-            }`}
+              }`}
           >
             <MHistoryNoRemoteAlert />
           </div>

@@ -25,10 +25,10 @@ const Doctor: React.FC<DoctorProps> = ({ docImg, countryImg, countryname, major,
                     <div className=' w-full flex -webkit-flex md:flex-row flex-col justify-between items-start'>
                         <span className=' text-[16px] text-[#161616] font-extrabold'>Dr. Jonas Berger</span>
                         <div className=' flex -webkit-flex items-center justify-end max-md:mt-[8px]'>
-                            <span className=' md:text-[16px] text-[14px] text-[#363636]'>Land:</span>
+                            <span className=' md:text-[16px] text-[16px] text-[#363636]'>Land:</span>
                             <Image src='/Icon/eu.png' alt='' width={20} height={20} className=' ml-[12px] -mt-[4px]' />
                             <Image src={countryImg} alt='' width={20} height={20} className=' ml-[4px] -mt-[4px]' />
-                            <span className=' md:text-[16px] text-[14px] ml-[8px] text-[#363636]'>{countryname}</span>
+                            <span className=' md:text-[16px] text-[16px] ml-[8px] text-[#363636]'>{countryname}</span>
                         </div>
                     </div>
                     <div className=' flex -webkit-flex md:flex-row flex-col gap-[4px] justify-start items-start md:mt-[12px] mt-[24px]'>
@@ -44,7 +44,7 @@ const Doctor: React.FC<DoctorProps> = ({ docImg, countryImg, countryname, major,
                         </div>
                     </div>
                     <div className=' md:mt-[7px] mt-[16px] flex -webkit-flex md:flex-row flex-col justify-between md:items-end items-start w-full'>
-                        <span className=' text-[14px] text-[#6D6D6D] flex -webkit-flex flex-col items-start'>
+                        <span className=' text-[16px] text-[#6D6D6D] flex -webkit-flex flex-col items-start'>
                             <span>
                                 Nächster Behandlungstermin:
                             </span>
@@ -53,7 +53,7 @@ const Doctor: React.FC<DoctorProps> = ({ docImg, countryImg, countryname, major,
                             </span>
                         </span>
                         <div className=' flex -webkit-flex flex-col justify-end md:items-end items-start max-md:mt-[24px]'>
-                            <span className='text-[14px] text-[#6D6D6D]'>{major}</span>
+                            <span className='text-[16px] text-[#6D6D6D]'>{major}</span>
                             <div className=' text-[16px] text-[#41057E] font-extrabold mt-[4px]'>39,90 €</div>
                         </div>
                     </div>

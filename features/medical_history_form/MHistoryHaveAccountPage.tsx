@@ -10,6 +10,7 @@ import MHistoryMultiOptionForm from "../../components/molecules/medical_history_
 import Button from "../../components/atoms/Button";
 import { setPageStatus, setValidationErrors } from "../../redux/counterSlice";
 import { connect, useDispatch, useSelector } from "react-redux";
+import InputErrorAlert from "../../components/atoms/InputErrorAlert";
 
 interface Props {
   isStep: number;
@@ -20,6 +21,7 @@ interface Props {
   detailedSymptom: string;
   setValidationErrors: any;
   validationErrors: any;
+  isTherapy: number
 }
 const MHistoryHaveAccountPage = ({
   isStep,
@@ -30,6 +32,7 @@ const MHistoryHaveAccountPage = ({
   detailedSymptom,
   validationErrors,
   setValidationErrors,
+  isTherapy
 }: Props) => {
   const [isOne, setIsOne] = useState(false);
   const pageStatus = useSelector((state: any) => state.counter.pageStatus);
@@ -38,6 +41,7 @@ const MHistoryHaveAccountPage = ({
   const symptoms = useSelector((state: any) => state.counter.symptoms);
   const symptomsLength = symptoms.length;
   const [symptomsFlag, setSymptomsFlag] = useState(0);
+  const [hasErrors, setHasErrors] = useState(false);
 
   const handleClick = async () => {
     const errors = {
@@ -45,18 +49,20 @@ const MHistoryHaveAccountPage = ({
       fname: !fname,
       lname: !lname,
       detailedSymptom: !detailedSymptom,
+      symptoms:!symptoms,
     };
     setValidationErrors(errors);
     let hasErrors;
-    if (!tphone || !fname || !lname || !detailedSymptom) {
+    if (!tphone || !fname || !lname || !detailedSymptom || symptoms.length === 0 ) {
       hasErrors = true;
+      setHasErrors(true)
     } else {
       hasErrors = false;
+      setHasErrors(false)
     }
 
     if (symptomsLength == 0) {
       setSymptomsFlag(1);
-      window.scrollTo(0, 400);
     } else {
       setSymptomsFlag(0);
     }
@@ -64,7 +70,6 @@ const MHistoryHaveAccountPage = ({
     if (!hasErrors) {
       setIsStep(1);
       window.scrollTo(0, 0);
-
     }
   };
   return (
@@ -79,11 +84,19 @@ const MHistoryHaveAccountPage = ({
         <MHistoryMultiSelect disabled={isOne} symptomsFlag={symptomsFlag} />
         <MHistoryMultiOptionForm disabled={isOne} />
         <Button
-          disabled={isOne}
+          disabled={isOne || isTherapy === 1 || isTherapy === 2}
           content="weiter"
           onClick={handleClick}
-          className=" w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-[20px] mb-[130px]"
+          className={` w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-[20px] ${hasErrors ? 'mb-[20px]' : "mb-[130px]"} `}
         />
+        <div
+          className={`${hasErrors === true 
+            ? "py-[10px] px-6 bg-[#D7000D08] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mb-[100px]"
+            : "hidden"
+            }`}
+        >
+          <InputErrorAlert />
+        </div>
       </div>
     </div>
   );
@@ -97,6 +110,7 @@ const mapStateToProps = (state: any) => ({
   birthday: state.counter.birthday,
   gender: state.counter.gender,
   validationErrors: state.counter.validationErrors,
+  isTherapy: state.counter.isTherapy
 });
 const mapDispatchToProps = { setValidationErrors };
 export default connect(

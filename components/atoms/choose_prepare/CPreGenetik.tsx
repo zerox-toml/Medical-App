@@ -4,7 +4,7 @@ import MHistoryMultiSelectionBtn from "../medical_history_form/MHistoryMultiSele
 import { FilterProps } from "../../../type/FilterProps";
 
 const CPreGenetikData = [
-  { gene: "Indika" },
+  { gene: "Indica" },
   { gene: "Sativa" },
   { gene: "Hybrid" },
 ];

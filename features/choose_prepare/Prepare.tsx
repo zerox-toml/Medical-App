@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CPreHerb from "../../components/atoms/choose_prepare/CPreHerb";
 import Button from "../../components/atoms/Button";
 import CPreDoctorQuestion from "../../components/molecules/choose_prepare/CPreDoctorQuestion";
@@ -88,9 +88,26 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [filterLimit, setFilterLimit] = useState(10);
   const [filterPage, setFilterPage] = useState(1);
+  const [isSelectedHerb, setIsSelectedHerb] = useState(false);
+  const [isMoreAvailable, setIsMoreAvailable] = useState(true);
 
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const handleClickOutside = (event: { target: any; }) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      handleCloseModal();
+    }
+  };
 
+  useEffect(() => {
+    // Attach the event listener when the component is mounted
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Remove the event listener when the component is unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const handleResize = () => {
     setIsLargeScreen(window.innerWidth >= 768);
   };
@@ -105,16 +122,16 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
   const initialValue = {
     search: "",
     valueMinTHC: 0,
-    valueMaxTHC: 100,
+    valueMaxTHC: 40,
     valueMinCBD: 0,
-    valueMaxCBD: 100,
+    valueMaxCBD: 40,
     genetik: "Hybrid",
     checkedEffect: [],
     checkedTerpene: [],
     checkedSymptoms: [],
     domina: "",
     minPrice: 0,
-    maxPrice: 100,
+    maxPrice: 40,
     irradiated: true,
   };
   const [filterObject, setFilterObject] = useState<FilterProps>(initialValue);
@@ -150,7 +167,10 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
   useEffect(() => {
     setNumber(herbAmount);
   }, [herbAmount]);
-
+  useEffect(() => {
+    if (selectedHerbList.length == 0) setIsSelectedHerb(false);
+    else setIsSelectedHerb(true);
+  }, [selectedHerbList])
   const handleShowEffectList = () => {
     if (isShowEffect === false) setIsShowEffect(true);
     else setIsShowEffect(false);
@@ -188,7 +208,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
 
   const seeOverview = () => {
     setShowOverView(!showOverView);
-    isDoctor && setIsStep(2);
+    isDoctor && setIsStep(0);
     window.scrollTo(0, 0);
 
   };
@@ -197,7 +217,6 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
     selectedHerbLists.splice(index, 1);
     dispatch(setSelectedHerbList(selectedHerbLists));
   };
-
   const getFilterData = async (filterObject: FilterProps) => {
     setIsLoading(true);
     const params: {
@@ -262,6 +281,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
       getFilterData(filterObject)
         .then((products) => {
           setFilteredProducts(products.data);
+          setIsMoreAvailable(products.moreAvailable)
           setProducts(products);
           setIsLoading(false);
         })
@@ -272,6 +292,14 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
     return () => clearTimeout(timer);
   }, [filterObject, selectedHerbList, filterLimit, filterPage]);
 
+  useEffect(() => {
+    if (selectedHerbList.length === 0) {
+      setIsStep(0)
+      setShowOverView(false);
+      setSelectedHerb(null);
+    }
+  }, [selectedHerbList])
+
   const showMoreProduct = () => {
     setFilterLimit(filterLimit + 10);
     const element = document.getElementById(`product_${filterLimit + 10}`);
@@ -279,24 +307,22 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
     <>
       <div
-        className={`multi-select ${
-          showOverView
-            ? "hidden"
-            : "w-full bg-[rgba(243,243,243)] flex -webkit-flex flex-col  items-center h-auto min-h-[100vh]"
-        }`}
+        className={`multi-select ${showOverView
+          ? "hidden"
+          : "w-full bg-[rgba(243,243,243)] flex -webkit-flex flex-col  items-center h-auto min-h-[100vh]"
+          }`}
       >
         <div
-          className={`sm:max-w-[820px] lg:px-[0px]  md:px-[16px]  sm:max-w-screen-[] w-full ${
-            showFilter ? "p-[15px]" : "px-0"
-          }  mb-12 flex -webkit-flex flex-col`}
+          className={`sm:max-w-[820px] lg:px-[0px]  md:px-[16px]  sm:max-w-screen-[] w-full ${showFilter ? "p-[15px]" : "px-0"
+            }  mb-12 flex -webkit-flex flex-col`}
         >
           <div
-            className={`${
-              isLargeScreen ? "flex" : showFilter ? "flex" : "hidden"
-            } flex -webkit-flex md:flex-row flex-col justify-between sm:mb-10 mb-0 md:gap-0 gap-[10px]`}
+            className={`${isLargeScreen ? "flex" : showFilter ? "flex" : "hidden"
+              } flex -webkit-flex md:flex-row flex-col justify-between sm:mb-10 mb-0 md:gap-0 gap-[10px]`}
           >
             <p className="md:text-4xl text-3xl font-extrabold">
               Wählen Sie Ihr Präparat
@@ -304,32 +330,28 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             <Button
               content="zur Übersicht"
               onClick={() => seeOverview()}
-              className="md:w-[139px] w-full bg-[#FFFFFF] hover:border-[3px] border-[3px] border-[#41057E] hover:border-[rgba(65,5,126,1)] hover:bg-[#41057E] 
-              hover:text-[white] rounded-[60px] px-4 py-[10px] text-base font-bold text-[#41057E]"
+              className={`${isSelectedHerb ? "" : "disable-attr-btn"} md:w-[139px] w-full bg-[#FFFFFF] hover:border-[3px] border-[3px] border-[#41057E] hover:border-[rgba(65,5,126,1)] hover:bg-[#41057E] 
+              hover:text-[white] rounded-[60px] px-4 py-[10px] text-[16px] font-bold text-[#41057E]`}
             />
           </div>
           <div
-            className={`${
-              isLargeScreen ? "flex" : showFilter ? "flex" : "hidden"
-            }`}
+            className={`${isLargeScreen ? "flex" : showFilter ? "flex" : "hidden"
+              }`}
           >
             <CPreDoctorQuestion isDoctor={isDoctor} setIsDoctor={setIsDoctor} />
           </div>
           <div
-            className={`multi-select ${
-              isDoctor
-                ? "hidden"
-                : `flex -webkit-flex md:flex-row ${
-                    showFilter
-                      ? "flex-col-reverse justify-between mt-10"
-                      : "max-auto justify-center md:w-[295px] w-full items-center flex-col"
-                  }  gap-5`
-            }`}
+            className={`multi-select ${isDoctor
+              ? "hidden"
+              : `flex -webkit-flex md:flex-row ${showFilter
+                ? "flex-col-reverse justify-between mt-10"
+                : "max-auto justify-center md:w-[295px] w-full items-center flex-col"
+              }  gap-5`
+              }`}
           >
             <div
-              className={`bottom-0 w-full z-20 ${
-                showFilter ? "fixed left-0 " : "flex -webkit-flex mb-[-3rem]"
-              }`}
+              className={`bottom-0 w-full z-20 ${showFilter ? "fixed left-0 " : "flex -webkit-flex mb-[-3rem]"
+                }`}
             >
               <CPreFilter
                 showFilter={showFilter}
@@ -339,10 +361,9 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             <div
               className={`
                 md:w-[295px] w-full bg-white h-auto p-[30px] rounded-[30px] relative z-0 mx-auto
-                ${
-                  isLargeScreen
-                    ? "flex"
-                    : !showFilter
+                ${isLargeScreen
+                  ? "flex"
+                  : !showFilter
                     ? "flex -webkit-flex mb-[-20rem] z-10"
                     : "hidden"
                 }
@@ -393,31 +414,28 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
 
               <div>
                 <div className="flex -webkit-flex justify-between items-center">
-                  <p className="text-custom-black title2">Effect*</p>
+                  <p className="text-custom-black title2">Wirkung*</p>
                   <div
                     className="text-base text-[#41057E99]"
                     onClick={() => handleShowEffectList()}
                   >
                     <div
-                      className={`multi-select ${
-                        isShowEffect ? "flex -webkit-flex cursor-pointer" : "hidden"
-                      }`}
+                      className={`multi-select ${isShowEffect ? "flex -webkit-flex cursor-pointer" : "hidden"
+                        }`}
                     >
                       <FaChevronUp />
                     </div>
                     <div
-                      className={`multi-select ${
-                        isShowEffect ? "hidden" : "show cursor-pointer"
-                      }`}
+                      className={`multi-select ${isShowEffect ? "hidden" : "show cursor-pointer"
+                        }`}
                     >
                       <FaChevronDown />
                     </div>
                   </div>
                 </div>
                 <div
-                  className={`multi-select ${
-                    isShowEffect ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
-                  }`}
+                  className={`multi-select ${isShowEffect ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
+                    }`}
                 >
                   <CPreEffectCheckList
                     reseted={reseted}
@@ -437,25 +455,22 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                     onClick={() => handleShowTerpeneList()}
                   >
                     <div
-                      className={`multi-select ${
-                        isShowTerpene ? "flex -webkit-flex cursor-pointer" : "hidden"
-                      }`}
+                      className={`multi-select ${isShowTerpene ? "flex -webkit-flex cursor-pointer" : "hidden"
+                        }`}
                     >
                       <FaChevronUp />
                     </div>
                     <div
-                      className={`multi-select ${
-                        isShowTerpene ? "hidden" : "show cursor-pointer"
-                      }`}
+                      className={`multi-select ${isShowTerpene ? "hidden" : "show cursor-pointer"
+                        }`}
                     >
                       <FaChevronDown />
                     </div>
                   </div>
                 </div>
                 <div
-                  className={`multi-select ${
-                    isShowTerpene ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
-                  }`}
+                  className={`multi-select ${isShowTerpene ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
+                    }`}
                 >
                   <CPreTerpene
                     reseted={reseted}
@@ -469,31 +484,28 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
               {/* Symptome */}
               <div className="border-b border-b-[#F5F5F5] pb-[30px]">
                 <div className="flex -webkit-flex justify-between items-center">
-                  <p className="text-custom-black title2">MedicalUsage</p>
+                  <p className="text-custom-black title2">Symptome*</p>
                   <div
                     className="text-base text-[#41057E99]"
                     onClick={() => handleShowSymptomeList()}
                   >
                     <div
-                      className={`multi-select ${
-                        isShowTerpene ? "flex -webkit-flex cursor-pointer" : "hidden"
-                      }`}
+                      className={`multi-select ${isShowTerpene ? "flex -webkit-flex cursor-pointer" : "hidden"
+                        }`}
                     >
                       <FaChevronUp />
                     </div>
                     <div
-                      className={`multi-select ${
-                        isShowTerpene ? "hidden" : "show cursor-pointer"
-                      }`}
+                      className={`multi-select ${isShowTerpene ? "hidden" : "show cursor-pointer"
+                        }`}
                     >
                       <FaChevronDown />
                     </div>
                   </div>
                 </div>
                 <div
-                  className={`multi-select ${
-                    isShowSymptome ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
-                  }`}
+                  className={`multi-select ${isShowSymptome ? "flex -webkit-flex flex-col mt-5 gap-4" : "hidden"
+                    }`}
                 >
                   <CPreSymptom
                     reseted={reseted}
@@ -519,13 +531,12 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             <div
               className={`
                w-full
-              ${
-                isLargeScreen
+              ${isLargeScreen
                   ? "flex -webkit-flex flex-col"
                   : showFilter
-                  ? "flex -webkit-flex flex-col"
-                  : "hidden"
-              }
+                    ? "flex -webkit-flex flex-col"
+                    : "hidden"
+                }
             `}
             >
               <div className="md:hidden w-full block">
@@ -542,7 +553,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                 //     Loading
                 //   </div>
                 // ) : (
-                filteredProducts &&
+                filteredProducts?.length ?
                   filteredProducts?.map((p: any, index: any) => (
                     <div
                       className=" w-full"
@@ -551,6 +562,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                       onClick={() => handleHerbClick(p)}
                     >
                       <CPreHerb
+                      classname=" cursor-pointer"
                         herbCBD={p.cbd}
                         herbGenetik={p.genetic}
                         // herbImg={p.imgUrl}
@@ -564,30 +576,32 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                         herbAmount={p.herbAmount}
                       />
                     </div>
-                  ))
+                  )) : <span className=" w-full">Es wurden keine Produkte gefunden. Bitte ändern Sie die Filtereinstellungen und versuchen Sie es erneut.</span>
                 // )
               }
-              <span
-                onClick={showMoreProduct}
-                className=" text-[16px] text-[#41057E] underline mt-3 cursor-pointer"
-              >
-                mehr anzeigen
-              </span>
+              {isMoreAvailable &&
+                <span
+                  onClick={showMoreProduct}
+                  className=" text-[16px] text-[#41057E] underline mt-3 cursor-pointer"
+                >
+                  mehr anzeigen
+                </span>
+              }
             </div>
           </div>
-          <div className=" md:block hidden ml-[40px] mt-3 text-[14px] text-[#6D6D6D]">
+          <div className=" md:block hidden ml-[40px] mt-3 text-[16px] text-[#6D6D6D]">
             *Mögliche medizinsche Wirkung
           </div>
           <Button
             content="zur Übersicht"
             onClick={() => seeOverview()}
-            className=" w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)]
-            rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-5 "
+            className={`${isSelectedHerb ? "" : "disable-attr-btn"} w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)]
+            rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-5 `}
           />
         </div>
         {selectedHerb && (
           <div className="fixed inset-0 flex -webkit-flex items-center 550px:w-full  px-3 justify-center bg-purple-500 bg-opacity-75 z-50">
-            <div className="relative">
+            <div className="relative" ref={modalRef}>
               <button
                 onClick={handleCloseModal}
                 className="absolute top-[-40px] right-[0.2rem]  text-custom-purple hover:text-gray-700 text-3xl font-extrabold"
@@ -628,11 +642,10 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                       onClick={() => {
                         gotoOverview();
                       }}
-                      className={`multi-select ${
-                        herbAmount > 0
-                          ? "w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-5"
-                          : "disable-attr w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-5"
-                      }`}
+                      className={`multi-select ${herbAmount > 0
+                        ? "w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-5"
+                        : "disable-attr-btn w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-5"
+                        }`}
                     />
                   </div>
                 </div>
@@ -642,11 +655,10 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
         )}
       </div>
       <div
-        className={`multi-select ${
-          showOverView
-            ? "flex -webkit-flex flex-col md:max-w-[820px] lg:px-[0px]  md:px-[16px]  sm:max-w-screen-sm w-full px-[15px] mb-12 mx-auto  h-auto min-h-[100vh]"
-            : "hidden"
-        }`}
+        className={`multi-select ${showOverView
+          ? "flex -webkit-flex flex-col md:max-w-[820px] lg:px-[0px]  md:px-[16px]  sm:max-w-screen-sm w-full px-[15px] mb-12 mx-auto  h-auto min-h-[100vh]"
+          : "hidden"
+          }`}
       >
         {selectedHerbList?.map((p: any, index: any) => (
           <div
@@ -673,6 +685,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
         ))}
         <div className="flex -webkit-flex flex-col w-full">
           <Button
+            disabled={selectedHerbList.length === 0}
             content="Auswahl bestätigen"
             onClick={() => setIsStep(1)}
             className={
@@ -680,7 +693,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             }
           />
           <Button
-            content="weiteres Präparat hinzufügen"
+            content="Weiteres Präparat hinzufügen"
             onClick={() => seeOverview()}
             className={
               "w-full bg-white border-custom-purple hover:border-custom-purple border-[3px] hover:bg-[rgba(65,5,126,1)] hover:text-white rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-[rgba(65,5,126,1)] mt-5"

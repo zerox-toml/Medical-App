@@ -71,16 +71,16 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
         <div className="flex -webkit-flex flex-wrap items-start justify-start gap-4 w-full max-[650px]:flex-nowrap max-[650px]:flex-col  ">
           <MHistroyHerr
             optionInfo="Herr"
-            option={["Herrin", "Frau", "Keine Angabe"]}
+            option={["Herr", "Frau", "Keine Angabe"]}
           />
           <MHistoryName
-            name="Ihre Vorname"
+            name="Vorname"
             value={vorname}
             isInvalid={validationErrors?.fname}
             setValue={handleSetVorname}
           />
           <MHistoryName
-            name="Ihre Nachname"
+            name="Nachname"
             value={nachname}
             isInvalid={validationErrors?.lname}
             setValue={handleSetNachname}
@@ -91,7 +91,7 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
           />
           <MHistoryDate/>
           <MHistoryName
-            name="Telephonnummer"
+            name="Telefonnummer"
             value={telefon}
             isInvalid={validationErrors?.tphone}
             setValue={handleSetTelefon}

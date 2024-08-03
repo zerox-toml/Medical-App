@@ -27,7 +27,7 @@ const PInfoAnythingElse = () => {
         Möchten Sie uns noch etwas mitteilen?
       </p>
       <textarea
-        className='bg-[#F5F5F5] rounded-[20px] text-[14px] w-full h-[120px] px-5 py-6 border-none focus:outline-none pinfo_textarea'
+        className='bg-[#F5F5F5] rounded-[20px] text-[16px] w-full h-[120px] px-5 py-6 border-none focus:outline-none pinfo_textarea'
         placeholder='Bitte beschreibe uns deine bisherigen Erfahrungen'
         value={text}
         onChange={handleTextChange}

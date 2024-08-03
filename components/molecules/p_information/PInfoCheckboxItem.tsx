@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 interface ICheckBox {
+  id?: string;
   content?: string;
   content1?: string;
   content2?: string;
@@ -28,6 +29,7 @@ const PInfoCheckboxItem: React.FC<ICheckBox> = ({
   content3,
   lastValidErrors,
   custom_content_style,
+  id
 }) => {
  
 
@@ -38,7 +40,6 @@ const PInfoCheckboxItem: React.FC<ICheckBox> = ({
     >
       <label
         className={`relative   flex -webkit-flex items-start rounded-full cursor-pointer mt-px`}
-        htmlFor={content}
         style={style}
       >
         <input
@@ -69,6 +70,7 @@ const PInfoCheckboxItem: React.FC<ICheckBox> = ({
       <label
         className={`mt-px font-light ${custom_content_style}  ml-2 select-none`}
         style={style}
+        htmlFor={content}
       >
         {content}
         <span className="text-custom-purple">{content1}</span>

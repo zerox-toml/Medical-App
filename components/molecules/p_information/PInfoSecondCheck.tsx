@@ -1,6 +1,7 @@
 import React from "react";
-import  Radiobtn from "../../atoms/medical_history_form/Radiobtn";
-import  RadiobtnChecked  from "../../atoms/medical_history_form/RadiobtnChecked";
+import Radiobtn from "../../atoms/medical_history_form/Radiobtn";
+import RadiobtnChecked from "../../atoms/medical_history_form/RadiobtnChecked";
+import MHistoryNoRemoteAlert from "../../atoms/medical_history_form/MHistoryNoRemoteAlert";
 
 interface IPInfoFirst {
   setPISecond: (value: boolean) => void;
@@ -19,18 +20,26 @@ const PInfoSecondCheck: React.FC<IPInfoFirst> = ({ setPISecond, pISecond }) => {
         kommen kann?
       </p>
       <div className="flex -webkit-flex mt-[16px]  mb-5">
-        <Radiobtn
+        <RadiobtnChecked
           name="acc2"
           content="Ja"
           className="w-[50%]"
           onChange={() => setPISecond(true)}
         />
-        <RadiobtnChecked
+        <Radiobtn
           name="acc2"
           className=""
           content="Nein"
           onChange={() => setPISecond(false)}
         />
+      </div>
+      <div
+        className={` ${pISecond === false
+          ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[360px] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mb-4"
+          : "hidden"
+          }`}
+      >
+        <MHistoryNoRemoteAlert />
       </div>
       <div></div>
     </div>

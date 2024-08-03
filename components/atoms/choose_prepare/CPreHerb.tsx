@@ -40,11 +40,13 @@ const CPreHerb: React.FC<IHerbData> = ({
   const selectedHerbList = useSelector(
     (state: any) => state.counter.selectedHerbList
   );
-
+  const handleRemove = (index: number | undefined) => {
+    removeHerbAmount(index);
+  }
   return (
     <div
       className={` ${classname} md:p-5 px-4 py-6 flex -webkit-flex flex-row max-[875px]:flex-col w-full mx-auto h-auto bg-[#FFFFFF] 
-    rounded-[30px] mb-4 cursor-pointer justify-between`}
+    rounded-[30px] mb-4 justify-between`}
     >
       <div className="flex -webkit-flex flex-row md:gap-5 gap-2">
         <div className="flex -webkit-flex sm:w-[113px] w-[80px] sm:h-auto h-[80px]">
@@ -85,25 +87,24 @@ const CPreHerb: React.FC<IHerbData> = ({
         </div>
       </div>
       <div
-        className={` ${
-          herbAmount
+        className={` ${herbAmount
             ? "hidden"
             : "w-full min-[875px]:w-[113px] justify-between items-end 875px:flex-col flex -webkit-flex max-sm:mt-[16px]"
-        }`}
+          }`}
       >
         <div
-          className={`multi-select ${
-            herbTalent === 0
+          className={`multi-select ${herbTalent === 0
               ? "invisible"
               : "flex -webkit-flex flex-col sm:items-end items-start"
-          }`}
+            }`}
         >
           <p className="text-[#B5985C] text-xs">Sehr beliebt</p>
           <BasicRating rate={herbTalent} />
         </div>
         <div>
           <p className="text-custom-purple text-xl font-extrabold">
-            ab {herbPriceFrom},{herbPriceTo}
+            ab {herbPriceFrom.toFixed(2)}
+            {/* ,{herbPriceTo} */}
             <span className="text-sm text-custom-grey ml-1 mt-[2px]">
               pro g
             </span>
@@ -111,18 +112,18 @@ const CPreHerb: React.FC<IHerbData> = ({
         </div>
       </div>
       <div
-        className={`multi-select ${
-          herbAmount ? "flex -webkit-flex flex-col items-end" : "hidden"
-        }`}
+        className={`multi-select ${herbAmount ? "flex -webkit-flex flex-col items-end" : "hidden"
+          }`}
       >
         <div className="text-base text-[#363636]">{herbAmount} Gramm</div>
         <div>
           <p className="text-custom-purple text-xl font-extrabold">
-            ab {herbPriceFrom},{herbPriceTo}
-            <span className="text-sm text-custom-grey ml-1 mt-[2px]">prog</span>
+            ab {herbPriceFrom.toFixed(2)}
+            {/* ,{herbPriceTo} */}
+            <span className="text-sm text-custom-grey ml-1 mt-[2px]">pro g</span>
           </p>
         </div>
-        <div className="mt-[37px]" onClick={() => removeHerbAmount(index)}>
+        <div className="mt-[37px] cursor-pointer" onClick={() => handleRemove(index)}>
           <ImBin2 color="#00000012" size={24} />
         </div>
       </div>

@@ -1,6 +1,13 @@
 import React, { useState, ChangeEvent, DragEvent } from "react";
 import Image from "next/image";
+
+import { useDispatch } from "react-redux";
+import { setIdCardFile } from "../../../redux/counterSlice";
+
 const FileUpload: React.FC = () => {
+
+  const dispatch = useDispatch()
+
   const [files, setFiles] = useState<File[]>([]);
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
   const [droppingIndex, setDroppingIndex] = useState<number | null>(null);
@@ -19,6 +26,9 @@ const FileUpload: React.FC = () => {
     if (event.target.files) {
       const newFiles = Array.from(event.target.files);
       setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+
+      // for now /order request needs one file, so save first file on redux store
+      dispatch(setIdCardFile(newFiles[0]))
     }
   };
 

@@ -90,7 +90,7 @@ input {
 }
 
 .css-10opxo5 {
-  background-color: #41057E !important;
+  background-color: #F2EDF6 !important;
   border: none !important;
 }
 
@@ -99,11 +99,23 @@ input {
 }
 
 .css-1osy2b3 {
-  background-color: #41057e !important;
+  background-color: #F2EDF6 !important;
   width: 16px !important;
   height: 16px !important;
   border-radius: 50% !important;
   opacity: 1 !important;
+}
+
+
+@media (max-width: 550px) {
+  .css-1osy2b3 {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .css-5s1qf1 {
+    width: 16px !important;
+    height: 16px !important;
+  }
 }
 
 .Myshadow {
@@ -112,6 +124,12 @@ input {
 .disable-attr {
   pointer-events: none;
   opacity: 50%;
+}
+.disable-attr-btn {
+  pointer-events: none;
+  opacity: 50%;
+  background-color: gray;
+  border-color: gray;
 }
 
 .custom_checkbox:checked {
@@ -165,4 +183,8 @@ input {
 .zoom-effect-card {
   transform: scale(1.2); /* Adjust the scale value to your preference */
   transition: transform 0.3s ease-in-out;
+}
+
+.ant-picker-input input {
+  
 }

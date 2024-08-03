@@ -26,6 +26,20 @@ const Delivery = () => {
       </h1>
       <div className="flex -webkit-flex flex-wrap gap-4 justify-between mt-[30px] ">
         <InputDefault
+          content="Vorname"
+          inputContent={vorName}
+          setInputContent={setVorName}
+          className="sm:w-[48%] w-full"
+          onChange={() => dispatch(setgVorName(vorName))}
+        />
+        <InputDefault
+          content="Nachname"
+          inputContent={narName}
+          setInputContent={setNarName}
+          className="sm:w-[48%] w-full"
+          onChange={() => dispatch(setgNarName(narName))}
+        />
+        <InputDefault
           content="Straße und Hausnummer"
           inputContent={street}
           setInputContent={setStreet}
@@ -51,23 +65,10 @@ const Delivery = () => {
             optionInfo="Deutschland"
             option={["England", "France", "Netherlands"]}
             className="w-full"
-            cId={1}
+            cId={2}
           />
         </div>
-        <InputDefault
-          content="Vorname"
-          inputContent={vorName}
-          setInputContent={setVorName}
-          className="sm:w-[48%] w-full"
-          onChange={() => dispatch(setgVorName(vorName))}
-        />
-        <InputDefault
-          content="Nachname"
-          inputContent={narName}
-          setInputContent={setNarName}
-          className="sm:w-[48%] w-full"
-          onChange={() => dispatch(setgNarName(narName))}
-        />
+
       </div>
     </div>
   );

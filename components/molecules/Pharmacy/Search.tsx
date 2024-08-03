@@ -92,16 +92,15 @@ const Search: React.FC<SearchProps> = ({
             />
           </div>
           <p className=" text-[#D7000D] text-[16px] w-[90%]">
-            Warnung: Die Nutzung von nicht empfohlenen Apotheken kann zu
-            Lieferverzögerungen führen. Wir können nicht garantieren, dass die
-            ausgewählte Apotheke die Fristen einhalten wird
+            Warnung: Die Auswahl einer eigenen Apotheke kann zu Verzögerungen
+            von mehreren Wochen und erheblichen Preisunterschieden führen.
           </p>
         </div>
         <div className=" mt-[54px] w-full h-full">
           <div className=" flex -webkit-flex items-center w-full">
             <div
               onClick={handleClick}
-              className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[14px] font-bold  flex -webkit-flex justify-center items-start ${
+              className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[16px] font-bold  flex -webkit-flex justify-center items-start ${
                 isName
                   ? "bg-[#41057E] text-white"
                   : "bg-[rgb(234,229,237)] text-[#363636]"
@@ -109,7 +108,7 @@ const Search: React.FC<SearchProps> = ({
             >
               Name
             </div>
-            {/* <div onClick={handleClick} className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[14px] font-bold  flex -webkit-flex justify-center items-start ${!isName ? "bg-[#41057E] text-white" : "bg-[rgb(234,229,237)] text-[#363636]"} `}>Adresse</div> */}
+            {/* <div onClick={handleClick} className={`w-[59px] h-[50px] cursor-pointer rounded-t-[10px] -mt-[35px] z-[0] px-[10px] py-[10px] text-[16px] font-bold  flex -webkit-flex justify-center items-start ${!isName ? "bg-[#41057E] text-white" : "bg-[rgb(234,229,237)] text-[#363636]"} `}>Adresse</div> */}
           </div>
           <div className=" absolute flex -webkit-flex md:flex-row flex-col md:gap-[20px] gap-6">
             <div className="relative md:w-[475px] flex -webkit-flex h-full">
@@ -127,12 +126,12 @@ const Search: React.FC<SearchProps> = ({
               {/* } */}
             </div>
             <div className=" flex -webkit-flex flex-col gap-[2px] mt-[-20px] h-fit">
-              <span className=" text-[#363636] text-[16px]">
+              {/* <span className=" text-[#363636] text-[16px]">
                 ausgewälte Apotheke:
               </span>
               <span className=" text-[#41057E] text-[16px] font-extrabold">
                 Pelican Apotheke
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

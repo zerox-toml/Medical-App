@@ -6,9 +6,10 @@ interface ICardProps {
   cardName: string;
   cardWidth: number;
   cardHeight: number;
-  onClick: (value: any) => void;
+  onClick: (value: number, value2: string) => void;
   cardNum: number;
-  selected: boolean
+  cardType: string;
+  selected: boolean;
 }
 
 const CardComponent: React.FC<ICardProps> = ({
@@ -18,6 +19,7 @@ const CardComponent: React.FC<ICardProps> = ({
   cardHeight,
   onClick,
   cardNum, 
+  cardType, 
   selected
 }) => {
   const [cardChecked, setCardChecked] = useState(false);
@@ -27,7 +29,7 @@ const CardComponent: React.FC<ICardProps> = ({
   return (
     <div
       className={`flex -webkit-flex flex-col  justify-between items-center rounded cursor-pointer  sm:w-[134px] w-full`}
-      onClick={() => onClick(cardNum)}
+      onClick={() => onClick(cardNum, cardType)}
     >
       <div className={`${selected ? 'bg-[#41057E12] border-[3px] border-custom-purple' : "bg-[#ffffff]"} shadow mb-1 hover:border-custom-purple rounded-[10px] w-full h-[77px] flex -webkit-flex justify-center items-center hover:bg-[#0000000D] `}>
         <Image

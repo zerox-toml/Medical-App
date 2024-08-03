@@ -40,11 +40,12 @@ const CprePriceRange: React.FC<priceRange> = ({
           getAriaLabel={() => "Temperature range"}
           value={[
             filterObject.valueMinTHC ?? 1,
-            filterObject.valueMaxTHC ?? 100,
+            filterObject.valueMaxTHC ?? 40,
           ]}
           onChange={handleChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
+          max={40}
         />
       </Box>
       <div className="flex -webkit-flex gap-1 justify-center">
@@ -53,7 +54,7 @@ const CprePriceRange: React.FC<priceRange> = ({
         </div>
         <span className="border-t-2 mt-3 w-[18px] border-t-[#363636]"></span>
         <div className="w-[108px] text-base h-[27px] rounded-[20px] bg-[#F5F5F5] py-[2px] px-[10px] text-[#363636] flex -webkit-flex justify-start">
-          {filterObject.valueMaxTHC ?? 100}%
+          {filterObject.valueMaxTHC ?? 40}%
         </div>
       </div>
     </div>

@@ -46,8 +46,8 @@ const MHistoryMultiSelect: React.FC<MHistoryMultiSelectProps> = ({
         : [...selectedItems, title]
     );
 
-    setSymptoms(selectedItems);
   };
+  setSymptoms(selectedItems);
   // dispatch(setSymptoms(selectedItems));
   return (
     <div

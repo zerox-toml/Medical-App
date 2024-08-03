@@ -52,7 +52,7 @@ export const PharmacySearch: React.FC<PharmacySearchProps> = ({ onChange, search
               >
                 <span className="flex -webkit-flex justify-between w-full">
                   <a className="">{o.name}</a>
-                  <a className="">50667 Köln</a>
+                  <a className="">{o.zip && o.zip} {o.city && o.city}</a>
                 </span>
               </li>
             ))}

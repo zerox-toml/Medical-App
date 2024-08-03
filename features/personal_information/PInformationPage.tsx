@@ -10,7 +10,7 @@ import {
 import PInfoSecondCheck from "../../components/molecules/p_information/PInfoSecondCheck";
 import PInfoCheckDataList from "../../components/molecules/p_information/PInfoCheckDataList";
 import PInfoAnythingElse from "../../components/molecules/p_information/PInfoAnythingElse";
-import {} from "../../redux/counterSlice";
+import { } from "../../redux/counterSlice";
 import Button from "../../components/atoms/Button";
 import { useDispatch } from "react-redux";
 
@@ -21,8 +21,10 @@ interface Props {
 
 const PInformationPage = ({ isStep, setIsStep }: Props) => {
   const dispatch = useDispatch();
-  const [pIFirst, setPIFirst] = useState(false);
-  const [pISecond, setPISecond] = useState(false);
+  const [pIFirst, setPIFirst] = useState(true);
+  const [pISecond, setPISecond] = useState(true);
+  const [isListChecked, setIsListChecked] = useState(true);
+
   const handleSetStep = () => {
     setIsStep(2);
     window.scrollTo(0, 0);
@@ -58,11 +60,12 @@ const PInformationPage = ({ isStep, setIsStep }: Props) => {
               Liegt bei Ihnen eines der folgenden Ausschlusskriterien vor?
               <span className="text-alert-red">*</span>
             </p>
-            <PInfoCheckDataList />
+            <PInfoCheckDataList isListChecked = {isListChecked} setIsListChecked={setIsListChecked}/>
           </div>
           <PInfoAnythingElse />
         </div>
         <Button
+          disabled={!pIFirst || !pISecond || !isListChecked}
           content="weiter"
           onClick={() => handleSetStep()}
           className=" w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white

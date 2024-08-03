@@ -23,7 +23,7 @@ const MHistoryInputThin: React.FC<MHistoryInputThinProps> = ({
   };
   if (content === "Derzeitige Medikamente") {
     dispatch(setRegMedicine(value));
-  } else if (content === "Papaja") {
+  } else if (content === "Bekannte Allergien") {
     dispatch(setAllergiInfo(value));
   } else if (content === "Chronische Krankheiten") {
     dispatch(setChronic(value));
