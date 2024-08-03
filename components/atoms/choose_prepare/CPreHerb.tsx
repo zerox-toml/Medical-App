@@ -105,7 +105,7 @@ const CPreHerb: React.FC<IHerbData> = ({
           <p className="text-custom-purple text-xl font-extrabold">
             ab {herbPriceFrom.toFixed(2)}
             {/* ,{herbPriceTo} */}
-            <span className="text-sm text-custom-grey ml-1 mt-[2px]">
+            <span className="text-base text-custom-grey ml-1 mt-[2px]">
               pro g
             </span>
           </p>
