@@ -39,7 +39,7 @@ const CardComponent: React.FC<ICardProps> = ({
           height={cardHeight}
         />
       </div>
-      <p className="text-custom-grey text-sm">{cardName}</p>
+      <p className="text-custom-grey text-[16px]">{cardName}</p>
     </div>
   );
 };

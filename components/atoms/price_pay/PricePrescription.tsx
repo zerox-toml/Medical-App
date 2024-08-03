@@ -178,7 +178,7 @@ const PricePrescription = () => {
             ))}
           </div>
           <div className="w-full sm:h-[78px] h-12"></div>
-          <div className="bg-custom-pink py-1 px-4 w-[106px] mx-auto text-sm flex -webkit-flex justify-center items-center rounded-t-[8px] text-custom-purple">
+          <div className="bg-custom-pink py-1 px-4 w-[106px] mx-auto text-[16px] flex -webkit-flex justify-center items-center rounded-t-[8px] text-custom-purple">
             sehr beliebt
           </div>
         </div>

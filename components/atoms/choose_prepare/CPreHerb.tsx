@@ -98,7 +98,7 @@ const CPreHerb: React.FC<IHerbData> = ({
               : "flex -webkit-flex flex-col sm:items-end items-start"
             }`}
         >
-          <p className="text-[#B5985C] text-xs">Sehr beliebt</p>
+          <p className="text-[#B5985C] text-[16px]">Sehr beliebt</p>
           <BasicRating rate={herbTalent} />
         </div>
         <div>
@@ -120,7 +120,7 @@ const CPreHerb: React.FC<IHerbData> = ({
           <p className="text-custom-purple text-xl font-extrabold">
             ab {herbPriceFrom.toFixed(2)}
             {/* ,{herbPriceTo} */}
-            <span className="text-sm text-custom-grey ml-1 mt-[2px]">pro g</span>
+            <span className="text-[16px] text-custom-grey ml-1 mt-[2px]">pro g</span>
           </p>
         </div>
         <div className="mt-[37px] cursor-pointer" onClick={() => handleRemove(index)}>

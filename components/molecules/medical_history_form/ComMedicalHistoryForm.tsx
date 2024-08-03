@@ -19,7 +19,7 @@ const ComMedicalHistoryForm = () => {
         <p className="fustat_normal mt-[-3px]" style={{ fontFamily: "Fustat" }}>Das Rezept wird binnen <span className=" font-bold">12-24h ausgestellt</span>, insofern nach strenger Einzelfallprüfung ein persönlicher Arzt-Kontakt nicht notwendig ist.</p>
       </div>
       <div
-        className="text-xs text-custom-grey"
+        className="text-[16px] text-custom-grey"
         style={{ fontFamily: "Fustat" }}
       >
         Bitte beachten Sie: <br></br>Ihre Anfrage ist ein unverbindlicher Wunsch und der

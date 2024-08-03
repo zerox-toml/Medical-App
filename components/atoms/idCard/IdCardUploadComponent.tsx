@@ -147,11 +147,11 @@ const FileUpload: React.FC = () => {
                     <source src={URL.createObjectURL(file)} type={file.type} />
                   </video>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 flex -webkit-flex flex-col p-2 text-xs bg-white bg-opacity-50">
+                <div className="absolute bottom-0 left-0 right-0 flex -webkit-flex flex-col p-2 text-[16px] bg-white bg-opacity-50">
                   <span className="w-full font-bold text-gray-900 truncate">
                     {file.name}
                   </span>
-                  <span className="text-xs text-gray-900">
+                  <span className="text-[16px] text-gray-900">
                     {humanFileSize(file.size)}
                   </span>
                 </div>
