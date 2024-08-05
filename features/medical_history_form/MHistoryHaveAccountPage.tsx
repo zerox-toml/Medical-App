@@ -21,7 +21,7 @@ interface Props {
   detailedSymptom: string;
   setValidationErrors: any;
   validationErrors: any;
-  isTherapy: number
+  isTherapy: number;
 }
 const MHistoryHaveAccountPage = ({
   isStep,
@@ -32,11 +32,13 @@ const MHistoryHaveAccountPage = ({
   detailedSymptom,
   validationErrors,
   setValidationErrors,
-  isTherapy
+  isTherapy,
 }: Props) => {
   const [isOne, setIsOne] = useState(false);
   const pageStatus = useSelector((state: any) => state.counter.pageStatus);
-
+  const email = useSelector((state: any) => state.counter.email);
+  const [isInvalidEmail, setisInvalidEmail] = useState(true);
+  const [isInvalidRegisteredEmail, setisInvalidRegisteredEmail] = useState(true);
   // symptom validator
   const symptoms = useSelector((state: any) => state.counter.symptoms);
   const symptomsLength = symptoms.length;
@@ -48,17 +50,26 @@ const MHistoryHaveAccountPage = ({
       tphone: !tphone,
       fname: !fname,
       lname: !lname,
+
       detailedSymptom: !detailedSymptom,
-      symptoms:!symptoms,
+      symptoms: !symptoms,
     };
     setValidationErrors(errors);
     let hasErrors;
-    if (!tphone || !fname || !lname || !detailedSymptom || symptoms.length === 0 ) {
+    if (
+      !tphone ||
+      !fname ||
+      !lname ||
+      !detailedSymptom ||
+      !email ||
+      !isInvalidEmail ||
+      symptoms.length === 0
+    ) {
       hasErrors = true;
-      setHasErrors(true)
+      setHasErrors(true);
     } else {
       hasErrors = false;
-      setHasErrors(false)
+      setHasErrors(false);
     }
 
     if (symptomsLength == 0) {
@@ -79,21 +90,33 @@ const MHistoryHaveAccountPage = ({
           Anamnesebogen
         </h2>
         <ComMedicalHistoryForm />
-        <MHistoryHaveAccountQuestion setIsOne={setIsOne} isOne={isOne} />
-        <MHistoryCheckingInfo disabled={isOne} />
+        <MHistoryHaveAccountQuestion
+          setIsOne={setIsOne}
+          isOne={isOne}
+          isInvalidRegisteredEmail={isInvalidRegisteredEmail}
+          setisInvalidRegisteredEmail={setisInvalidRegisteredEmail}
+        />
+        <MHistoryCheckingInfo
+          disabled={isOne}
+          isInvalidEmail={isInvalidEmail}
+          setisInvalidEmail={setisInvalidEmail}
+        />
         <MHistoryMultiSelect disabled={isOne} symptomsFlag={symptomsFlag} />
         <MHistoryMultiOptionForm disabled={isOne} />
         <Button
           disabled={isOne || isTherapy === 1 || isTherapy === 2}
           content="weiter"
           onClick={handleClick}
-          className={` w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-[20px] ${hasErrors ? 'mb-[20px]' : "mb-[130px]"} `}
+          className={` w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-[20px] ${
+            hasErrors ? "mb-[20px]" : "mb-[130px]"
+          } `}
         />
         <div
-          className={`${hasErrors === true 
-            ? "py-[10px] px-6 bg-[#D7000D08] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mb-[100px]"
-            : "hidden"
-            }`}
+          className={`${
+            hasErrors === true
+              ? "py-[10px] px-6 bg-[#D7000D08] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mb-[100px]"
+              : "hidden"
+          }`}
         >
           <InputErrorAlert />
         </div>
@@ -110,7 +133,7 @@ const mapStateToProps = (state: any) => ({
   birthday: state.counter.birthday,
   gender: state.counter.gender,
   validationErrors: state.counter.validationErrors,
-  isTherapy: state.counter.isTherapy
+  isTherapy: state.counter.isTherapy,
 });
 const mapDispatchToProps = { setValidationErrors };
 export default connect(

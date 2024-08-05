@@ -22,6 +22,8 @@ interface IMHistoryCheckingInfo {
   tphone: string;
   validationErrors: any;
   setValidationErrors: any;
+  isInvalidEmail:boolean;
+  setisInvalidEmail:(value:any) => void;
 }
 
 const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
@@ -34,6 +36,8 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
   tphone,
   validationErrors,
   setValidationErrors,
+  isInvalidEmail,
+  setisInvalidEmail,
 }) => {
   const [vorname, setVorname] = useState(fname ?? "");
   const handleSetVorname = (value: any) => {
@@ -67,7 +71,7 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
         Deine Kontaktdaten
       </h2>
       <div className="flex -webkit-flex flex-col gap-4 w-full">
-        <MHistoryInput content="E-mail" />
+        <MHistoryInput content="E-mail" isInvalidEmail = {isInvalidEmail} setisInvalidEmail={setisInvalidEmail}/>
         <div className="flex -webkit-flex flex-wrap items-start justify-start gap-4 w-full max-[650px]:flex-nowrap max-[650px]:flex-col  ">
           <MHistroyHerr
             optionInfo="Herr"

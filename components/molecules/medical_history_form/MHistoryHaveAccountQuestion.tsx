@@ -2,18 +2,24 @@
 
 import React, { useEffect, useState } from "react";
 import Radiobtn from "../../atoms/medical_history_form/Radiobtn";
-import RadiobtnChecked  from "../../atoms/medical_history_form/RadiobtnChecked";
+import RadiobtnChecked from "../../atoms/medical_history_form/RadiobtnChecked";
 import MHistoryInput from "../../atoms/medical_history_form/MHistoryInput";
 import Button from "../../atoms/Button";
+import MHistoryRegisteredEmailInput from "../../atoms/medical_history_form/MHistoryOnlyEmailInput";
 
 interface Props {
   setIsOne: (value: boolean) => void;
   isOne: boolean;
+  isInvalidRegisteredEmail: boolean;
+  setisInvalidRegisteredEmail: (value: any) => void;
 }
-const MHistoryHaveAccountQuestion = ({ setIsOne, isOne }: Props) => {
-  useEffect(() => {
-    
-  }, [isOne])
+const MHistoryHaveAccountQuestion = ({
+  setIsOne,
+  isOne,
+  isInvalidRegisteredEmail,
+  setisInvalidRegisteredEmail,
+}: Props) => {
+  useEffect(() => {}, [isOne]);
   const [isSend, setIsSend] = useState();
   return (
     <div className="w-full h-auto md:rounded-[2.25rem] rounded-[24px] md:p-[3.125rem] p-[24px] bg-white flex -webkit-flex flex-col justify-between mx-auto mt-[40px] Myshadow">
@@ -34,7 +40,6 @@ const MHistoryHaveAccountQuestion = ({ setIsOne, isOne }: Props) => {
           content="Nein"
           onChange={() => setIsOne(false)}
         />
-        
       </div>
       <div
         className={`multi-select ${
@@ -45,8 +50,12 @@ const MHistoryHaveAccountQuestion = ({ setIsOne, isOne }: Props) => {
           Geben Sie Ihre E-Mail-Adresse ein und erhalten Sie den Link zu einem
           vorausgefüllten Fragebogen.
         </p>
-        <div className="flex -webkit-flex justify-between items-center gap-3 md:flex-row flex-col">
-          <MHistoryInput content="E-mail" />
+        <div className="flex -webkit-flex justify-between items-start gap-3 md:flex-row flex-col">
+          <MHistoryRegisteredEmailInput
+            content="E-mail"
+            isInvalidRegisteredEmail={isInvalidRegisteredEmail}
+            setisInvalidRegisteredEmail={setisInvalidRegisteredEmail}
+          />
           <Button
             content="senden"
             onClick={setIsOne}

@@ -1,30 +1,30 @@
 "use client";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../../../redux/counterSlice";
+import { setRegisterEmail } from "../../../redux/counterSlice";
 
 interface MHistoryInputProps {
   content: string;
-  isInvalidEmail:boolean;
-  setisInvalidEmail:(value:any) => void;
+  isInvalidRegisteredEmail:boolean;
+  setisInvalidRegisteredEmail:(value:any) => void;
 }
 
-const MHistoryInput: React.FC<MHistoryInputProps> = ({ content, isInvalidEmail, setisInvalidEmail }) => {
+const MHistoryRegisteredEmailInput: React.FC<MHistoryInputProps> = ({ content, isInvalidRegisteredEmail, setisInvalidRegisteredEmail }) => {
   const dispatch = useDispatch();
-  const email = useSelector((state: any) => state.counter.email);
+  const registerEmail = useSelector((state: any) => state.counter.registerEmail);
   
-  const [value, setValue] = useState(email ?? "");
+  const [value, setValue] = useState(registerEmail ?? "");
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const emailValue = e.target.value;
     setValue(emailValue);
     validateEmail(emailValue);
-    isInvalidEmail && dispatch(setEmail(emailValue));
+    isInvalidRegisteredEmail && dispatch(setRegisterEmail(emailValue));
   };
 
   const validateEmail = (email: string) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setisInvalidEmail(emailPattern.test(email));
+    setisInvalidRegisteredEmail(emailPattern.test(email));
   };
 
   return (
@@ -32,7 +32,7 @@ const MHistoryInput: React.FC<MHistoryInputProps> = ({ content, isInvalidEmail, 
       <input
         className={`appearance-none block w-full bg-[#F5F5F5] text-[16px] text-gray-700 pl-4  rounded-[3.75rem] py-[10px] 
           px-[20px] h-[47px] focus:outline-none ${
-          isInvalidEmail ? "border-none" : "border-alert-red border" // Conditional border color based on validation
+          isInvalidRegisteredEmail ? "border-none" : "border-alert-red border" // Conditional border color based on validation
         }`}
         id="grid-last-name"
         type="text"
@@ -40,7 +40,7 @@ const MHistoryInput: React.FC<MHistoryInputProps> = ({ content, isInvalidEmail, 
         value={value}
         onChange={handleChange}
       />
-      {!isInvalidEmail && (
+      {!isInvalidRegisteredEmail && (
         <p className="text-red-500 text-[12px] mt-[4px]">
           Please enter a valid email address.
         </p>
@@ -49,4 +49,4 @@ const MHistoryInput: React.FC<MHistoryInputProps> = ({ content, isInvalidEmail, 
   );
 };
 
-export default MHistoryInput;
+export default MHistoryRegisteredEmailInput;

@@ -20,6 +20,7 @@ const { reducer, actions } = createSlice({
     pageStatus: 1,
     name: null,
     email: null,
+    registerEmail: null,
     mister: null,
     gender: null,
     fname: null,
@@ -106,6 +107,9 @@ const { reducer, actions } = createSlice({
     },
     setEmail: (state, { payload }) => {
       state.email = payload;
+    },
+    setRegisterEmail: (state, { payload }) => {
+      state.registerEmail = payload;
     },
     setGender: (state, { payload }) => {
       state.gender = payload;
@@ -220,6 +224,7 @@ export const {
   setBDeliverCountry,
   setGCannvanisDrive,
   setGCTKnow,
+  setRegisterEmail,
   setGCheckedContents,
   setDeliverCountry,
   setSelectedHerbList,

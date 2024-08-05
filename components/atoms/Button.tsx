@@ -10,7 +10,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ content, className, onClick,disabled  }) => {
     return (
-        <button className={`btn ${className } ${disabled?"disable-attr-btn whitespace-nowrap":"whitespace-nowrap"}`}  onClick={onClick}>{content}</button>
+        <button className={`btn ${className } ${disabled?"disable-attr-btn":""}`}  onClick={onClick}>{content}</button>
     )
 }
 

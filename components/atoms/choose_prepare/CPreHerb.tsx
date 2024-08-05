@@ -42,7 +42,7 @@ const CPreHerb: React.FC<IHerbData> = ({
   );
   const handleRemove = (index: number | undefined) => {
     removeHerbAmount(index);
-  }
+  };
   return (
     <div
       className={` ${classname} md:p-5 px-4 py-6 flex -webkit-flex flex-row max-[875px]:flex-col w-full mx-auto h-auto bg-[#FFFFFF] 
@@ -59,7 +59,7 @@ const CPreHerb: React.FC<IHerbData> = ({
           />
         </div>
 
-        <div className="flex -webkit-flex flex-col md:w-[219px] w-[196px] ">
+        <div className="flex -webkit-flex flex-col md:w-[219px] w-[176px] ">
           <div className="flex -webkit-flex justify-start items-center">
             <p className="flex -webkit-flex gap-1">
               <span className="w-auto h-auto py-1 px-4 rounded-[60px] text-[10px] text-[#F3F3F3] bg-custom-purple flex -webkit-flex justify-center items-center">
@@ -87,16 +87,18 @@ const CPreHerb: React.FC<IHerbData> = ({
         </div>
       </div>
       <div
-        className={` ${herbAmount
+        className={` ${
+          herbAmount
             ? "hidden"
-            : "w-full min-[875px]:w-[113px] justify-between items-end 875px:flex-col flex -webkit-flex max-sm:mt-[16px]"
-          }`}
+            : "w-full min-[875px]:w-[156px] justify-between items-end 875px:flex-col flex -webkit-flex max-sm:mt-[16px]"
+        }`}
       >
         <div
-          className={`multi-select ${herbTalent === 0
+          className={`multi-select ${
+            herbTalent === 0
               ? "invisible"
               : "flex -webkit-flex flex-col sm:items-end items-start"
-            }`}
+          }`}
         >
           <p className="text-[#B5985C] text-[16px]">Sehr beliebt</p>
           <BasicRating rate={herbTalent} />
@@ -112,18 +114,24 @@ const CPreHerb: React.FC<IHerbData> = ({
         </div>
       </div>
       <div
-        className={`multi-select ${herbAmount ? "flex -webkit-flex flex-col items-end" : "hidden"
-          }`}
+        className={`multi-select ${
+          herbAmount ? "flex -webkit-flex flex-col items-end" : "hidden"
+        }`}
       >
         <div className="text-base text-[#363636]">{herbAmount} Gramm</div>
         <div>
           <p className="text-custom-purple text-xl font-extrabold">
             ab {herbPriceFrom.toFixed(2)}
             {/* ,{herbPriceTo} */}
-            <span className="text-[16px] text-custom-grey ml-1 mt-[2px]">pro g</span>
+            <span className="text-[16px] text-custom-grey ml-1 mt-[2px]">
+              pro g
+            </span>
           </p>
         </div>
-        <div className="mt-[37px] cursor-pointer" onClick={() => handleRemove(index)}>
+        <div
+          className="mt-[37px] cursor-pointer"
+          onClick={() => handleRemove(index)}
+        >
           <ImBin2 color="#00000012" size={24} />
         </div>
       </div>
