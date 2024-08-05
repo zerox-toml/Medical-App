@@ -330,7 +330,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             <Button
               content="zur Übersicht"
               onClick={() => seeOverview()}
-              className={`${isSelectedHerb ? "" : "disable-attr-btn"} md:w-[139px] w-full bg-[#FFFFFF] hover:border-[3px] border-[3px] border-[#41057E] hover:border-[rgba(65,5,126,1)] hover:bg-[#41057E] 
+              className={`${isSelectedHerb ? "" : "disable-attr-btn"} md:w-[146px] w-full bg-[#FFFFFF] hover:border-[3px] border-[3px] border-[#41057E] hover:border-[rgba(65,5,126,1)] hover:bg-[#41057E] 
               hover:text-[white] rounded-[60px] px-4 py-[10px] text-[16px] font-bold text-[#41057E]`}
             />
           </div>
