@@ -5,7 +5,7 @@ import PInfoFirstCheck from "../../components/molecules/p_information/PInfoFirst
 import {
   setGCannvanisDrive,
   setGCTKnow,
-} from "../../redux/counterSlice";
+} from "../../redux/counterSlice";    
 
 import PInfoSecondCheck from "../../components/molecules/p_information/PInfoSecondCheck";
 import PInfoCheckDataList from "../../components/molecules/p_information/PInfoCheckDataList";
