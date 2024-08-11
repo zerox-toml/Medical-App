@@ -581,7 +581,7 @@ const Prepare = ({ isProductStep, isStep, setIsStep, setIsProductStep, showFilte
                   )) : <span className=" w-full">Es wurden keine Produkte gefunden. Bitte ändern Sie die Filtereinstellungen und versuchen Sie es erneut.</span>
                 // )
               }
-              {isMoreAvailable &&
+              {isMoreAvailable &&  
                 <span
                   onClick={showMoreProduct}
                   className=" text-[16px] text-[#41057E] underline mt-3 cursor-pointer"
