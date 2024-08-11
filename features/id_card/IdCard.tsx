@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 interface Props {
   isStep: number;
-  setIsStep: (value: number) => void;
+  setIsStep: (value: number) => void;    
 }
 const IdCard = ({ isStep, setIsStep }: Props) => {
   const [noUpload, setNoUpload] = useState(false);
