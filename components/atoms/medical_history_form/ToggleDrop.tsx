@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setMister,
   setGender,
@@ -16,27 +16,25 @@ interface IUserInfoOption {
   className?: string;
   cId?: number;
   isInvalid?: boolean;
+  customClassName: string;
 }
 
-const MHistroyHerr: React.FC<IUserInfoOption> = ({
+const ToggleDrop: React.FC<IUserInfoOption> = ({
   optionInfo,
   option,
   className,
   cId,
   isInvalid,
+  customClassName,
 }) => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const mister = useSelector((state: any) => state.counter.mister);
 
   const handleClick = (o: string) => {
     setClicked(o);
     setDropdownVisible(false);
-    if (optionInfo === "Herr") dispatch(setMister(o));
-    if (cId === 1) dispatch(setGender(o));
-    if (cId === 2) dispatch(setDeliverCountry(o));
-
+    dispatch(setBDeliverCountry(o));
   };
 
   const toggleDropdown = () => {
@@ -51,18 +49,14 @@ const MHistroyHerr: React.FC<IUserInfoOption> = ({
         <div
           tabIndex={0}
           role="button"
-          className={`multi-select ${
-            isInvalid && mister == null
-              ? "border-solid border-alert-red btn text-custom-grey text-[16px] font-normal bg-[#F5F5F5] rounded-[60px] h-auto w-full sm:w-[150px] px-[20px] py-[13.5px] inline-flex -webkit-flex justify-between items-center hover:bg-white"
-              : "btn text-custom-grey text-[16px] font-normal bg-[#F5F5F5] border-none rounded-[60px] h-auto w-full sm:w-[150px] px-[20px] py-[13.5px] inline-flex -webkit-flex justify-between items-center hover:bg-white"
-          }`}
+          className={`text-custom-grey  text-[16px] ${customClassName} font-normal bg-[#F5F5F5] rounded-[60px] h-auto w-full px-[20px] py-[13.5px] inline-flex -webkit-flex justify-between items-center hover:bg-white`}
           onClick={toggleDropdown}
         >
           <span
             className={`multi-select ${
               optionInfo === "Deutschland"
                 ? "w-[100%] text-left text-[#6D6D6D]"
-                : "text-left w-[78%] text-[#363636]"
+                : "text-left w-[80%] text-[#363636]"
             }`}
           >
             {clicked ? clicked : optionInfo}
@@ -94,4 +88,4 @@ const MHistroyHerr: React.FC<IUserInfoOption> = ({
   );
 };
 
-export default MHistroyHerr;
+export default ToggleDrop;

@@ -27,7 +27,6 @@ const FileUpload: React.FC = () => {
       const newFiles = Array.from(event.target.files);
       setFiles((prevFiles) => [...prevFiles, ...newFiles]);
 
-      // for now /order request needs one file, so save first file on redux store
       dispatch(setIdCardFile(newFiles[0]))
     }
   };

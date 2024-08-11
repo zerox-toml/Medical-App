@@ -25,7 +25,6 @@ const IdCardUpload = () => {
     }
   };
 
-  // Optional: Handler for form submission or file upload
   
 
   return (
@@ -37,7 +36,7 @@ const IdCardUpload = () => {
         eindeutig verifizieren können.
       </p>
 
-    <FileUpload />  
+    <FileUpload /> 
     </div>
   );
 };

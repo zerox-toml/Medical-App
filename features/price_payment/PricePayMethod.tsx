@@ -16,11 +16,11 @@ import {
   setalertLCheck1,
   setalertLCheck2,
 } from "../../redux/counterSlice";
-import { setPageStatus, setValidationErrors } from "../../redux/counterSlice";
+import { setPageStatus, setValidationErrors, setLastValidationErrors } from "../../redux/counterSlice";
 import { connect, useDispatch, useSelector } from "react-redux";
 
 import { useRouter } from "next/navigation";
-import toast from 'react-hot-toast'
+import toast from "react-hot-toast";
 
 interface Product {
   id: number;
@@ -64,8 +64,8 @@ interface pharmacy {
 
 interface order {
   prescriptionId: number;
-  pharmacyName: string;
-  products: {
+  pharmacyName?: string;
+  products?: {
     productId: number;
     quantity: number;
   }[];
@@ -133,6 +133,9 @@ interface Props {
   gPostNumber: string;
   gOrt: string;
   gVorName: string;
+  gCVV: string;
+  gKartennummer: string;
+  gAblaufdatum: string;
   gNarName: string;
   gBStreet: string;
   gBillPost: string;
@@ -144,6 +147,7 @@ interface Props {
   prescriptionId: any;
   idCardFile: any;
   paymentType: string;
+  leadId: string;
 }
 
 const PricePayMethod: React.FC<Props> = ({
@@ -158,6 +162,7 @@ const PricePayMethod: React.FC<Props> = ({
   allergiInfo,
   chronic,
   gInsurance,
+  gCVV,
   gCannvanisDrive,
   gCTKnow,
   gCheckedContents,
@@ -168,7 +173,9 @@ const PricePayMethod: React.FC<Props> = ({
   gOrt,
   gVorName,
   gNarName,
+  gKartennummer,
   gBStreet,
+  gAblaufdatum,
   gBillPost,
   gBillOrt,
   bDeliverCountry,
@@ -178,14 +185,16 @@ const PricePayMethod: React.FC<Props> = ({
   prescriptionId,
   idCardFile,
   paymentType,
+  leadId,
 }) => {
   const router = useRouter();
-  const [chageAGB, setChageAGB] = useState(false);    // termAccpeted
-  const [chageDaten, setChageDaten] = useState(false);  // privacyPolicyAccepted
-  const [lastCheck1, setLastCheck1] = useState(false);  //sharingWithNonMedicalStaffAccepted
-  const [lastCheck2, setLastCheck2] = useState(false);  // bestConscienceConfirmed
+
+  const [chageDaten, setChageDaten] = useState(false); // privacyPolicyAccepted
+  const [lastCheck1, setLastCheck1] = useState(false); //sharingWithNonMedicalStaffAccepted
+  const [lastCheck2, setLastCheck2] = useState(false); // bestConscienceConfirmed
   const [lastValidErrors, setLastValidErrors] = useState(true);
   const [lastValidFlag, setLastValidFlag] = useState(0);
+  const [hasErrors, setHasErrors] = useState(false);
 
   const dispatch = useDispatch();
   const [isClicked2, setIsClicked2] = useState(false);
@@ -196,7 +205,16 @@ const PricePayMethod: React.FC<Props> = ({
     pharmacyName: "",
     products: [],
   });
+  const [chageAGB, setChageAGB] = useState(false); // termAccpeted
+  const [isGVorName, setisGVorName] = useState(false);
+  const [isOrt, setisOrt] = useState(false);
+  const [isgStreet, setisgStreet] = useState(false);
+  const [isgPostNumber, setisgPostNumber] = useState(false);
+  const lastValidationErrors = useSelector((state: any) => state.counter.lastValidationErrors);
+  const gCouponCode = useSelector((state: any) => state.counter.gCouponCode);
+  const gAgreeGTC = useSelector((state:any) => state.counter.gAgreeGTC)
 
+  console.log(lastValidationErrors, "un");
   const [customer, setCustomer] = useState<customer>({
     email: "",
     salutation: "Hello",
@@ -235,31 +253,55 @@ const PricePayMethod: React.FC<Props> = ({
     city: "",
     country: "",
   });
-
+  
   const handleDoctor2 = () => {};
+  useEffect(()=> {
+    
+  }, [setCouponCode, couponCode])
+  console.log(gCouponCode, "gCouponCodedd");
+  
   const applyZur = () => {
     dispatch(setGCouponCode(couponCode));
+
   };
   const alertcheck1 = useSelector((state: any) => state.counter.alertcheck1);
-  
-  const createCheckout = async (paymentType: string) => {
-    const params: any = {
-      paymentType,
-      termsAccepted: chageAGB,
-      privacyPolicyAccepted: chageDaten,
-      sharingWithNonMedicalStaffAccepted: lastCheck1,
-      bestConscienceConfirmed: lastCheck2,
-      order,
-      customer,
-      shipping,
-      invoice,
-    };
 
-    const apiParams = JSON.stringify(params)
+  const createCheckout = async (paymentType: string) => {
+    let params: any = {};
+    if (leadId) {
+      params = {
+        leadId,
+        paymentType,
+        termsAccepted: true,
+        privacyPolicyAccepted: true,
+        sharingWithNonMedicalStaffAccepted: true,
+        bestConscienceConfirmed: true,
+        order,
+        customer: {
+          email: email,
+        },
+      };
+    } else {
+      params = {
+        paymentType,
+        termsAccepted: chageAGB,
+        privacyPolicyAccepted: chageDaten,
+        sharingWithNonMedicalStaffAccepted: lastCheck1,
+        bestConscienceConfirmed: lastCheck2,
+        order,
+        customer,
+        shipping,
+        invoice,
+      };
+    }
+
+    const apiParams = JSON.stringify(params);
     localStorage.setItem("reduxData", apiParams);
 
     const formData = new FormData();
-    formData.append("idCardFile", idCardFile);
+    if (!leadId) {
+      formData.append("idCardFile", idCardFile);
+    }
     formData.append("orderData", apiParams);
 
     try {
@@ -278,17 +320,61 @@ const PricePayMethod: React.FC<Props> = ({
       console.error("Error during checkout:", error);
     }
   };
-  
-  const sendPredic = async () => {
-    const isCheck = chageAGB && chageDaten && lastCheck1 && lastCheck2;
 
+  const sendPredic = async () => {
+
+    const errors = {
+      gVorName : !gVorName,
+      gNarName : !gNarName,
+      gOrt : !gOrt,
+      gPostNumber : !gPostNumber,
+      gStreet : !gStreet,
+      bDeliverCountry: !bDeliverCountry,
+      gCouponCode:!gCouponCode,
+      gAgreeGTC:!gAgreeGTC,
+    }
+    console.log(errors, "errors");
+    dispatch(setLastValidationErrors(errors));
+    
+    let hasErrors;
+    if(
+      !gVorName ||
+      !gNarName ||
+      !gOrt ||
+      !gPostNumber ||
+      !gStreet ||
+      !bDeliverCountry ||
+      !gCouponCode ||
+      !gAgreeGTC
+    ){
+      hasErrors = true;
+      setHasErrors(true);
+      
+    } else {
+      hasErrors = false;
+      setHasErrors(false);
+      console.log("haserrors false");
+    }
+    let isCheck =
+      chageAGB &&
+      chageDaten &&
+      lastCheck1 &&
+      lastCheck2 
+      // isGVorName
+      // isgStreet
+      // isgPostNumber &&
+      // isOrt;
+
+    if (leadId) {
+      isCheck = true;
+    }
     setLastValidErrors(isCheck);
-    if (isCheck) {
+    if (isCheck && !hasErrors) {
       createCheckout(paymentType);
     } else {
-      toast.error('Bitte akzeptieren Sie alle erforderlichen Felder', {
-        duration: 1500
-      })
+      toast.error("Bitte akzeptieren Sie alle erforderlichen Felder", {
+        duration: 1500,
+      });
     }
   };
 
@@ -305,7 +391,7 @@ const PricePayMethod: React.FC<Props> = ({
   useEffect(() => {
     setOrder({
       prescriptionId: prescriptionId?.id,
-      pharmacyName: selectedPharmacy.name,
+      pharmacyName: selectedPharmacy?.name,
       products: productList,
     });
   }, [prescriptionId, productList, selectedPharmacy]);
@@ -394,6 +480,11 @@ const PricePayMethod: React.FC<Props> = ({
               inputContent={couponCode}
               setInputContent={setCouponCode}
               className="w-full"
+              classinput={`${
+                lastValidationErrors?.gAgreeGTC && !gCouponCode
+                  ? "border border-alert-red"
+                  : "border-none"
+              }`}
             />
             <Button
               content="zur Übersicht"
@@ -412,7 +503,11 @@ const PricePayMethod: React.FC<Props> = ({
             </span>
           </div>
         </div>
-        <div className="max-w-[820px] mx-auto mt-[30px] ">
+        <div
+          className={`max-w-[820px] mx-auto mt-[30px] ${
+            leadId ? "hidden" : ""
+          }`}
+        >
           <Delivery />
         </div>
       </div>
@@ -463,6 +558,11 @@ const mapStateToProps = (state: any) => ({
   deliverCountry: state.counter.deliverCountry,
   gVorName: state.counter.gVorName,
   gNarName: state.counter.gNarName,
+  gCVV: state.counter.gCVV,
+  gAblaufdatum: state.counter.gAblaufdatum,
+  gKartennummer: state.counter.gKartennummer,
+  lastValidationErrors: state.counter.lastValidationErrors,
+
   gBStreet: state.counter.gBStreet,
   gBillPost: state.counter.gBillPost,
   gBillOrt: state.counter.gBillOrt,
@@ -473,6 +573,7 @@ const mapStateToProps = (state: any) => ({
   prescriptionId: state.counter.prescriptionId,
   idCardFile: state.counter.idCardFile,
   paymentType: state.counter.paymentType,
+  leadId: state.counter.leadId,
 });
 const mapDispatchToProps = { setValidationErrors };
 export default connect(mapStateToProps, mapDispatchToProps)(PricePayMethod);

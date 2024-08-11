@@ -64,7 +64,7 @@ const MHistoryMultiSelect: React.FC<MHistoryMultiSelectProps> = ({
             : "font-extrabold text-[20px] text-alert-red"
         }`}
       >
-        Welche Symptome haben Sie?<span className=" text-alert-red">*</span>
+        Welche Symptome haben Sie?
       </h3>
       <div className="w-auto flex -webkit-flex flex-wrap gap-[16px] mt-[24px]">
         {MHistoryMultiData.map((symp, index) => (
@@ -78,7 +78,6 @@ const MHistoryMultiSelect: React.FC<MHistoryMultiSelectProps> = ({
       </div>
       <span className=" mt-[28px] text-[16px] font-normal">
         Beschreiben Sie Ihre Symptome ausführlich:
-        <span className=" text-alert-red font-bold">*</span>
       </span>
       <MHistoryDetailSymptom
         value={detailSymptom}

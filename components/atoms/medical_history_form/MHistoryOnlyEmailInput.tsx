@@ -11,7 +11,7 @@ interface MHistoryInputProps {
 
 const MHistoryRegisteredEmailInput: React.FC<MHistoryInputProps> = ({ content, isInvalidRegisteredEmail, setisInvalidRegisteredEmail }) => {
   const dispatch = useDispatch();
-  const registerEmail = useSelector((state: any) => state.counter.registerEmail);
+  const registerEmail = useSelector((state: any) => state.counter.registerEmail); 
   
   const [value, setValue] = useState(registerEmail ?? "");
   

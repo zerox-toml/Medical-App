@@ -7,9 +7,11 @@ interface MHistoryInputProps {
   content: string;
   isInvalidEmail:boolean;
   setisInvalidEmail:(value:any) => void;
+  isInvalid: any
+  
 }
 
-const MHistoryInput: React.FC<MHistoryInputProps> = ({ content, isInvalidEmail, setisInvalidEmail }) => {
+const MHistoryInput: React.FC<MHistoryInputProps> = ({ content, isInvalidEmail, setisInvalidEmail,isInvalid }) => {
   const dispatch = useDispatch();
   const email = useSelector((state: any) => state.counter.email);
   
@@ -19,20 +21,21 @@ const MHistoryInput: React.FC<MHistoryInputProps> = ({ content, isInvalidEmail, 
     const emailValue = e.target.value;
     setValue(emailValue);
     validateEmail(emailValue);
-    isInvalidEmail && dispatch(setEmail(emailValue));
   };
+  isInvalidEmail && dispatch(setEmail(value));
 
   const validateEmail = (email: string) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setisInvalidEmail(emailPattern.test(email));
   };
-
+  console.log(isInvalid, "isinvalid");
+  
   return (
     <div className="relative w-full mt-[12px]">
       <input
         className={`appearance-none block w-full bg-[#F5F5F5] text-[16px] text-gray-700 pl-4  rounded-[3.75rem] py-[10px] 
           px-[20px] h-[47px] focus:outline-none ${
-          isInvalidEmail ? "border-none" : "border-alert-red border" // Conditional border color based on validation
+           !isInvalid && isInvalidEmail ? "border-none" : "border-alert-red border" 
         }`}
         id="grid-last-name"
         type="text"

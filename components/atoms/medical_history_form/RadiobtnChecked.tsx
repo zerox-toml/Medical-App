@@ -11,14 +11,13 @@ interface RadiobtnCheckedProps {
 
 const RadiobtnChecked: React.FC<RadiobtnCheckedProps> = ({content, className, name, onChange}) => {
     return (
-        <label className={`inline-flex -webkit-flex items-center ${className}`}>
+        <label className={`inline-flex -webkit-flex items-center ${className}`} onChange={onChange}>
             <input
                 type="radio"
                 name={name}
                 value=""
                 className="custom-radio text-custom-purple text-[16px] !w-[15px] !h-[15px] bg-custom-purple"
                 defaultChecked
-                onChange={onChange}
             />
             <span className="ml-2 text-gray-700">{content}</span>
         </label>

@@ -21,13 +21,15 @@ interface Props {
 
 const PInformationPage = ({ isStep, setIsStep }: Props) => {
   const dispatch = useDispatch();
-  const [pIFirst, setPIFirst] = useState(true);
-  const [pISecond, setPISecond] = useState(true);
+  const [pIFirst, setPIFirst] = useState(null);
+  const [pISecond, setPISecond] = useState(null);
   const [isListChecked, setIsListChecked] = useState(true);
 
-  const handleSetStep = () => {
+  const handleSetStep = () => {    
+    
     setIsStep(2);
     window.scrollTo(0, 0);
+
   };
 
   useEffect(() => {
@@ -58,14 +60,13 @@ const PInformationPage = ({ isStep, setIsStep }: Props) => {
           <div className="mt-9 mb-5 border-b-[#00000012] w-full">
             <p className="text-normal-text text-base mb-4">
               Liegt bei Ihnen eines der folgenden Ausschlusskriterien vor?
-              <span className="text-alert-red">*</span>
             </p>
             <PInfoCheckDataList isListChecked = {isListChecked} setIsListChecked={setIsListChecked}/>
           </div>
           <PInfoAnythingElse />
         </div>
         <Button
-          disabled={!pIFirst || !pISecond || !isListChecked}
+          disabled={pIFirst == false || pISecond == false || !isListChecked}
           content="weiter"
           onClick={() => handleSetStep()}
           className=" w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white

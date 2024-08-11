@@ -150,11 +150,11 @@ const PricePrescription = () => {
     <div className="flex -webkit-flex gap-4 flex-wrap justify-center ">
       <div
         className="flex -webkit-flex flex-col sm:w-auto w-full cursor-pointer "
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={() => handleMouseClick()}
       >
         <div
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={() => handleMouseClick()}
           className={` ${isClickCard ? "bg-custom-purple text-white" : "bg-white"
             } hover:bg-[#6d37a3] border-custom-pink duration-300 ease-in-out border-8 rounded-[30px] pt-7 px-6
          sm:w-[277px] w-full sm:h-[372px] h-auto flex -webkit-flex flex-col text-custom-black hover:text-white shadow-custom-card active:zoom-effect-card
@@ -166,23 +166,23 @@ const PricePrescription = () => {
           <div className="flex -webkit-flex flex-col gap-3">
             {prescriptionSplit1.map((ps, index) => (
               <div key={index} className="flex -webkit-flex items-start justify-start gap-1 mt-2">
-                  <Image
-                    className="mt-[6px]"
-                    src={isClickCard ? hoverBulletIcon : src}
-                    alt="Bullet"
-                    width={12}
-                    height={12}
-                  />
+                <Image
+                  className="mt-[6px]"
+                  src={isClickCard ? hoverBulletIcon : src}
+                  alt="Bullet"
+                  width={12}
+                  height={12}
+                />
                 <p>{ps}</p>
               </div>
             ))}
           </div>
           <div className="w-full sm:h-[78px] h-12"></div>
-          <div className="bg-custom-pink py-1 px-4 w-[106px] mx-auto text-[16px] flex -webkit-flex justify-center items-center rounded-t-[8px] text-custom-purple">
+          <div className="bg-custom-pink py-1 px-4 w-auto mx-auto text-[16px] flex -webkit-flex justify-center items-center rounded-t-[8px] text-custom-purple">
             sehr beliebt
           </div>
         </div>
-        <div className="flex -webkit-flex justify-between px-6 bg-[#E6E6E6] h-[130px] mt-[-55px] z-0 relative pt-[75px] rounded-b-[30px]">
+        <div className="flex -webkit-flex justify-between px-6 bg-[#E6E6E6] hover:bg-[#6300C726] h-[130px] mt-[-55px] z-0 relative pt-[75px] rounded-b-[30px]">
           <span className="text-[#6D6D6D] text-[32px] font-extrabold">
             {prescription1.regularPrice} €
           </span>
@@ -193,11 +193,11 @@ const PricePrescription = () => {
       </div>
       <div
         className="flex -webkit-flex flex-col gap-[18px] sm:w-auto w-full cursor-pointer"
-        onMouseEnter={handleMouseEnter1}
-        onMouseLeave={handleMouseLeave1}
-        onClick={() => handleMouseClick1()}
       >
         <div
+          onMouseEnter={handleMouseEnter1}
+          onMouseLeave={handleMouseLeave1}
+          onClick={() => handleMouseClick1()}
           className={`hover:bg-[#6d37a3] ${isClickCard1 ? "bg-custom-purple text-white" : "bg-white"
             }  text-custom-black duration-300 ease-in-out hover:text-white relative z-10 rounded-[30px] pt-9 px-6 
         sm:w-[277px] w-full sm:h-[372px] h-auto flex -webkit-flex flex-col justify-between pb-[71px] shadow-custom-card`}
@@ -206,20 +206,20 @@ const PricePrescription = () => {
           <div className="flex -webkit-flex flex-col gap-3">
             {prescriptionSplit2.map((ps, index) => (
               <div key={index} className="flex -webkit-flex items-start justify-start gap-1 mt-2">
-                  <Image
-                    className="mt-[6px]"
-                    src={isClickCard1 ? hoverBulletIcon : src1}
-                    alt="Bullet"
-                    width={12}
-                    height={12}
-                  />
+                <Image
+                  className="mt-[6px]"
+                  src={isClickCard1 ? hoverBulletIcon : src1}
+                  alt="Bullet"
+                  width={12}
+                  height={12}
+                />
                 <p>{ps}</p>
               </div>
             ))}
           </div>
           <div className="w-full sm:h-[78px] h-12"></div>
         </div>
-        <div className="flex -webkit-flex justify-between px-6 bg-[#6300C726] h-[130px] mt-[-75px] z-0 relative pt-[75px] rounded-b-[30px]">
+        <div className="flex -webkit-flex justify-between px-6 bg-[#E6E6E6] hover:bg-[#6300C726] h-[130px] mt-[-75px] z-0 relative pt-[75px] rounded-b-[30px]">
           <span className="text-[#6D6D6D] text-[32px] font-extrabold">
             {prescription2.regularPrice} €
           </span>
@@ -228,11 +228,12 @@ const PricePrescription = () => {
       </div>
       <div
         className="flex -webkit-flex flex-col gap-[18px] sm:w-auto w-full cursor-pointer"
-        onMouseEnter={handleMouseEnter2}
-        onMouseLeave={handleMouseLeave2}
-        onClick={() => handleMouseClick2()}
+
       >
         <div
+          onMouseEnter={handleMouseEnter2}
+          onMouseLeave={handleMouseLeave2}
+          onClick={() => handleMouseClick2()}
           className={`${isClickCard2 ? "bg-custom-purple text-white" : "bg-white"
             } hover:bg-[#6d37a3] rounded-[30px] pt-9 px-6 text-[#363636] relative duration-300 ease-in-out shadow-custom-card
          hover:text-white sm:w-[277px] w-full sm:h-[372px] h-auto flex -webkit-flex flex-col justify-between pb-[71px] z-10`}
@@ -241,13 +242,13 @@ const PricePrescription = () => {
           <div className="flex -webkit-flex flex-col gap-3">
             {prescriptionSplit3.map((ps, index) => (
               <div key={index} className="flex -webkit-flex items-start justify-start gap-1 mt-2">
-                  <Image
-                    className="mt-[6px]"
-                    src={isClickCard2 ? hoverBulletIcon : src2}
-                    alt="Bullet"
-                    width={12}
-                    height={12}
-                  />
+                <Image
+                  className="mt-[6px]"
+                  src={isClickCard2 ? hoverBulletIcon : src2}
+                  alt="Bullet"
+                  width={12}
+                  height={12}
+                />
                 <p>{ps}</p>
               </div>
             ))}
@@ -262,14 +263,14 @@ const PricePrescription = () => {
                   width={12}
                   height={12}
                 />
-                <p className="text-base text-[#008E6C] hover:text-white">
+                <p className="text-base text-[#008E6C]">
                   {pt}
                 </p>
               </div>
             ))}
           </div>
         </div>
-        <div className="flex -webkit-flex justify-between px-6 bg-[#E6E6E6] h-[130px] mt-[-75px] z-0 relative pt-[75px] rounded-b-[30px]">
+        <div className="flex -webkit-flex justify-between px-6 bg-[#E6E6E6] hover:bg-[#6300C726] h-[130px] mt-[-75px] z-0 relative pt-[75px] rounded-b-[30px]">
           <span className="text-[#6D6D6D] text-[32px] font-extrabold">
             {prescription3.regularPrice} €
           </span>

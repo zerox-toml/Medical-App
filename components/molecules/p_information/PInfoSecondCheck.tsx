@@ -4,8 +4,8 @@ import RadiobtnChecked from "../../atoms/medical_history_form/RadiobtnChecked";
 import MHistoryNoRemoteAlert from "../../atoms/medical_history_form/MHistoryNoRemoteAlert";
 
 interface IPInfoFirst {
-  setPISecond: (value: boolean) => void;
-  pISecond: boolean;
+  setPISecond: (value: any) => void;
+  pISecond: any;
 }
 
 const PInfoSecondCheck: React.FC<IPInfoFirst> = ({ setPISecond, pISecond }) => {
@@ -20,7 +20,7 @@ const PInfoSecondCheck: React.FC<IPInfoFirst> = ({ setPISecond, pISecond }) => {
         kommen kann?
       </p>
       <div className="flex -webkit-flex mt-[16px]  mb-5">
-        <RadiobtnChecked
+        <Radiobtn
           name="acc2"
           content="Ja"
           className="w-[50%]"

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -73,7 +74,7 @@ const PInfoCheckboxItem: React.FC<ICheckBox> = ({
         htmlFor={content}
       >
         {content}
-        <span className="text-custom-purple">{content1}</span>
+        <Link href = "#"><span className="text-custom-purple cursor-pointer hover:">{content1}</span></Link>
         {content2}
         <span className="text-alert-red">{content3}</span>
       </label>

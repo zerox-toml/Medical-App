@@ -11,6 +11,7 @@ import {
   setTphone,
   setValidationErrors,
 } from "../../redux/counterSlice";
+import MHistroyGender from "../../components/atoms/medical_history_form/MHistoryGender";
 
 interface IMHistoryCheckingInfo {
   disabled: boolean;
@@ -22,8 +23,8 @@ interface IMHistoryCheckingInfo {
   tphone: string;
   validationErrors: any;
   setValidationErrors: any;
-  isInvalidEmail:boolean;
-  setisInvalidEmail:(value:any) => void;
+  isInvalidEmail: boolean;
+  setisInvalidEmail: (value: any) => void;
 }
 
 const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
@@ -48,7 +49,6 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
     setNachname(value);
     setLname(value);
   };
-
   const handleSetTelefon = (value: any) => {
     setTelefon(value);
     setTphone(value);
@@ -57,13 +57,12 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
   const [nachname, setNachname] = useState(lname ?? "");
   const [telefon, setTelefon] = useState(tphone ?? "");
 
-  useEffect(() => {
-  },[validationErrors])
+  useEffect(() => {}, [validationErrors]);
   return (
     <div
       className={`multi-select ${
         disabled
-           ? "disable-attr bg-white h-auto w-full md:rounded-[2.25rem] rounded-[24px] md:p-[3.125rem] p-[24px] gap-[2.4rem] mt-[20px] Myshadow"
+          ? "disable-attr bg-white h-auto w-full md:rounded-[2.25rem] rounded-[24px] md:p-[3.125rem] p-[24px] gap-[2.4rem] mt-[20px] Myshadow"
           : "bg-white h-auto rounded-[2.25rem]  md:p-[3.125rem] p-[24px] gap-[2.4rem] mt-[20px] Myshadow"
       }`}
     >
@@ -71,11 +70,17 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
         Deine Kontaktdaten
       </h2>
       <div className="flex -webkit-flex flex-col gap-4 w-full">
-        <MHistoryInput content="E-mail" isInvalidEmail = {isInvalidEmail} setisInvalidEmail={setisInvalidEmail}/>
+        <MHistoryInput
+          content="E-mail"
+          isInvalid={validationErrors?.email}
+          isInvalidEmail={isInvalidEmail}
+          setisInvalidEmail={setisInvalidEmail}
+        />
         <div className="flex -webkit-flex flex-wrap items-start justify-start gap-4 w-full max-[650px]:flex-nowrap max-[650px]:flex-col  ">
           <MHistroyHerr
             optionInfo="Herr"
             option={["Herr", "Frau", "Keine Angabe"]}
+            isInvalid={validationErrors?.mister}
           />
           <MHistoryName
             name="Vorname"
@@ -89,11 +94,13 @@ const MHistoryCheckingInfo: React.FC<IMHistoryCheckingInfo> = ({
             isInvalid={validationErrors?.lname}
             setValue={handleSetNachname}
           />
-          <MHistroyHerr
+          <MHistroyGender
             optionInfo="Geschlecht"
             option={["Männlich", "Weiblich", "Bevorzusage, nicht zu sagen"]}
+            cId={1}
+            isInvalid={validationErrors?.gender}
           />
-          <MHistoryDate/>
+          <MHistoryDate isInvalid={validationErrors?.birthday} />
           <MHistoryName
             name="Telefonnummer"
             value={telefon}

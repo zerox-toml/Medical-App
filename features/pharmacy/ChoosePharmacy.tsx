@@ -165,7 +165,7 @@ const ChoosePharmacy = ({ isStep, setIsStep }: Props) => {
     const handleSetStep = () => {
         setIsStep(4);
         window.scrollTo(0, 0);
-      };
+    };
 
     return (
         <div className="w-full bg-[rgba(243,243,243)] flex -webkit-flex flex-col justify-start items-center h-auto min-h-[100vh] overflow-x-hidden">
@@ -175,7 +175,7 @@ const ChoosePharmacy = ({ isStep, setIsStep }: Props) => {
                 </h2>
                 <div className=" text-[16px] md:text-[16px] mt-[40px] mb-[40px]">Wir empfehlen eine der folgenden Apotheken auszuwählen, um eine schnelle Abwicklung zu gewährleisten.</div>
                 {filteredPharmacy?.map((pharmacy: any, index: number) => (
-                    <Pharmacy key={index} isClicked={pharmacy === selectedPharmacy} onClick={() => handlePharmacyClick(pharmacy)} tags={pharmacy.tags} pharmacyImg="/Img/pharmacy1" name={pharmacy.name} location="Rosenheim, Deutschland (20,4 km)" price={pharmacy.totalPrice} />
+                    <Pharmacy key={index} isClicked={pharmacy === selectedPharmacy} onClick={() => handlePharmacyClick(pharmacy)} tags={pharmacy.tags} pharmacyImg="/Icon/pharmacyFallback" name={pharmacy.name} zip={pharmacy?.zip} city = {pharmacy?.city} price={pharmacy.totalPrice} />
                 ))}
                 {/* <Pharmacy isClicked={isClicked1} onClick={handleDoctor1} extraServ="Vorreservierung per Privatrezept.net möglich" pharmacyImg="/Img/pharmacy1" name="Pelican Apotheke" isServ={true} location="Rosenheim, Deutschland (20,4 km)" price="182,50"  />
                 <Pharmacy isClicked={isClicked2} onClick={handleDoctor2} extraServ="Schnelle Bearbeitung" pharmacyImg="/Img/pharmacy2" name="Dom Apotheke Köln" isServ={true} location="Köln, Deutschland (1,4 km)" price="193,50" />
@@ -201,7 +201,7 @@ const ChoosePharmacy = ({ isStep, setIsStep }: Props) => {
                 }
                 {clicked ?
                     <div className=" mb-[180px]">
-                        <Pharmacy isClicked={true} isSearch={true} pharmacyImg="/Img/pharmacy3" tags={selectedPharmacy.tags} name={selectedPharmacy.name} location="Köln, Deutschland (1,4 km)" price={selectedPharmacy.totalPrice} />
+                        <Pharmacy isClicked={true} isSearch={true} pharmacyImg="/Icon/pharmacyFallback" tags={selectedPharmacy.tags} name={selectedPharmacy.name} city={selectedPharmacy.city} zip={selectedPharmacy.zip} price={selectedPharmacy.totalPrice} />
                     </div> :
                     <></>
                 }

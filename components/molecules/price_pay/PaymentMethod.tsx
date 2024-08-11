@@ -16,6 +16,7 @@ import {
   setgBillPost,
   setIdenticalWithShipping,
   setPaymentType,
+  setgAgreeGTC,
 } from "../../../redux/counterSlice";
 
 interface ILastAgree {
@@ -46,12 +47,9 @@ const PaymentMethod: React.FC<ILastAgree> = ({
   const alertDaten = useSelector((state: any) => state.counter.alertDaten);
   const alertLCheck1 = useSelector((state: any) => state.counter.alertLCheck1);
   const alertLCheck2 = useSelector((state: any) => state.counter.alertLCheck2);
+  const leadId = useSelector((state:any) => state.counter.leadId)
 
-  const [kartennummer, setKartennummer] = useState();
-  const [ablaufdatum, setAblaufdatum] = useState();
-  const [cVV, setCVV] = useState();
-  const [vorname, setVorname] = useState();
-  const [nachname, setNachname] = useState();
+  
 
   const [changeCheck, setChangeCheck] = useState(false);
 
@@ -62,7 +60,9 @@ const PaymentMethod: React.FC<ILastAgree> = ({
   const [agreeGTC, setAgreeGTC] = useState(false);
 
   const [selectedCardNumber, setSelectedCardNumber] = useState<number>();
-
+  useEffect(() => {
+    dispatch(setgAgreeGTC(agreeGTC))
+  }, [agreeGTC, setAgreeGTC])
   const handleCheck = () => {
     setChangeCheck(!changeCheck);
   };
@@ -122,7 +122,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
           </p>
         </div>
       </div>
-      <div className="flex -webkit-flex gap-3 mt-[30px] flex-wrap justify-center">
+      <div className="flex -webkit-flex gap-3 mt-[30px] mb-[30px] flex-wrap justify-center">
         {CardPaymentData.map((c) => (
           <CardComponent
             onClick={onClick}
@@ -176,7 +176,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
           />
         </div>
       </div> */}
-      <div className="mt-[50px] border-b border-custom-border-grey pb-[30px] ">
+      {/* <div className="mt-[50px] border-b border-custom-border-grey pb-[30px] ">
         <h2 className="font-extrabold text-xl mb-3">Rechnungsadresse</h2>
         <PInfoCheckboxItem
           content="Die Lieferadresse ist identisch mit der Rechnungsadresse."
@@ -218,15 +218,14 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             />
           </div>
         </div>
-      </div>
-      <div className="mt-[30px]">
+      </div> */}
+      <div className={`mt-[30px]" ${leadId ? 'hidden' : ''}`}>
         <p className="text-custom-black text-base">
           Ich bin damit einverstanden, dass Sie mich über Neuigkeiten,
           Rabattaktionen und weitere Informationen informieren.
-          <span className="text-alert-red">*</span>
         </p>
         <div className="flex -webkit-flex md:flex-row flex-col gap-4 mt-[16px] ">
-          <RadiobtnChecked
+          <Radiobtn
             name="acc1"
             content="Ja"
             className="w-[50%]"
@@ -239,10 +238,10 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             onChange={() => setAgreeGTC(false)}
           />
         </div>
-        <div className="flex -webkit-flex md:flex-row flex-col flex-wrap border-b border-custom-border-grey pb-[30px]">
+        <div className="flex -webkit-flex md:flex-row flex-col flex-wrap border-b border-custom-border-grey pb-[30px] mt-[20px]">
           <div className="flex -webkit-flex flex-col md:w-[45%] w-full">
             <h4 className="text-normal-text md:mb-4 mb-2 md:mt-5 mt-6 font-normal">
-              AGBs<span className="text-alert-red">*</span>{" "}
+              AGBs
             </h4>
             <PInfoCheckboxItem
               content="Ich stimme hiermit den"
@@ -260,7 +259,7 @@ const PaymentMethod: React.FC<ILastAgree> = ({
             <h4
               className={`text-normal-text md:mb-4 mb-2 md:mt-5 mt-4 font-normal`}
             >
-              Datenschutzerklärung<span className="text-alert-red">*</span>{" "}
+              Datenschutzerklärung
             </h4>
             <PInfoCheckboxItem
               content="Ich erkläre mich hiermit mit der"

@@ -4,8 +4,16 @@ import React, { useEffect, useState } from "react";
 import Radiobtn from "../../atoms/medical_history_form/Radiobtn";
 import RadiobtnChecked from "../../atoms/medical_history_form/RadiobtnChecked";
 import MHistoryInputThin from "../../atoms/medical_history_form/MHistoryInputThin";
-import { setIsTherapy, setGInsurance } from "../../../redux/counterSlice";
-import { useDispatch } from "react-redux";
+import {
+  setIsTherapy,
+  setGInsurance,
+  setgHaveAllergy,
+  setgDoctorLamaCheck,
+  setgHaveIllness,
+  setgAlwaysGetMedicine,
+  setValidationErrors,
+} from "../../../redux/counterSlice";
+import { useDispatch, useSelector } from "react-redux";
 import MHistoryNoRemoteAlert from "../../atoms/medical_history_form/MHistoryNoRemoteAlert";
 
 interface IMHistoryMultiOptionForm {
@@ -16,63 +24,97 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
   disabled,
 }) => {
   const dispatch = useDispatch();
-  const [isInsurance, setIsInsurance] = useState(0);
-  const [isDoctorCheck, setIsDoctorCheck] = useState(0);
-  const [currentDisplay, setCurrentDisplay] = useState(0);
-  const [isAllergy, setIsAllergy] = useState(0);
-  const [isillnesses, setIsillnesses] = useState(0);
+  const validationErrors = useSelector((state: any) => state.counter.validationErrors);
+  const [isInsurance, setIsInsurance] = useState(3);
+  const [isDoctorCheck, setIsDoctorCheck] = useState(3);
+  const [currentDisplay, setCurrentDisplay] = useState(3);
+  const [isAllergy, setIsAllergy] = useState(3);
+  const [isillnesses, setIsillnesses] = useState(3);
   const [isInputDisabled, setIsInputDisabled] = useState(true);
   const [isAllergyDisabled, setIsAllergyDisabled] = useState(true);
   const [isillnessesDisabled, setIsillnessesDisabled] = useState(true);
-
+  const gInsurance = useSelector((state: any) => state.counter.gInsurance);
+  const gHaveAllergy = useSelector((state: any) => state.counter.gHaveAllergy);
+  const gDoctorLamaCheck = useSelector((state: any) => state.counter.gDoctorLamaCheck);
+  const gHaveIllness = useSelector((state: any) => state.counter.gHaveIllness);
+  const gAlwaysGetMedicine = useSelector((state: any) => state.counter.gAlwaysGetMedicine);
   useEffect(() => {
-    dispatch(setIsTherapy(isDoctorCheck))
+    dispatch(setIsTherapy(isDoctorCheck));
   }, [isDoctorCheck, dispatch]);
 
   useEffect(() => {
     if (isInsurance === 0) {
-      dispatch(setGInsurance(false));
+      dispatch(setGInsurance("Ich bin Selbstzahler"));
+    } else if (isInsurance === 1) {
+      dispatch(setGInsurance("Ich bin privat versichert"));
     } else {
-      dispatch(setGInsurance(true));
+      dispatch(setGInsurance(null));
     }
   }, [isInsurance, dispatch]);
 
   useEffect(() => {
     if (currentDisplay == 1) {
       setIsInputDisabled(false);
-    } else {
+      dispatch(setgAlwaysGetMedicine(1));
+    } else if (currentDisplay == 0) {
       setIsInputDisabled(true);
+      dispatch(setgAlwaysGetMedicine(1));
+    } else {
+      dispatch(setgAlwaysGetMedicine(null));
     }
-  }, [currentDisplay]);
+  }, [currentDisplay, dispatch]);
 
   useEffect(() => {
     if (isAllergy == 1) {
       setIsAllergyDisabled(false);
-    } else {
+      dispatch(setgHaveAllergy(1));
+    } else if (isAllergy == 0) {
       setIsAllergyDisabled(true);
+      dispatch(setgHaveAllergy(1));
+    } else {
+      dispatch(setgHaveAllergy(null));
     }
-  }, [isAllergy]);
+  }, [isAllergy, dispatch]);
 
   useEffect(() => {
     if (isillnesses == 1) {
       setIsillnessesDisabled(false);
-    } else {
+      dispatch(setgHaveIllness(1));
+    } else if (isillnesses == 0) {
       setIsillnessesDisabled(true);
+      dispatch(setgHaveIllness(2));
+    } else {
+      dispatch(setgHaveIllness(null));
     }
-  }, [isillnesses]);
+  }, [isillnesses, dispatch]);
+
+  useEffect(() => {
+    if (isDoctorCheck == 1) {
+      setgHaveIllness(false);
+      dispatch(setgDoctorLamaCheck(1));
+    } else if (isDoctorCheck == 0) {
+      setgHaveIllness(true);
+      dispatch(setgDoctorLamaCheck(1));
+    } else if (isDoctorCheck == 2) {
+      dispatch(setgDoctorLamaCheck(1));
+    } else {
+      dispatch(setgDoctorLamaCheck(null));
+    }
+  }, [isDoctorCheck, dispatch]);
+
   return (
     <div
-      className={`multi-select ${disabled
+      className={`multi-select ${
+        disabled
           ? "disable-attr w-full flex -webkit-flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
           : "w-full flex -webkit-flex flex-col justify-start items-start mt-[20px] bg-white md:p-[3.125rem] p-[24px] md:rounded-[36px] rounded-[24px] Myshadow"
-        }`}
+      }`}
     >
-      <span className="text-[16px] font-normal w-full">
+      <span className={` ${(validationErrors?.gAlwaysGetMedicine) && gAlwaysGetMedicine == null?"text-alert-red":""} text-[16px] font-normal w-full`}>
         Nehmen Sie regelmäßig Medikamente ein?
-        <span className=" text-alert-red font-bold">*</span>
       </span>
       <div className="mt-[16px] flex -webkit-flex w-full items-center gap-5 justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-[650px]:flex-col">
-        <RadiobtnChecked
+        <Radiobtn
           name="medication"
           className=" w-[100%]"
           content="Nein"
@@ -91,13 +133,13 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
           />
         </div>
       </div>
-      <span className="text-[16px] font-normal w-full mt-[36px]">
+      <span className={` ${(validationErrors?.gHaveAllergy) && gHaveAllergy == null?"text-alert-red":""} text-[16px] font-normal w-full`}>
+
         Sind bei Ihnen Allergien bekannt? Falls ja, bitte detalierte Angaben
         machen
-        <span className=" text-alert-red font-bold">*</span>
       </span>
       <div className="mt-[16px] max-[650px]:flex-col flex -webkit-flex w-full gap-5 items-center justify-between ">
-        <RadiobtnChecked
+        <Radiobtn
           name="allergies"
           className=" w-[100%]"
           content="Nein"
@@ -110,17 +152,21 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
             content="Ja"
             onChange={() => setIsAllergy(1)}
           />
-          <MHistoryInputThin content="Bekannte Allergien" disabled={isAllergyDisabled} />
+          <MHistoryInputThin
+            content="Bekannte Allergien"
+            disabled={isAllergyDisabled}
+          />
         </div>
       </div>
-      <span className="text-[16px] font-normal w-full mt-[36px]">
+      <span className={` ${(validationErrors?.gDoctorLamaCheck) && gDoctorLamaCheck == null?"text-alert-red":""} text-[16px] font-normal w-full`}>
+
         Sind Ihre Allergologen darüber informiert, dass Sie eine Therapie mit
         medizinischem Cannabis beginnen möchten, und sehen Ihre Ärzte keine
         Kontraindikationen?
       </span>
       <div className=" mt-[16px] flex -webkit-flex w-full items-start justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-sm:flex-col max-sm:items-start gap-5">
         <div className="w-1/3 flex -webkit-flex items-center">
-          <RadiobtnChecked
+          <Radiobtn
             name="allergists"
             className=""
             content="Nein"
@@ -135,10 +181,11 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
             onChange={() => setIsDoctorCheck(1)}
           />
           <div
-            className={`multi-select ${isDoctorCheck === 1
+            className={`multi-select ${
+              isDoctorCheck === 1
                 ? "py-[10px] px-6 bg-[#D7000D08]  w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
                 : "hidden"
-              }`}
+            }`}
           >
             <MHistoryNoRemoteAlert />
           </div>
@@ -151,22 +198,23 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
             onChange={() => setIsDoctorCheck(2)}
           />
           <div
-            className={`multi-select ${isDoctorCheck === 2
+            className={`multi-select ${
+              isDoctorCheck === 2
                 ? "py-[10px] px-6 bg-[#D7000D08] sm:w-[240px] w-full rounded-[20px] mr-0 ml-auto flex -webkit-flex justify-end items-center mt-4"
                 : "hidden"
-              }`}
+            }`}
           >
             <MHistoryNoRemoteAlert />
           </div>
         </div>
       </div>
-      <span className="text-[16px] font-normal w-full mt-[36px]">
+      <span className={` ${(validationErrors?.gHaveIllness) && gHaveIllness == null?"text-alert-red":""} text-[16px] font-normal w-full`}>
+
         Leiden Sie an chronischen Krankheiten, einschließlich psychischer
         Erkrankungen?
-        <span className=" text-alert-red font-bold">*</span>
       </span>
       <div className=" mt-[16px] flex -webkit-flex w-full items-center gap-5  justify-between border-b border-[rgba(0,0,0,0.07)] pb-[20px] max-[650px]:flex-col">
-        <RadiobtnChecked
+        <Radiobtn
           name="chronic "
           className=" w-[100%]"
           content="Nein"
@@ -185,11 +233,12 @@ const MHistoryMultiOptionForm: React.FC<IMHistoryMultiOptionForm> = ({
           />
         </div>
       </div>
-      <span className="text-[16px] font-normal w-full mt-[36px]">
+      <span className={` ${(validationErrors?.gInsurance) && gInsurance == null?"text-alert-red":""} text-[16px] font-normal w-full`}>
+
         Zahlen Sie selbst oder sind Sie privat versichert?
       </span>
       <div className=" mt-[16px] flex -webkit-flex w-full items-center justify-start max-[650px]:flex-col max-[650px]:items-start gap-5 ">
-        <RadiobtnChecked
+        <Radiobtn
           name="pay "
           className=" w-[50%]"
           content="Ich bin Selbstzahler"

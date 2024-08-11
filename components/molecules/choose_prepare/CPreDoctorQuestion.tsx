@@ -21,7 +21,6 @@ const CPreDoctorQuestion = ({ setIsDoctor, isDoctor }: Props) => {
       <p className=" text-[16px] font-normal">
         Möchten Sie eine eigene Sorte wählen oder soll der Arzt eine passende
         Sorte verschreiben?
-        <span className="text-alert-red font-bold">*</span>
       </p>
       <div className="flex -webkit-flex mt-[16px]">
         <RadiobtnChecked

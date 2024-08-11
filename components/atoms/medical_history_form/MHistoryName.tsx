@@ -30,7 +30,6 @@ const MHistoryName: React.FC<IUserName> = ({
       {!value && (
         <span className="absolute top-[13px] left-4 text-gray-400 pointer-events-none text-[16px]">
           {name}
-          <span className="text-red-500">*</span>
         </span>
       )}
     </div>

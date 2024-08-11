@@ -24,6 +24,8 @@ import CPreFilter from "../../components/atoms/choose_prepare/CPreFilter";
 
 interface Props {
   isStep: number;
+  isProductStep: number;
+  setIsProductStep: (value: number) => void;
   setIsStep: (value: number) => void;
   showFilter: boolean;
   setShowFilter: (value: boolean) => void;
@@ -65,7 +67,7 @@ interface Product {
   // herbAmount?: number;
 }
 
-const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
+const Prepare = ({ isProductStep, isStep, setIsStep, setIsProductStep, showFilter, setShowFilter }: Props) => {
   const dispatch = useDispatch();
   const [isDoctor, setIsDoctor] = useState(false);
   const [isDominaz, setIsDominaz] = useState(true);
@@ -207,11 +209,11 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
   };
 
   const seeOverview = () => {
+    isDoctor && setIsStep(4);
     setShowOverView(!showOverView);
-    isDoctor && setIsStep(0);
     window.scrollTo(0, 0);
-
   };
+
   const removeHerbAmount = (index: number) => {
     const selectedHerbLists = [...selectedHerbList];
     selectedHerbLists.splice(index, 1);
@@ -294,7 +296,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
 
   useEffect(() => {
     if (selectedHerbList.length === 0) {
-      setIsStep(0)
+      setIsProductStep(0)
       setShowOverView(false);
       setSelectedHerb(null);
     }
@@ -330,7 +332,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
             <Button
               content="zur Übersicht"
               onClick={() => seeOverview()}
-              className={`${isSelectedHerb ? "" : "disable-attr-btn"} md:w-[146px] w-full bg-[#FFFFFF] hover:border-[3px] border-[3px] border-[#41057E] hover:border-[rgba(65,5,126,1)] hover:bg-[#41057E] 
+              className={`${isSelectedHerb || isDoctor ? "" : "disable-attr-btn"} md:w-[146px] w-full bg-[#FFFFFF] hover:border-[3px] border-[3px] border-[#41057E] hover:border-[rgba(65,5,126,1)] hover:bg-[#41057E] 
               hover:text-[white] rounded-[60px] px-4 py-[10px] text-[16px] font-bold text-[#41057E]`}
             />
           </div>
@@ -562,7 +564,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
                       onClick={() => handleHerbClick(p)}
                     >
                       <CPreHerb
-                      classname=" cursor-pointer"
+                        classname=" cursor-pointer"
                         herbCBD={p.cbd}
                         herbGenetik={p.genetic}
                         // herbImg={p.imgUrl}
@@ -595,7 +597,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
           <Button
             content="zur Übersicht"
             onClick={() => seeOverview()}
-            className={`${isSelectedHerb ? "" : "disable-attr-btn"} w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)]
+            className={`${isSelectedHerb || isDoctor ? "" : "disable-attr-btn"} w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)]
             rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white mt-5 `}
           />
         </div>
@@ -687,7 +689,7 @@ const Prepare = ({ isStep, setIsStep, showFilter, setShowFilter }: Props) => {
           <Button
             disabled={selectedHerbList.length === 0}
             content="Auswahl bestätigen"
-            onClick={() => setIsStep(1)}
+            onClick={() => setIsProductStep(1)}
             className={
               "w-full bg-[rgba(65,5,126,1)] hover:border-[3px] hover:border-[rgba(65,5,126,1)] hover:bg-white hover:text-[rgba(65,5,126,1)] rounded-[60px] px-[20px] py-[10px] text-[16px] font-bold text-white"
             }

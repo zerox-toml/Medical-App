@@ -28,11 +28,18 @@ const { reducer, actions } = createSlice({
     birthday: null,
     tphone: null,
     gAnythingelse: null,
+    // first page last five options
     gInsurance: null,
+    gHaveAllergy:null,
+    gDoctorLamaCheck:null,
+    gHaveIllness:null,
+    gAlwaysGetMedicine:null,
+
     gCannvanisDrive: null,
     gCTKnow: null,
     gCheckedContents: [],
     validationErrors: {},
+    lastValidationErrors: {},
     symptoms: [],
     detailedSymptom: null,
     regMedicine: null,
@@ -59,6 +66,7 @@ const { reducer, actions } = createSlice({
     gBStreet: null,
     gBillPost: null,
     gBillOrt: null,
+    gAgreeGTC: null,
     identicalWithShipping: null,
     // last alert
     alertAGB: false,
@@ -67,6 +75,7 @@ const { reducer, actions } = createSlice({
     alertLCheck2: false,
     idCardFile: null,
     paymentType: null,
+    leadId: null,
   },
   reducers: {
     increment: (state) => {
@@ -74,6 +83,9 @@ const { reducer, actions } = createSlice({
     },
     setPageStatus: (state, { payload }) => {
       state.pageStatus = payload;
+    },
+    setgAgreeGTC: (state, { payload }) => {
+      state.gAgreeGTC = payload;
     },
     setalertAGB: (state, { payload }) => {
       state.alertAGB = payload;
@@ -129,8 +141,24 @@ const { reducer, actions } = createSlice({
     setTphone: (state, { payload }) => {
       state.tphone = payload;
     },
+    setgHaveAllergy: (state, { payload }) => {
+      state.gHaveAllergy = payload;
+    },
+    setgDoctorLamaCheck: (state, { payload }) => {
+      state.gDoctorLamaCheck = payload;
+    },
+    setgHaveIllness: (state, { payload }) => {
+      state.gHaveIllness = payload;
+    },
+    setgAlwaysGetMedicine: (state, { payload }) => {
+      state.gAlwaysGetMedicine = payload;
+    },
+    
     setValidationErrors: (state, { payload }) => {
       state.validationErrors = payload;
+    },
+    setLastValidationErrors: (state, { payload }) => {
+      state.lastValidationErrors = payload;
     },
     setSymptoms: (state, { payload }) => {
       state.symptoms = payload;
@@ -206,6 +234,9 @@ const { reducer, actions } = createSlice({
     setPaymentType: (state, { payload }) => {
       state.paymentType = payload;
     },
+    setLeadId: (state, { payload }) => {
+      state.leadId = payload;
+    },
     decrement: (state) => {
       state.value -= 1;
     },
@@ -258,6 +289,13 @@ export const {
   setGInsurance,
   setIdCardFile,
   setPaymentType,
+  setLeadId,
+  setgHaveAllergy,
+  setgDoctorLamaCheck,
+  setgHaveIllness,
+  setgAlwaysGetMedicine,
+  setLastValidationErrors,
+  setgAgreeGTC
 } = actions;
 
 export default reducer;

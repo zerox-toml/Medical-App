@@ -12,10 +12,29 @@ import ChooseDoctorPage from "../../features/chooseDoctorPage/ChooseDoctorPage";
 import PricePayMethod from "../../features/price_payment/PricePayMethod";
 import { Toaster } from "react-hot-toast";
 
+import { setEmail, setLeadId } from "../../redux/counterSlice";
+
 export default function Home() {
-  const [isStep, setIsStep] = useState(0);
+  const dispatch = useDispatch();
+
+  const [isStep, setIsStep] = useState(1);
   const [isProductStep, setIsProductStep] = useState(0);
   const [showFilter, setShowFilter] = useState(true);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const uiParam = params.get("ui");
+    const emailParam = params.get("email");
+
+    if (uiParam) {
+      dispatch(setLeadId(uiParam));
+      dispatch(setEmail(emailParam));
+      setIsStep(3);
+    } else {
+      console.log("UI parameter does not exist in the URL");
+    }
+    // }
+  }, []);
 
   return (
     <main className="">
@@ -25,9 +44,8 @@ export default function Home() {
         setIsProductStep={setIsProductStep}
       />
       <div
-        className={`${
-          showFilter ? "pt-[60px]" : "pt-7"
-        } flex -webkit-flex flex-col sm:pt-20  bg-[rgba(243,243,243)]`}
+        className={`${showFilter ? "pt-[60px]" : "pt-7"
+          } flex -webkit-flex flex-col sm:pt-20  bg-[rgba(243,243,243)]`}
       >
         {isStep === 0 ? (
           <MHistoryHaveAccountPage isStep={isStep} setIsStep={setIsStep} />
@@ -38,8 +56,10 @@ export default function Home() {
         ) : isStep === 3 ? (
           isProductStep === 0 ? (
             <Prepare
-              isStep={isProductStep}
-              setIsStep={setIsProductStep}
+              isStep={isStep} 
+              setIsStep={setIsStep}
+              isProductStep={isProductStep}
+              setIsProductStep={setIsProductStep}
               showFilter={showFilter}
               setShowFilter={setShowFilter}
             />
@@ -52,10 +72,10 @@ export default function Home() {
           <PricePayMethod />
         ) : null}
 
-          <Toaster
-            position='top-right'
-            toastOptions={{ className: "react-hot-toast" }}
-          />
+        <Toaster
+          position="top-right"
+          toastOptions={{ className: "react-hot-toast" }}
+        />
       </div>
     </main>
   );
