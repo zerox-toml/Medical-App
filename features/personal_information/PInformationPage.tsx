@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import PInfoFirstCheck from "../../components/molecules/p_information/PInfoFirstCheck";
 import {
   setGCannvanisDrive,
-  setGCTKnow,
+  setGCTKnow,  
 } from "../../redux/counterSlice";    
 
 import PInfoSecondCheck from "../../components/molecules/p_information/PInfoSecondCheck";
