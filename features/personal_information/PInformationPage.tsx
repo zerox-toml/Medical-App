@@ -11,7 +11,7 @@ import PInfoSecondCheck from "../../components/molecules/p_information/PInfoSeco
 import PInfoCheckDataList from "../../components/molecules/p_information/PInfoCheckDataList";
 import PInfoAnythingElse from "../../components/molecules/p_information/PInfoAnythingElse";
 import { } from "../../redux/counterSlice";
-import Button from "../../components/atoms/Button";
+import Button from "../../components/atoms/Button";   
 import { useDispatch } from "react-redux";
 
 interface Props {
