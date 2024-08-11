@@ -575,7 +575,7 @@ const Prepare = ({ isProductStep, isStep, setIsStep, setIsProductStep, showFilte
                         herbPriceTo={p.maxPrice}
                         herbTHC={p.thc}
                         herbTalent={p.ratingsScore}
-                        herbAmount={p.herbAmount}
+                        herbAmount={p.herbAmount} 
                       />
                     </div>
                   )) : <span className=" w-full">Es wurden keine Produkte gefunden. Bitte ändern Sie die Filtereinstellungen und versuchen Sie es erneut.</span>
