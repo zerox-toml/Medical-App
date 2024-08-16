@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+      
 interface IHerbData {
   herbImg: string;
   herbName: string;
