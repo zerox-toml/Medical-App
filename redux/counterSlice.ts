@@ -9,7 +9,7 @@ interface IHerbData {
   herbGenetik: string;
   herbPriceFrom: number;
   herbPriceTo: number;
-  herbTalent: number;
+  herbTalent: number;    
   herbAmount: number;
 }
 
