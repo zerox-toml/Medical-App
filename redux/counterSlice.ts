@@ -18,7 +18,7 @@ const { reducer, actions } = createSlice({
   initialState: {
     value: 0,      
     pageStatus: 1,   
-    name: null,
+    name: null,    
     email: null,
     registerEmail: null,
     mister: null,
