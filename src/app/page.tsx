@@ -15,7 +15,7 @@ import { Toaster } from "react-hot-toast";
 import { setEmail, setLeadId } from "../../redux/counterSlice";
 
 export default function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();    
 
   const [isStep, setIsStep] = useState(1);
   const [isProductStep, setIsProductStep] = useState(0);
