@@ -42,7 +42,7 @@ const { reducer, actions } = createSlice({
     lastValidationErrors: {},
     symptoms: [],
     detailedSymptom: null,
-    regMedicine: null,
+    regMedicine: null,    
     allergiInfo: null,
     chronic: null,
     isTherapy: 0,
