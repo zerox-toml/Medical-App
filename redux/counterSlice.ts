@@ -16,7 +16,7 @@ interface IHerbData {
 const { reducer, actions } = createSlice({
   name: "counter",
   initialState: {
-    value: 0,  
+    value: 0,      
     pageStatus: 1,   
     name: null,
     email: null,
