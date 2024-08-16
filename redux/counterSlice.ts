@@ -86,7 +86,7 @@ const { reducer, actions } = createSlice({
     },
     setgAgreeGTC: (state, { payload }) => {
       state.gAgreeGTC = payload;
-    },
+    },     
     setalertAGB: (state, { payload }) => {
       state.alertAGB = payload;
     },
