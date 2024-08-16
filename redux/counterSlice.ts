@@ -4,7 +4,7 @@ interface IHerbData {
   herbImg: string;
   herbName: string;
   herbTHC: number;
-  herbCBD: number;
+  herbCBD: number;      
   herbKultivar: string;
   herbGenetik: string;
   herbPriceFrom: number;
