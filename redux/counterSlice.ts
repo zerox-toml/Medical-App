@@ -39,7 +39,7 @@ const { reducer, actions } = createSlice({
     gCTKnow: null,
     gCheckedContents: [],
     validationErrors: {},
-    lastValidationErrors: {},
+    lastValidationErrors: {},  
     symptoms: [],
     detailedSymptom: null,
     regMedicine: null,    
