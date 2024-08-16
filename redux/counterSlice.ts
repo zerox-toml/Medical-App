@@ -9,14 +9,18 @@ interface IHerbData {
   herbGenetik: string;    
   herbPriceFrom: number;
   herbPriceTo: number;
+  patch-8
   herbTalent: number;         
   herbAmount: number;
+  herbTalent: number;    
+  herbAmount: number;     
+  main
 }
 
 const { reducer, actions } = createSlice({
   name: "counter",
   initialState: {
-    value: 0,  
+    value: 0,      
     pageStatus: 1,   
     name: null,
     email: null,
@@ -24,7 +28,7 @@ const { reducer, actions } = createSlice({
     mister: null,
     gender: null,
     fname: null,
-    lname: null,
+    lname: null,     
     birthday: null,
     tphone: null,
     gAnythingelse: null,
