@@ -6,7 +6,7 @@ interface IHerbData {
   herbTHC: number;
   herbCBD: number;      
   herbKultivar: string;
-  herbGenetik: string;    
+  herbGenetik: string;  
   herbPriceFrom: number;
   herbPriceTo: number;
   herbTalent: number;    
@@ -79,7 +79,7 @@ const { reducer, actions } = createSlice({
   },
   reducers: {
     increment: (state) => {
-      state.value += 1;
+      state.value += 1;      
     },
     setPageStatus: (state, { payload }) => {
       state.pageStatus = payload;
