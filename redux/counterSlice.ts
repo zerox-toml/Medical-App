@@ -4,27 +4,31 @@ interface IHerbData {
   herbImg: string;
   herbName: string;
   herbTHC: number;
-  herbCBD: number;
+  herbCBD: number;      
   herbKultivar: string;
+  patch-6
   herbGenetik: string;    
+
+  herbGenetik: string;  
+ main
   herbPriceFrom: number;
   herbPriceTo: number;
-  herbTalent: number;
-  herbAmount: number;
+  herbTalent: number;    
+  herbAmount: number;        
 }
 
 const { reducer, actions } = createSlice({
-  name: "counter",
+  name: "counter",   
   initialState: {
-    value: 0,  
+    value: 0,      
     pageStatus: 1,   
-    name: null,
+    name: null,    
     email: null,
     registerEmail: null,
-    mister: null,
+    mister: null,       
     gender: null,
     fname: null,
-    lname: null,
+    lname: null,     
     birthday: null,
     tphone: null,
     gAnythingelse: null,
@@ -39,7 +43,7 @@ const { reducer, actions } = createSlice({
     gCTKnow: null,
     gCheckedContents: [],
     validationErrors: {},
-    lastValidationErrors: {},
+    lastValidationErrors: {},  
     symptoms: [],
     detailedSymptom: null,
     regMedicine: null,    
@@ -79,14 +83,14 @@ const { reducer, actions } = createSlice({
   },
   reducers: {
     increment: (state) => {
-      state.value += 1;
+      state.value += 1;      
     },
     setPageStatus: (state, { payload }) => {
       state.pageStatus = payload;
     },
     setgAgreeGTC: (state, { payload }) => {
       state.gAgreeGTC = payload;
-    },
+    },     
     setalertAGB: (state, { payload }) => {
       state.alertAGB = payload;
     },
