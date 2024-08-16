@@ -21,7 +21,7 @@ const { reducer, actions } = createSlice({
     name: null,
     email: null,
     registerEmail: null,
-    mister: null,
+    mister: null,       
     gender: null,
     fname: null,
     lname: null,     
