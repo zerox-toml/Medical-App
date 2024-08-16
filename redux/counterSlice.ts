@@ -10,7 +10,7 @@ interface IHerbData {
   herbPriceFrom: number;
   herbPriceTo: number;
   herbTalent: number;    
-  herbAmount: number;     
+  herbAmount: number;        
 }
 
 const { reducer, actions } = createSlice({
