@@ -6,15 +6,18 @@ interface IHerbData {
   herbTHC: number;
   herbCBD: number;      
   herbKultivar: string;
+  patch-6
+  herbGenetik: string;    
+
   herbGenetik: string;  
+ main
   herbPriceFrom: number;
   herbPriceTo: number;
   patch-8
   herbTalent: number;         
   herbAmount: number;
   herbTalent: number;    
-  herbAmount: number;     
-  main
+
 }
 
 const { reducer, actions } = createSlice({
@@ -22,10 +25,10 @@ const { reducer, actions } = createSlice({
   initialState: {
     value: 0,      
     pageStatus: 1,   
-    name: null,
+    name: null,    
     email: null,
     registerEmail: null,
-    mister: null,
+    mister: null,       
     gender: null,
     fname: null,
     lname: null,     
@@ -43,7 +46,7 @@ const { reducer, actions } = createSlice({
     gCTKnow: null,
     gCheckedContents: [],
     validationErrors: {},
-    lastValidationErrors: {},
+    lastValidationErrors: {},  
     symptoms: [],
     detailedSymptom: null,
     regMedicine: null,    
@@ -90,7 +93,7 @@ const { reducer, actions } = createSlice({
     },
     setgAgreeGTC: (state, { payload }) => {
       state.gAgreeGTC = payload;
-    },
+    },     
     setalertAGB: (state, { payload }) => {
       state.alertAGB = payload;
     },
