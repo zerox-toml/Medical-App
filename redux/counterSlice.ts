@@ -9,7 +9,7 @@ interface IHerbData {
   herbGenetik: string;
   herbPriceFrom: number;
   herbPriceTo: number;
-  herbTalent: number;
+  herbTalent: number;    
   herbAmount: number;
 }
 
@@ -17,7 +17,7 @@ const { reducer, actions } = createSlice({
   name: "counter",
   initialState: {
     value: 0,  
-    pageStatus: 1,
+    pageStatus: 1,   
     name: null,
     email: null,
     registerEmail: null,
@@ -42,7 +42,7 @@ const { reducer, actions } = createSlice({
     lastValidationErrors: {},
     symptoms: [],
     detailedSymptom: null,
-    regMedicine: null,
+    regMedicine: null,    
     allergiInfo: null,
     chronic: null,
     isTherapy: 0,
