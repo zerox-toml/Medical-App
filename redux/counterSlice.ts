@@ -13,8 +13,11 @@ interface IHerbData {
  main
   herbPriceFrom: number;
   herbPriceTo: number;
+  patch-8
+  herbTalent: number;         
+  herbAmount: number;
   herbTalent: number;    
-  herbAmount: number;        
+
 }
 
 const { reducer, actions } = createSlice({
